@@ -1,6 +1,8 @@
-# paws-patrol-lhl
+# Paws patrol
 
-Final group project for the Lighthouse Lab web dev bootcamp
+Paws Patrol is designed to protect your pets and you. Always know where your pets are without anyone else able to do the same.  
+Self-hosting allows you to choose your own middleware (ex. authelia, pomerium) for login while also providing security through obscurity.  
+Open source software allows you to know your devices are only talking to each other.
 
 ## Setup
 
