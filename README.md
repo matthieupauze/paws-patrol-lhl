@@ -6,12 +6,12 @@ Open source software allows you to know your devices are only talking to each ot
 
 ## Setup
 
-1. cd server
-2. npm i
-3. npm start &
-4. cd ../app
-5. npm i
-6. npm start
+```js
+cd server
+npm run build && npm start
+cd ../app
+npm run dev
+```
 
 ## Dependencies
 
