@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./dist/index",
-    "build": "tsc"
+    "start": "node ./dist/index.js",
+    "build": "tsc",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
