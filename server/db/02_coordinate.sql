@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS coordinate CASCADE;
+CREATE TABLE coordinate (
+  id SERIAL PRIMARY KEY NOT NULL,
+  device_id INT REFERENCES device(id) NOT NULL ON DELETE CASCADE,
+  latitude REAL NOT NULL,
+  longitude REAL NOT NULL,
+  time TIMESTAMP NOT NULL
+);
