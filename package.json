@@ -1,0 +1,27 @@
+{
+  "name": "pet-finder",
+  "version": "1.0.0",
+  "description": "Paws Patrol is designed to protect your pets and you. Always know where your pets are without anyone else able to do the same.   Self-hosting allows you to choose your own middleware (ex. authelia, pomerium) for login while also providing security.   Open source software allows you to know your devices are only talking to each other.",
+  "subPackages": [
+    "app",
+    "server"
+  ],
+  "scripts": {
+    "install": "subpkg install",
+    "build": "subpkg run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MeatCow/paws-patrol-lhl.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MeatCow/paws-patrol-lhl/issues"
+  },
+  "homepage": "https://github.com/MeatCow/paws-patrol-lhl#readme",
+  "devDependencies": {
+    "subpackage": "^1.1.0"
+  }
+}
