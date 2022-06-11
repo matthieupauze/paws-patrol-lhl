@@ -61,7 +61,7 @@ function App() {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[51.505, -0.09]}>
+      <Marker position={[51.049999, -114.066666]}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
