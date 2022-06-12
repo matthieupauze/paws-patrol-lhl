@@ -1,25 +1,17 @@
 {
-  "extends": [
-    "airbnb",
-    "plugin:prettier/recommended",
-    "prettier/react"
-  ],
+  "root": true,
+  "extends": ["airbnb", "plugin:prettier/recommended", "prettier"],
   "env": {
     "commonjs": true,
     "es6": true,
     "node": true
   },
   "rules": {
-    "jsx-a11y/href-no-hash": [
-      "off"
-    ],
+    "jsx-a11y/href-no-hash": ["off"],
     "react/jsx-filename-extension": [
       "warn",
       {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
+        "extensions": [".js", ".jsx"]
       }
     ],
     "max-len": [
