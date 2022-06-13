@@ -5,6 +5,7 @@ import {
   Popup,
   useMapEvents,
 } from "react-leaflet";
+import { Login } from "./components/Login";
 import { useEffect, useRef, useState } from "react";
 
 function App() {
@@ -23,20 +24,20 @@ function App() {
     });
     return position === null ? null : <Marker position={position}></Marker>;
   };
-  const position = 
 
   return (
-    <MapContainer
-      center={[51.049999, -114.066666]}
-      zoom={13}
-      scrollWheelZoom={true}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Location />,
-    </MapContainer>
+    <Login />
+    // <MapContainer
+    //   center={[51.049999, -114.066666]}
+    //   zoom={18}
+    //   scrollWheelZoom={true}
+    // >
+    //   <TileLayer
+    //     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    //     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    //   />
+    //   <Location />,
+    // </MapContainer>
   );
 }
 
