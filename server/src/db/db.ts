@@ -89,3 +89,11 @@ const addCoordinates = (imei: number, lat: number, long: number, time: any) => {
   }).catch((err: any) => console.log(err));
 };
 exports.addCoordinates = addCoordinates;
+
+const getCoordinate = (imei: number) => {
+  return Coordinate.findOne({
+    order: [['time', 'DESC']],
+    where: { deviceId: imei}
+  });
+};
+exports.getCoordinate = getCoordinate;
