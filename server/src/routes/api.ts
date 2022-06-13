@@ -13,7 +13,9 @@ module.exports = (router: any, db: any) => {
   // Get most recent coord from db for specified imei
   router.get('/:imei', (req: any, res: any) => {
     const { imei } = req.params;
-    db.getCoordinate(Number(imei)).then((data: any) => res.send(`You send ${data}`));
+    db.getCoordinate(Number(imei))
+    .then((data: any) => res.send(data.dataValues))
+    .catch((err: any) => res.send(err));
   });
 
   // Add coordinates to db

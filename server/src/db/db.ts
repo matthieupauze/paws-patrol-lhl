@@ -92,7 +92,7 @@ exports.addCoordinates = addCoordinates;
 
 const getCoordinate = (imei: number) => {
   return Coordinate.findOne({
-    where: { id: `${imei}`}
+    where: { deviceId: imei}
   });
 };
 exports.getCoordinate = getCoordinate;
