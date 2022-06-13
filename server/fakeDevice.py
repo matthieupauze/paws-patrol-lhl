@@ -3,10 +3,13 @@ import random
 import time, threading
 from datetime import datetime
 
-StartTime=time.time()
-
 imei = random.randrange(10000, 99999)
+intervalLength = int(input('Interval Length: '))
+totalLength = int(input('Total Run Time: '))
 
+print(intervalLength, totalLength)
+
+StartTime=time.time()
 
 def action() :
 
@@ -36,8 +39,8 @@ class setInterval :
     def cancel(self) :
         self.stopEvent.set()
 
-inter=setInterval(3,action)
+inter=setInterval(intervalLength, action)
 print('just after setInterval -> time : {:.1f}s'.format(time.time()-StartTime))
 
-t=threading.Timer(9,inter.cancel)
+t=threading.Timer(totalLength, inter.cancel)
 t.start()
