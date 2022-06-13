@@ -1,11 +1,22 @@
-var express = require('express');
-var router = express.Router();
+module.exports = (router: any, db: any) => {
 
-/* GET home page. */
-router.get('/', function (req: any, res: any, next: any) {
-  res.send('Hello');
-});
+  // Get route to reset DB
+  router.get('/reset', function(req: any, res: any) {
+    db.resetDB();
+    res.send("DB Reset");
+  });
 
-router.post('/');
+  router.get('/', (req: any, res: any) => {
+    res.send("Nothing to see here!");
+  });
 
-module.exports = router;
+  router.post('/:imei', (req: any, res: any) => {
+    const { imei } = req.params;
+    const { lat, long } = req.body;
+    db.addCoordinates(Number(imei), lat, long);
+    res.send(`imei: ${imei} lat: ${lat} long: ${long}\n`);
+  });
+
+  return router;
+
+};
