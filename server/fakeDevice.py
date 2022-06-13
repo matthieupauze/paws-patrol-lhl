@@ -4,10 +4,18 @@ import time, threading
 from datetime import datetime
 
 imei = random.randrange(10000, 99999)
-intervalLength = int(input('Interval Length: '))
-totalLength = int(input('Total Run Time: '))
 
-print(intervalLength, totalLength)
+intervalLength = input('Interval Length: ')
+if intervalLength == '':
+    intervalLength = 15
+intervalLength = int(intervalLength)
+
+totalLength = input('Total Run Time: ')
+if totalLength == '':
+    totalLength = 600
+totalLength = int(totalLength)
+
+print(f"Running every {intervalLength} seconds for {totalLength} seconds.")
 
 StartTime=time.time()
 
@@ -20,7 +28,6 @@ def action() :
 
     print(x.text)
     print('action ! -> time : {:.1f}s'.format(time.time()-StartTime))
-
 
 class setInterval :
     def __init__(self,interval,action) :
