@@ -8,12 +8,12 @@ const Header = () => {
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="ms-auto">
-        <Nav.Link href="#home">Track Pet</Nav.Link>
-        <Nav.Link href="#link">Add Device</Nav.Link>
-        <Nav.Link href="#link">Add Perimeter</Nav.Link>
-        <Nav.Link href="#link">Account</Nav.Link>
-        <Nav.Link href="#link">Contact</Nav.Link>
-        <Nav.Link href="#link">Logout</Nav.Link>
+        <Nav.Link href="/">Track Pet</Nav.Link>
+        <Nav.Link href="/devices">Manage Devices</Nav.Link>
+        <Nav.Link href="/AddPerimeter">Add Perimeter</Nav.Link>
+        <Nav.Link href="/account">Account</Nav.Link>
+        <Nav.Link href="/contact">Contact</Nav.Link>
+        <Nav.Link href="/login">Logout</Nav.Link>
       </Nav>
     </Navbar.Collapse>
   </Container>
