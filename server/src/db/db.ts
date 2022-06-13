@@ -14,6 +14,11 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
 const Device = sequelize.define(
   'device',
   {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
