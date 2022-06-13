@@ -1,11 +1,22 @@
-var express = require('express');
-var router = express.Router();
+// Api Controller
+module.exports = (router: any, db: any) => {
+  // Get route to reset DB
+  router.get('/reset', function (req: any, res: any) {
+    db.resetDB();
+    res.send('DB Reset');
+  });
 
-/* GET home page. */
-router.get('/', function (req: any, res: any, next: any) {
-  res.send('Hello');
-});
+  router.get('/', (req: any, res: any) => {
+    res.send('Nothing to see here!');
+  });
 
-router.post('/');
+  // Add coordinates to db
+  router.post('/:imei', (req: any, res: any) => {
+    const { imei } = req.params;
+    const { lat, long, time } = req.body;
+    db.addCoordinates(Number(imei), lat, long, time);
+    res.send(`imei: ${imei} lat: ${lat} long: ${long} time: ${time}\n`);
+  });
 
-module.exports = router;
+  return router;
+};

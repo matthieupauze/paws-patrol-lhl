@@ -10,13 +10,18 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
   dialect: 'postgres',
 });
 
-// Define device table then drop and recreate
+// Define device table
 const Device = sequelize.define(
   'device',
   {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+      primaryKey: true,
+    },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
   },
   {
@@ -24,9 +29,7 @@ const Device = sequelize.define(
   }
 );
 
-Device.sync({ force: true });
-
-// Define coordinate table then drop and recreate
+// Define coordinate table
 const Coordinate = sequelize.define(
   'coordinate',
   {
@@ -39,7 +42,7 @@ const Coordinate = sequelize.define(
       allowNull: false,
     },
     time: {
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
       allowNull: false,
     },
   },
@@ -47,11 +50,9 @@ const Coordinate = sequelize.define(
     freezeTableName: true,
   }
 );
-
 Coordinate.belongsTo(Device);
-Coordinate.sync({ force: true });
 
-// Define trip table then drop and recreate
+// Define trip table
 const Trip = sequelize.define(
   'trip',
   {
@@ -59,16 +60,32 @@ const Trip = sequelize.define(
       type: DataTypes.STRING,
     },
     start: {
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
     },
     end: {
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
     },
   },
   {
     freezeTableName: true,
   }
 );
-
 Trip.belongsTo(Device);
-Trip.sync({ force: true });
+
+const resetDB = () => {
+  sequelize.sync({ force: true }).catch((err: any) => console.log(err));
+};
+exports.resetDB = resetDB;
+
+const addCoordinates = (imei: number, lat: number, long: number, time: any) => {
+  Device.create({
+    id: imei,
+  }).catch((err: any) => console.log(err));
+  Coordinate.create({
+    deviceId: imei,
+    latitude: lat,
+    longitude: long,
+    time: time,
+  }).catch((err: any) => console.log(err));
+};
+exports.addCoordinates = addCoordinates;
