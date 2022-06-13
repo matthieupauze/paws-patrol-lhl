@@ -5,7 +5,10 @@ import {
   Popup,
   useMapEvents,
 } from "react-leaflet";
-import { Login } from "./components/Login";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./components/Login";
+import Header from "./components/Header";
+import Footer from "./components/Footer"
 import { useEffect, useRef, useState } from "react";
 
 function App() {
@@ -16,8 +19,6 @@ function App() {
         map.locate();
       },
       locationfound(e) {
-        const lat = e.latlng.lat;
-        const lng = e.latlng.lng;
         setPosition(e.latlng);
         map.flyTo(e.latlng, map.getZoom());
       },
@@ -26,7 +27,13 @@ function App() {
   };
 
   return (
+    <>
+    <Header />
     <Login />
+    <Footer />
+    </>
+    // <>
+    // <Header />
     // <MapContainer
     //   center={[51.049999, -114.066666]}
     //   zoom={18}
@@ -38,6 +45,8 @@ function App() {
     //   />
     //   <Location />,
     // </MapContainer>
+    // <Footer/>
+    // </>
   );
 }
 

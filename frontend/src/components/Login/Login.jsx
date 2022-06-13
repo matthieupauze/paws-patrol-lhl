@@ -1,8 +1,8 @@
-import './styles/Login.css'
+import './Login.css'
 
 export const Login = () => {
   return (
-    <section className="login d-flex justify-content-center align-items-center vh-100 flex-column">
+    <section className="login d-flex justify-content-center align-items-center flex-column">
       <form className="d-flex flex-column justify-content-center h-25 w-50">
         <div className="form-group my-3 p-3 ">
           <input
@@ -20,9 +20,9 @@ export const Login = () => {
             placeholder="Password"
           />
         </div>
-        <button type="submit" className="btn btn-primary m-3">
+        <a href='/'><button type="submit" className="btn btn-primary m-3">
           Login
-        </button>
+        </button></a>
       </form>
     </section>
   );
