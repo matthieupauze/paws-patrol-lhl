@@ -73,7 +73,7 @@ const Trip = sequelize.define(
 Trip.belongsTo(Device);
 
 const resetDB = () => {
-  sequelize.sync({ force: true });
+  sequelize.sync({ force: true }).catch((err: any) => console.log(err));
 };
 exports.resetDB = resetDB;
 
@@ -86,6 +86,6 @@ const addCoordinates = (imei: number, lat: number, long: number, time: any) => {
     latitude: lat,
     longitude: long,
     time: time
-  });
+  }).catch((err: any) => console.log(err));
 };
 exports.addCoordinates = addCoordinates;
