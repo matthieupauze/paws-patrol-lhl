@@ -1,0 +1,11 @@
+.login {
+  background: url("https://c.tenor.com/X0lLW1hajSwAAAAM/chill-bro.gif") no-repeat;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.ph-color::placeholder {
+
+    color: #ffffff
+}
