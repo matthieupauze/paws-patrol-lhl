@@ -1,14 +1,13 @@
 // Api Controller
 module.exports = (router: any, db: any) => {
-
   // Get route to reset DB
-  router.get('/reset', function(req: any, res: any) {
+  router.get('/reset', function (req: any, res: any) {
     db.resetDB();
-    res.send("DB Reset");
+    res.send('DB Reset');
   });
 
   router.get('/', (req: any, res: any) => {
-    res.send("Nothing to see here!");
+    res.send('Nothing to see here!');
   });
 
   // Add coordinates to db
@@ -20,5 +19,4 @@ module.exports = (router: any, db: any) => {
   });
 
   return router;
-
 };
