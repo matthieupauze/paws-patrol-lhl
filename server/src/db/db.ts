@@ -34,11 +34,11 @@ const Coordinate = sequelize.define(
   'coordinate',
   {
     latitude: {
-      type: DataTypes.REAL,
+      type: DataTypes.DOUBLE,
       allowNull: false,
     },
     longitude: {
-      type: DataTypes.REAL,
+      type: DataTypes.DOUBLE,
       allowNull: false,
     },
     time: {
