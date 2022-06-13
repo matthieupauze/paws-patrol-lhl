@@ -6,7 +6,7 @@
     "start": "node ./dist/index.js",
     "build": "tsc",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
-    "db:reset": "node ./dist/db/dbReset.js"
+    "device": "python3 ./fakeDevice.py"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
