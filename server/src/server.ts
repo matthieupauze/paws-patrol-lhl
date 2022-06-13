@@ -16,6 +16,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 apiRoutes(apiRouter, db);
-app.use('/api', apiRoutes);
+app.use('/api', apiRouter);
 
 module.exports = app;

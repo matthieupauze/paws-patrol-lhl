@@ -35,8 +35,8 @@ class setInterval :
     def cancel(self) :
         self.stopEvent.set()
 
-inter=setInterval(2,action)
+inter=setInterval(1,action)
 print('just after setInterval -> time : {:.1f}s'.format(time.time()-StartTime))
 
-t=threading.Timer(10,inter.cancel)
+t=threading.Timer(5,inter.cancel)
 t.start()

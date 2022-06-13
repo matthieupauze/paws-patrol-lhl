@@ -17,7 +17,8 @@ const Device = sequelize.define(
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true
+      unique: true,
+      primaryKey: true
     },
     name: {
       type: DataTypes.STRING,
