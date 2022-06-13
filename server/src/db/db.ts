@@ -50,7 +50,6 @@ const Coordinate = sequelize.define(
     freezeTableName: true,
   }
 );
-
 Coordinate.belongsTo(Device);
 
 // Define trip table
@@ -71,10 +70,21 @@ const Trip = sequelize.define(
     freezeTableName: true,
   }
 );
-
 Trip.belongsTo(Device);
 
 const resetDB = () => {
   sequelize.sync({ force: true });
-}
+};
 exports.resetDB = resetDB;
+
+const addCoordinates = (imei: number, lat: number, long: number) => {
+  Device.create({
+    id: imei
+  }).catch((err: any) => console.log(err));
+  Coordinate.create({
+    deviceId: imei,
+    latitude: lat,
+    longitude: long
+  });
+};
+exports.addCoordinates = addCoordinates;
