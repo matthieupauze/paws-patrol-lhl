@@ -18,10 +18,10 @@ const Device = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
-      primaryKey: true
+      primaryKey: true,
     },
     name: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
   },
   {
@@ -79,13 +79,13 @@ exports.resetDB = resetDB;
 
 const addCoordinates = (imei: number, lat: number, long: number, time: any) => {
   Device.create({
-    id: imei
+    id: imei,
   }).catch((err: any) => console.log(err));
   Coordinate.create({
     deviceId: imei,
     latitude: lat,
     longitude: long,
-    time: time
+    time: time,
   }).catch((err: any) => console.log(err));
 };
 exports.addCoordinates = addCoordinates;
