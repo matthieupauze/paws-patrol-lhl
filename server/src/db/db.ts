@@ -34,11 +34,11 @@ const Coordinate = sequelize.define(
   'coordinate',
   {
     latitude: {
-      type: DataTypes.REAL,
+      type: DataTypes.DOUBLE,
       allowNull: false,
     },
     longitude: {
-      type: DataTypes.REAL,
+      type: DataTypes.DOUBLE,
       allowNull: false,
     },
     time: {
@@ -93,7 +93,7 @@ exports.addCoordinates = addCoordinates;
 const getCoordinate = (imei: number) => {
   return Coordinate.findOne({
     order: [['time', 'DESC']],
-    where: { deviceId: imei}
+    where: { deviceId: imei },
   });
 };
 exports.getCoordinate = getCoordinate;
