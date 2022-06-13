@@ -16,7 +16,6 @@ coordList = [
     [43.57643515204788, -80.26330317153032],
     [43.57682172932061, -80.2635554999534]
     ]
-currentLocation = 10
 
 intervalLength = input('Interval Length: ')
 if intervalLength == '':
@@ -32,7 +31,7 @@ print(f"Running every {intervalLength} seconds for {totalLength} seconds.")
 
 StartTime=time.time()
 
-def action() :
+def action(currentLocation) :
 
     url = f'http://localhost:3000/api/{imei}'
     data = {'lat': coordList[currentLocation % 10][0], 'long': coordList[currentLocation % 10][1], 'time': datetime.now()}
@@ -52,9 +51,11 @@ class setInterval :
 
     def __setInterval(self) :
         nextTime=time.time()+self.interval
+        currentLocation = 10
         while not self.stopEvent.wait(nextTime-time.time()) :
             nextTime+=self.interval
-            self.action()
+            self.action(currentLocation)
+            currentLocation+=1
 
     def cancel(self) :
         self.stopEvent.set()
