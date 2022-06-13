@@ -91,6 +91,8 @@ const addCoordinates = (imei: number, lat: number, long: number, time: any) => {
 exports.addCoordinates = addCoordinates;
 
 const getCoordinate = (imei: number) => {
-  return "something";
+  return Coordinate.findOne({
+    where: { id: `${imei}`}
+  });
 };
 exports.getCoordinate = getCoordinate;
