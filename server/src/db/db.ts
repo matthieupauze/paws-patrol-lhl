@@ -10,7 +10,7 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
   dialect: 'postgres',
 });
 
-// Define device table then drop and recreate
+// Define device table
 const Device = sequelize.define(
   'device',
   {
@@ -29,9 +29,7 @@ const Device = sequelize.define(
   }
 );
 
-Device.sync({ force: true });
-
-// Define coordinate table then drop and recreate
+// Define coordinate table
 const Coordinate = sequelize.define(
   'coordinate',
   {
@@ -54,9 +52,8 @@ const Coordinate = sequelize.define(
 );
 
 Coordinate.belongsTo(Device);
-Coordinate.sync({ force: true });
 
-// Define trip table then drop and recreate
+// Define trip table
 const Trip = sequelize.define(
   'trip',
   {
@@ -76,4 +73,8 @@ const Trip = sequelize.define(
 );
 
 Trip.belongsTo(Device);
-Trip.sync({ force: true });
+
+const resetDB = () => {
+  sequelize.sync({ force: true });
+}
+exports.resetDB = resetDB;
