@@ -20,12 +20,12 @@ coordList = [
 intervalLength = input('Interval Length: ')
 if intervalLength == '':
     intervalLength = 15
-intervalLength = int(intervalLength)
+intervalLength = float(intervalLength)
 
 totalLength = input('Total Run Time: ')
 if totalLength == '':
     totalLength = 600
-totalLength = int(totalLength)
+totalLength = float(totalLength)
 
 print(f"Running every {intervalLength} seconds for {totalLength} seconds.")
 
