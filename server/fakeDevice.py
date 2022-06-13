@@ -4,6 +4,19 @@ import time, threading
 from datetime import datetime
 
 imei = random.randrange(10000, 99999)
+coordList = [
+    [43.57702250878536, -80.26393192432224],
+    [43.576716844259394, -80.26433730441174],
+    [43.57635424021159, -80.26483368819483],
+    [43.57597964696018, -80.26536316423011],
+    [43.575608048152404, -80.26522665868977],
+    [43.57548218352021, -80.26461031549243],
+    [43.57588674747323, -80.2640394741419],
+    [43.57613847478334, -80.26370441508833],
+    [43.57643515204788, -80.26330317153032],
+    [43.57682172932061, -80.2635554999534]
+    ]
+currentLocation = 10
 
 intervalLength = input('Interval Length: ')
 if intervalLength == '':
@@ -22,7 +35,7 @@ StartTime=time.time()
 def action() :
 
     url = f'http://localhost:3000/api/{imei}'
-    data = {'lat': 1.1111, 'long': 2.2222, 'time': datetime.now()}
+    data = {'lat': coordList[currentLocation % 10][0], 'long': coordList[currentLocation % 10][1], 'time': datetime.now()}
 
     x = requests.post(url, data = data)
 
