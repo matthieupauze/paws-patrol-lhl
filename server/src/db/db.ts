@@ -21,8 +21,7 @@ const Device = sequelize.define(
       primaryKey: true
     },
     name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.STRING
     },
   },
   {
@@ -43,7 +42,7 @@ const Coordinate = sequelize.define(
       allowNull: false,
     },
     time: {
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
       allowNull: false,
     },
   },
@@ -61,10 +60,10 @@ const Trip = sequelize.define(
       type: DataTypes.STRING,
     },
     start: {
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
     },
     end: {
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
     },
   },
   {
@@ -78,14 +77,15 @@ const resetDB = () => {
 };
 exports.resetDB = resetDB;
 
-const addCoordinates = (imei: number, lat: number, long: number) => {
+const addCoordinates = (imei: number, lat: number, long: number, time: any) => {
   Device.create({
     id: imei
   }).catch((err: any) => console.log(err));
   Coordinate.create({
     deviceId: imei,
     latitude: lat,
-    longitude: long
+    longitude: long,
+    time: time
   });
 };
 exports.addCoordinates = addCoordinates;

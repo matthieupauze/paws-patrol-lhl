@@ -1,6 +1,7 @@
 import requests
 import random
 import time, threading
+from datetime import datetime
 
 StartTime=time.time()
 
@@ -10,7 +11,7 @@ imei = random.randrange(10000, 99999)
 def action() :
 
     url = f'http://localhost:3000/api/{imei}'
-    data = {'lat': 1.1111, 'long': 2.2222}
+    data = {'lat': 1.1111, 'long': 2.2222, 'time': datetime.now()}
 
     x = requests.post(url, data = data)
 

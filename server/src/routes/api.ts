@@ -12,9 +12,9 @@ module.exports = (router: any, db: any) => {
 
   router.post('/:imei', (req: any, res: any) => {
     const { imei } = req.params;
-    const { lat, long } = req.body;
-    db.addCoordinates(Number(imei), lat, long);
-    res.send(`imei: ${imei} lat: ${lat} long: ${long}\n`);
+    const { lat, long, time } = req.body;
+    db.addCoordinates(Number(imei), lat, long, time);
+    res.send(`imei: ${imei} lat: ${lat} long: ${long} time: ${time}\n`);
   });
 
   return router;
