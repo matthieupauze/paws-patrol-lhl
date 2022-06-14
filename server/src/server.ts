@@ -47,9 +47,10 @@ resetApiRoutes(resetApiRouter, db);
 app.use('/api/reset', resetApiRouter);
 
 // trip endpoints
-
+const tripApiRouter = express.Router();
+tripApiRoutes(tripApiRouter, db);
+app.use('/api/trip', tripApiRouter);
 
 // user endpoints
-
 
 module.exports = app;
