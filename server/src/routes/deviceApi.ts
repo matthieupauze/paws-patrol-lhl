@@ -20,7 +20,8 @@ module.exports = (router: any, db: any) => {
   });
 
   router.post('/:imei', (req: any, res: any) => {
-    console.log(req.params.imei);
+    const { name } = req.body;
+    res.send(name);
   });
 
   router.get('/:imei', (req: any, res: any) => {
