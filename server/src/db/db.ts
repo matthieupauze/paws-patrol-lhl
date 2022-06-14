@@ -134,5 +134,6 @@ const getTrips = () => {
 exports.getTrips = getTrips;
 
 const addTrip = () => {
-  
-}
+
+};
+exports.addTrip = addTrip;
