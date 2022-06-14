@@ -1,7 +1,7 @@
 :root {
   --primary: #559F32;
   --secondary: #FDCF73;
-  --grey: #939191
+  --grey: rgba(147, 145, 145, 0.75)
 }
 
 * {
@@ -36,7 +36,6 @@
 }
 
 .form{
-  background-color: #939191;
+  background-color: var(--grey);
   color: #ffffff;
-  opacity: 0.75;
 }

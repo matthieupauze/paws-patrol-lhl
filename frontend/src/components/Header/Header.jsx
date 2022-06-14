@@ -14,7 +14,7 @@ const Header = () => {
               <LinkContainer to="/">
                 <Nav.Link >Track Pet</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/devices">
+              <LinkContainer to="/device">
               <Nav.Link>Manage Devices</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/addPerimeter">

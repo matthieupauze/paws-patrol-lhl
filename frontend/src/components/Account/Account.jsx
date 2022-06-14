@@ -6,7 +6,7 @@ const Account = () => {
         <Card className="text-center rounded form">
           <Card.Body>
             <Card.Text>Name</Card.Text>
-            <Card.Title className="border-bottom border-dark pb-1">Robbie Prokop</Card.Title>
+            <Card.Title className="border-bottom border-dark pb-1 text-white">Robbie Prokop</Card.Title>
             <Card.Text>Phone</Card.Text>
             <Card.Title className="border-bottom border-dark pb-1 ">1-123-456-7890</Card.Title>
             <Card.Text>Email</Card.Text>
