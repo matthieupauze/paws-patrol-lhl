@@ -1,6 +1,6 @@
 {
   "root": true,
-  "extends": ["airbnb", "plugin:prettier/recommended", "prettier"],
+  "extends": ["airbnb", "plugin:prettier/recommended", "prettier", "plugin:react/jsx-runtime"],
   "env": {
     "commonjs": true,
     "es6": true,
