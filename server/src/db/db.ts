@@ -133,7 +133,12 @@ const getTrips = () => {
 };
 exports.getTrips = getTrips;
 
-const addTrip = () => {
-
+const addTrip = (imei: number, start: Date, name: string = '', end: Date = start) => {
+  return Trip.create({
+    deviceId: imei,
+    name: name,
+    start: start,
+    end: end
+  });
 };
 exports.addTrip = addTrip;
