@@ -17,6 +17,10 @@ coordList = [
     [43.57682172932061, -80.2635554999534]
     ]
 
+createDeviceUrl = 'http://localhost:3000/api/device'
+deviceData = { 'imei': imei , 'name': f'{imei}'}
+requests.post(createDeviceUrl, data = deviceData)
+
 intervalLength = input('Interval Length: ')
 if intervalLength == '':
     intervalLength = 15

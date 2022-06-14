@@ -99,10 +99,15 @@ exports.getCoordinate = getCoordinate;
 
 const getDevices = () => {
   return Device.findAll();
-}
+};
 exports.getDevices = getDevices;
 
 const addDevice = (imei: number, name: string = '') => {
-  console.log(imei, name);
-}
+  return (
+    Device.create({
+      id: imei,
+      name: name
+    })
+  );
+};
 exports.addDevice = addDevice;
