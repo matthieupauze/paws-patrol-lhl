@@ -1,5 +1,7 @@
 module.exports = (router: any, db: any) => {
+  // Get route to reset DB
   router.get('/', (req: any, res: any) => {
-    res.send('reset');
+    db.resetDB();
+    res.send('DB Reset');
   });
 };

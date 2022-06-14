@@ -23,9 +23,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// apiRoutes(apiRouter, db);
-// app.use('/api', apiRouter);
-
 // coordinate endpoints
 const coordinateApiRouter = express.Router();
 coordinateApiRoutes(coordinateApiRouter, db);
