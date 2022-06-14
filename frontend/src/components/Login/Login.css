@@ -6,6 +6,11 @@
   background-position: center;
 }
 
+.ph-color {
+  background-color: rgba(147, 145, 145, 0.5);
+  
+}
+
 .ph-color::placeholder {
 
     color: #ffffff

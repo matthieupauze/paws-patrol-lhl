@@ -1,3 +1,9 @@
+:root {
+  --primary: #559F32;
+  --secondary: #FDCF73;
+  --grey: rgba(147, 145, 145, 0.75)
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -12,4 +18,24 @@
 .leaflet-container {
   height: 100vh;
   width: 100vw;
+}
+
+.primary {
+  background-color: var(--primary);
+}
+
+.btn-color {
+  background-color: var(--secondary);
+  color: black;
+  border: none;
+}
+
+.btn-color:hover {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+.form{
+  background-color: var(--grey);
+  color: #ffffff;
 }
