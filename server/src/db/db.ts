@@ -73,19 +73,17 @@ const Trip = sequelize.define(
 Trip.belongsTo(Device);
 
 const resetDB = () => {
-  return sequelize.sync({ force: true })
+  return sequelize.sync({ force: true });
 };
 exports.resetDB = resetDB;
 
 const addCoordinate = (imei: number, lat: number, long: number, time: Date) => {
-  return (
-    Coordinate.create({
-      deviceId: imei,
-      latitude: lat,
-      longitude: long,
-      time: time,
-    })
-  );
+  return Coordinate.create({
+    deviceId: imei,
+    latitude: lat,
+    longitude: long,
+    time: time,
+  });
 };
 exports.addCoordinate = addCoordinate;
 
@@ -97,40 +95,33 @@ const getCoordinate = (imei: number) => {
 };
 exports.getCoordinate = getCoordinate;
 
-
-// Device functions 
+// Device functions
 
 const addDevice = (imei: number, name: string = '') => {
-  return (
-    Device.create({
-      id: imei,
-      name: name
-    })
-    );
-  };
-  exports.addDevice = addDevice;
-  
-  const updateDevice = (imei: number, name: string) => {
-    return (
-    getDevice(imei)
-    .then((data: any) => {
-      if(!data){
-        console.log("no data");
-        return;
-      };
-      return data.update({ name: name });
-    }));
-  };
-  exports.updateDevice = updateDevice;
+  return Device.create({
+    id: imei,
+    name: name,
+  });
+};
+exports.addDevice = addDevice;
 
-  const getDevice = (imei: number) => {
-    return (
-      Device.findByPk(imei)
-    );
-  };
-  exports.getDevice = getDevice;
-  
-  const getDevices = () => {
-    return Device.findAll();
-  };
-  exports.getDevices = getDevices;
+const updateDevice = (imei: number, name: string) => {
+  return getDevice(imei).then((data: any) => {
+    if (!data) {
+      console.log('no data');
+      return;
+    }
+    return data.update({ name: name });
+  });
+};
+exports.updateDevice = updateDevice;
+
+const getDevice = (imei: number) => {
+  return Device.findByPk(imei);
+};
+exports.getDevice = getDevice;
+
+const getDevices = () => {
+  return Device.findAll();
+};
+exports.getDevices = getDevices;
