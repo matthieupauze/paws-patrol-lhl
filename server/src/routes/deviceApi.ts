@@ -19,5 +19,18 @@ module.exports = (router: any, db: any) => {
     });
   });
 
+  router.post('/:imei', (req: any, res: any) => {
+    console.log(req.params.imei);
+  });
+
+  router.get('/:imei', (req: any, res: any) => {
+    db.getDevice(req.params.imei)
+    .then((data: any) => res.status(200).json(data))
+    .catch((err: any) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+  });
+
   return router;
 };

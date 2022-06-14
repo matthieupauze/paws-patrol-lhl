@@ -97,10 +97,8 @@ const getCoordinate = (imei: number) => {
 };
 exports.getCoordinate = getCoordinate;
 
-const getDevices = () => {
-  return Device.findAll();
-};
-exports.getDevices = getDevices;
+
+// Device functions 
 
 const addDevice = (imei: number, name: string = '') => {
   return (
@@ -108,6 +106,23 @@ const addDevice = (imei: number, name: string = '') => {
       id: imei,
       name: name
     })
-  );
-};
-exports.addDevice = addDevice;
+    );
+  };
+  exports.addDevice = addDevice;
+  
+  const updateDevice = (imei: number, name: string) => {
+    console.log(imei, name);
+  };
+  exports.updateDevice = updateDevice;
+
+  const getDevice = (imei: number) => {
+    return (
+      Device.findByPk(imei)
+    );
+  };
+  exports.getDevice = getDevice;
+  
+  const getDevices = () => {
+    return Device.findAll();
+  };
+  exports.getDevices = getDevices;
