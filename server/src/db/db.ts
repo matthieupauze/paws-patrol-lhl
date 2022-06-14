@@ -77,7 +77,7 @@ const resetDB = () => {
 };
 exports.resetDB = resetDB;
 
-const addCoordinate = (imei: number, lat: number, long: number, time: any) => {
+const addCoordinate = (imei: number, lat: number, long: number, time: Date) => {
   return (
     Coordinate.create({
       deviceId: imei,
@@ -96,3 +96,13 @@ const getCoordinate = (imei: number) => {
   });
 };
 exports.getCoordinate = getCoordinate;
+
+const getDevices = () => {
+  return Device.findAll();
+}
+exports.getDevices = getDevices;
+
+const addDevice = (imei: number, name: string = '') => {
+  console.log(imei, name);
+}
+exports.addDevice = addDevice;
