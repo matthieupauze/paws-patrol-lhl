@@ -78,9 +78,6 @@ const resetDB = () => {
 exports.resetDB = resetDB;
 
 const addCoordinate = (imei: number, lat: number, long: number, time: any) => {
-  //   Device.create({
-  //   id: imei,
-  // }).catch((err: any) => console.log(err));
   return (
     Coordinate.create({
       deviceId: imei,
