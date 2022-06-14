@@ -125,3 +125,14 @@ const getDevices = () => {
   return Device.findAll();
 };
 exports.getDevices = getDevices;
+
+// Trip functions
+
+const getTrips = () => {
+  return Trip.findAll();
+};
+exports.getTrips = getTrips;
+
+const addTrip = () => {
+  
+}

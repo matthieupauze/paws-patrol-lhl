@@ -1,7 +1,12 @@
 module.exports = (router: any, db: any) => {
   // send all trips
   router.get('/', (req: any, res: any) => {
-    res.send('trip');
+    db.getTrips()
+    .then((data: any) => res.status(200).json(data))
+    .catch((err: any) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
   });
 
   // add a new trip using start time
