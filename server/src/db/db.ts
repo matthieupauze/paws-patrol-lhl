@@ -128,11 +128,6 @@ exports.getDevices = getDevices;
 
 // Trip functions
 
-const getTrips = () => {
-  return Trip.findAll();
-};
-exports.getTrips = getTrips;
-
 const addTrip = (imei: number, start: Date, name: string = '') => {
   return Trip.create({
     deviceId: imei,
@@ -142,3 +137,24 @@ const addTrip = (imei: number, start: Date, name: string = '') => {
   });
 };
 exports.addTrip = addTrip;
+
+const getTripsByIMEI = (imei: number) => {
+  return (
+    Trip.findAll({
+      where: {
+        deviceId: imei
+      }
+    })
+  );
+};
+exports.getTripsByIMEI = getTripsByIMEI;
+
+const updateTrip = () => {
+  return;
+};
+exports.updateTrip = updateTrip;
+
+const getTrips = () => {
+  return Trip.findAll();
+};
+exports.getTrips = getTrips;

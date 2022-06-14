@@ -23,7 +23,12 @@ module.exports = (router: any, db: any) => {
 
   // get all trips for 1 device
   router.get('/:imei', (req: any, res: any) => {
-    res.send('get trip');
+    db.getTripsByIMEI(req.params.imei)
+    .then((data: any) => res.status(200).json(data))
+    .catch((err: any) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
   });
 
   // end a trip with end time
