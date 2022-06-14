@@ -118,7 +118,7 @@ const addDevice = (imei: number, name: string = '') => {
         console.log("no data");
         return;
       };
-      data.update({ name: name });
+      return data.update({ name: name });
     }));
   };
   exports.updateDevice = updateDevice;

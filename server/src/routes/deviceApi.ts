@@ -33,7 +33,9 @@ module.exports = (router: any, db: any) => {
     const { imei } = req.params;
     const { name } = req.body;
     db.updateDevice(imei, name)
-    .then( (data: any) => res.status(200).json(data))
+    .then( (data: any) => {
+      console.log(data);
+      res.status(200).json(data)})
     .catch((err: any) => {
       console.log(err);
       res.status(500).json(err);
