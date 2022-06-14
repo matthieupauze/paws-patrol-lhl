@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 
-export const Device = () => {
+const Device = () => {
   const [devices, setDevices] = useState([]);
   
     return (
@@ -63,3 +63,5 @@ export const Device = () => {
       </>
     );
   };
+
+  export default Device

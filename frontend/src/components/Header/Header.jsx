@@ -1,23 +1,38 @@
 import { Container, Navbar, Nav } from "react-bootstrap";
+import { LinkContainer } from 'react-router-bootstrap';
 const Header = () => {
   return (
     <header>
-<Navbar bg="primary" variant="dark" expand="lg" collapseOnSelect>
-  <Container>
-    <Navbar.Brand href="#home">Paw-Patrol</Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="ms-auto">
-        <Nav.Link href="/">Track Pet</Nav.Link>
-        <Nav.Link href="/devices">Manage Devices</Nav.Link>
-        <Nav.Link href="/AddPerimeter">Add Perimeter</Nav.Link>
-        <Nav.Link href="/account">Account</Nav.Link>
-        <Nav.Link href="/contact">Contact</Nav.Link>
-        <Nav.Link href="/login">Logout</Nav.Link>
-      </Nav>
-    </Navbar.Collapse>
-  </Container>
-</Navbar>
+      <Navbar className="primary" variant="dark" expand="lg" collapseOnSelect>
+        <Container>
+        <LinkContainer to="/">
+          <Navbar.Brand>Paw-Patrol</Navbar.Brand>
+        </LinkContainer>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto">
+              <LinkContainer to="/">
+                <Nav.Link >Track Pet</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/devices">
+              <Nav.Link>Manage Devices</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/addPerimeter">
+              <Nav.Link>Add Perimeter</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/account">      
+              <Nav.Link>Account</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/contact">
+              <Nav.Link>Contact</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/login">
+              <Nav.Link>Logout</Nav.Link>
+              </LinkContainer>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </header>
   );
 };
