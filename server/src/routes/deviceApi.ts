@@ -21,6 +21,7 @@ module.exports = (router: any, db: any) => {
 
   router.post('/:imei', (req: any, res: any) => {
     const { name } = req.body;
+    db.updateDevice(req.params.imei, name);
     res.send(name);
   });
 
