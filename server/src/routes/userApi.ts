@@ -1,3 +1,3 @@
-module.exports = (res: any, req: any) => {
+module.exports = (router: any, db: any) => {
 
 };

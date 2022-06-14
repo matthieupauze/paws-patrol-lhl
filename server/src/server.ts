@@ -23,14 +23,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-apiRoutes(apiRouter, db);
-app.use('/api', apiRouter);
+// apiRoutes(apiRouter, db);
+// app.use('/api', apiRouter);
 
 // coordinate endpoints
-
+const coordinateApiRouter = express.Router();
+coordinateApiRoutes(coordinateApiRouter, db);
+app.use('/api/coordinate', coordinateApiRouter);
 
 // device endpoints
-
+const deviceApiRouter = express.Router();
+deviceApiRoutes(deviceApiRouter, db);
+app.use('/api/device', deviceApiRouter);
 
 // perimeter endpoints
 
