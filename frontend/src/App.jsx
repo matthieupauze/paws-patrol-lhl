@@ -12,9 +12,12 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Map />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/device" element={<Device />} />
+        {/* <Route path="/perimeter" element={<Perimeter />} /> */}
         <Route path="/account" element={<Account />} />
+        {/* <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/login" element={<Login />} />
+        {/* <Route path="/signup" element={<SignUp />} /> */}
       </Routes>
       <Footer />
     </>

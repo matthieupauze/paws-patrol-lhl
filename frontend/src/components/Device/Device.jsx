@@ -4,14 +4,12 @@ import { Link } from "react-router-dom"
 
 const Device = () => {
   const [devices, setDevices] = useState([]);
-  console.log("devices ", devices)
-  console.log(devices.length === 0)
   return (
     <>
     {devices.length === 0 &&
       <section className="login d-flex justify-content-center align-items-center flex-column">
         <Form className="d-flex flex-column justify-content-center h-25 w-50">
-          <Form.Group className="form-group my-3 p-3 ">
+          <Form.Group className="form-group my-2 p-3">
             <Form.Control
               className="form-control bg-transparent text-white ph-color"
               type="text"
@@ -19,7 +17,7 @@ const Device = () => {
               placeholder="Device Name"
             />
           </Form.Group>
-          <Form.Group className="form-group my-3 p-3 ">
+          <Form.Group className="form-group my-2 pb-3 px-3">
             <Form.Control
               className="form-control bg-transparent text-white ph-color"
               type="text"
@@ -27,7 +25,7 @@ const Device = () => {
               placeholder="Pet Name"
             />
           </Form.Group>
-          <Form.Group className="form-group my-3 p-3 ">
+          <Form.Group className="form-group my-2 pb-3 px-3">
             <Form.Control
               className="form-control bg-transparent text-white ph-color"
               type="number"
@@ -35,7 +33,7 @@ const Device = () => {
               placeholder="Microchip Number"
             />
           </Form.Group>
-          <Form.Group className="form-group mb-3 p-3">
+          <Form.Group className="form-group my-2 pb-3 px-3">
             <Form.Control
               className="form-control form-control bg-transparent text-white ph-color"
               type="number"
@@ -43,11 +41,13 @@ const Device = () => {
               placeholder="Device IMEI"
             />
           </Form.Group>
-          <Link to='/'>
-            <Button type="submit" className="btn-color rounded w-100">
-              Add Device
-            </Button>
-          </Link>
+          <div className=" mt-2 px-3">
+            <Link to='/'>
+              <Button type="submit" className="btn-color rounded w-100">
+                Add Device
+              </Button>
+            </Link>
+          </div>
         </Form>
       </section>
     }

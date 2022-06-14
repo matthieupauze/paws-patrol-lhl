@@ -22,6 +22,7 @@ const Location = () => {
 };
 
 const Map = () => {
+  
   return (
     <MapContainer center={defaultPosition} zoom={defaultZoom} scrollWheelZoom={true}>
       <TileLayer
