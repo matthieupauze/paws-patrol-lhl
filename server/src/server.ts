@@ -37,7 +37,9 @@ deviceApiRoutes(deviceApiRouter, db);
 app.use('/api/device', deviceApiRouter);
 
 // perimeter endpoints
-
+const perimeterApiRouter = express.Router();
+perimeterApiRoutes(perimeterApiRouter, db);
+app.use('/api/perimeter', perimeterApiRouter);
 
 // reset endpoints
 
