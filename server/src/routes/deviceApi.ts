@@ -19,9 +19,10 @@ module.exports = (router: any, db: any) => {
     });
   });
 
-  router.post('/:imei', (req: any, res: any) => {
-    const { name } = req.body;
-    db.updateDevice(req.params.imei, name);
+  router.patch('/', (req: any, res: any) => {
+    const { imei, name } = req.body;
+    console.log(imei, name);
+    db.updateDevice(imei, name);
     res.send(name);
   });
 
