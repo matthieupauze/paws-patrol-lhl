@@ -19,3 +19,44 @@ npm run dev
 - Postgres 10.x
 - Express
 - Bootstrap 5
+
+## Api Routes
+- api/device	
+```
+  get / list of all devices
+	
+	post /:imei add a device manually/change name
+	get /:imei info about 1 device
+	patch /:imei update a device
+```
+- api/trip
+```
+	get / get all trips
+
+	post /:imei start/stop recording a trip
+	get /:imei get all trips for single device
+	patch /:imei update a single trip
+```
+- api/coordinates
+```
+	post /:imei add coordinate for a device
+	get /:imei get most recent for a device
+```
+- api/user
+```
+	post / change user info
+	get / user info
+```
+- api/perimiter
+```
+	get / all perimeters
+
+	post /:imei add perimiter for device
+	get /:imei perimiter for single device
+	patch /:imei update perimiter values
+```
+
+api/reset
+```
+	get / reset db
+```
