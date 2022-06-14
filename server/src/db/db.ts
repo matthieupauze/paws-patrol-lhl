@@ -77,18 +77,20 @@ const resetDB = () => {
 };
 exports.resetDB = resetDB;
 
-const addCoordinates = (imei: number, lat: number, long: number, time: any) => {
-  Device.create({
-    id: imei,
-  }).catch((err: any) => console.log(err));
-  Coordinate.create({
-    deviceId: imei,
-    latitude: lat,
-    longitude: long,
-    time: time,
-  }).catch((err: any) => console.log(err));
+const addCoordinate = (imei: number, lat: number, long: number, time: any) => {
+  //   Device.create({
+  //   id: imei,
+  // }).catch((err: any) => console.log(err));
+  return (
+    Coordinate.create({
+      deviceId: imei,
+      latitude: lat,
+      longitude: long,
+      time: time,
+    })
+  );
 };
-exports.addCoordinates = addCoordinates;
+exports.addCoordinate = addCoordinate;
 
 const getCoordinate = (imei: number) => {
   return Coordinate.findOne({
