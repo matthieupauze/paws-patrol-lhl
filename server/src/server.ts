@@ -52,5 +52,8 @@ tripApiRoutes(tripApiRouter, db);
 app.use('/api/trip', tripApiRouter);
 
 // user endpoints
+const userApiRouter = express.Router();
+userApiRoutes(userApiRouter, db);
+app.use('/api/user', userApiRouter);
 
 module.exports = app;
