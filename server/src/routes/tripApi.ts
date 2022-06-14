@@ -11,7 +11,14 @@ module.exports = (router: any, db: any) => {
 
   // add a new trip using start time
   router.post('/:imei', (req: any, res: any) => {
-    res.send('start trip');
+    const { imei } = req.params;
+    const { name, start } = req.body;
+    db.addTrip(imei, start, name)
+    .then((data: any) => res.status(200).json(data))
+    .catch((err: any) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
   });
 
   // get all trips for 1 device
