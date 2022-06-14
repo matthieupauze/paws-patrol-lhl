@@ -18,5 +18,5 @@ module.exports = (router: any, db: any) => {
     .then((data: any) => res.send(data.dataValues))
     .catch((err: any) => res.send(err));
   });
-  
+
 };
