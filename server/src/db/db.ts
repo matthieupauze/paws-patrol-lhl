@@ -73,7 +73,7 @@ const Trip = sequelize.define(
 Trip.belongsTo(Device);
 
 const resetDB = () => {
-  sequelize.sync({ force: true }).catch((err: any) => console.log(err));
+  return sequelize.sync({ force: true })
 };
 exports.resetDB = resetDB;
 
