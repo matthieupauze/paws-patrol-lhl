@@ -17,6 +17,10 @@ coordList = [
     [43.57682172932061, -80.2635554999534]
     ]
 
+createDeviceUrl = f'http://localhost:3000/api/device/{imei}'
+deviceData = { 'name': f'{imei}'}
+requests.post(createDeviceUrl, data = deviceData)
+
 intervalLength = input('Interval Length: ')
 if intervalLength == '':
     intervalLength = 15
@@ -33,7 +37,7 @@ StartTime=time.time()
 
 def action(currentLocation) :
 
-    url = f'http://localhost:3000/api/{imei}'
+    url = f'http://localhost:3000/api/coordinate/{imei}'
     data = {'lat': coordList[currentLocation % 10][0], 'long': coordList[currentLocation % 10][1], 'time': datetime.now()}
 
     x = requests.post(url, data = data)

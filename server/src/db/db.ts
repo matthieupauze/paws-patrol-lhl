@@ -73,22 +73,19 @@ const Trip = sequelize.define(
 Trip.belongsTo(Device);
 
 const resetDB = () => {
-  sequelize.sync({ force: true }).catch((err: any) => console.log(err));
+  return sequelize.sync({ force: true });
 };
 exports.resetDB = resetDB;
 
-const addCoordinates = (imei: number, lat: number, long: number, time: any) => {
-  Device.create({
-    id: imei,
-  }).catch((err: any) => console.log(err));
-  Coordinate.create({
+const addCoordinate = (imei: number, lat: number, long: number, time: Date) => {
+  return Coordinate.create({
     deviceId: imei,
     latitude: lat,
     longitude: long,
     time: time,
-  }).catch((err: any) => console.log(err));
+  });
 };
-exports.addCoordinates = addCoordinates;
+exports.addCoordinate = addCoordinate;
 
 const getCoordinate = (imei: number) => {
   return Coordinate.findOne({
@@ -97,3 +94,34 @@ const getCoordinate = (imei: number) => {
   });
 };
 exports.getCoordinate = getCoordinate;
+
+// Device functions
+
+const addDevice = (imei: number, name: string = '') => {
+  return Device.create({
+    id: imei,
+    name: name,
+  });
+};
+exports.addDevice = addDevice;
+
+const updateDevice = (imei: number, name: string) => {
+  return getDevice(imei).then((data: any) => {
+    if (!data) {
+      console.log('no data');
+      return;
+    }
+    return data.update({ name: name });
+  });
+};
+exports.updateDevice = updateDevice;
+
+const getDevice = (imei: number) => {
+  return Device.findByPk(imei);
+};
+exports.getDevice = getDevice;
+
+const getDevices = () => {
+  return Device.findAll();
+};
+exports.getDevices = getDevices;
