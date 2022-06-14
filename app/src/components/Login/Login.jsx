@@ -2,7 +2,7 @@ import './Login.css';
 import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-export const Login = () => {
+function Login() {
   return (
     <section className="login d-flex justify-content-center align-items-center flex-column">
       <Form className="d-flex flex-column justify-content-center h-25 w-50">
@@ -32,4 +32,6 @@ export const Login = () => {
       </Form>
     </section>
   );
-};
+}
+
+export default Login;

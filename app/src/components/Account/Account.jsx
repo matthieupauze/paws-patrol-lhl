@@ -1,5 +1,6 @@
 import { Button, Card } from 'react-bootstrap';
-const Account = () => {
+
+function Account() {
   return (
     <section className="login d-flex justify-content-center align-items-center flex-column">
       <div>
@@ -25,6 +26,6 @@ const Account = () => {
       </div>
     </section>
   );
-};
+}
 
 export default Account;

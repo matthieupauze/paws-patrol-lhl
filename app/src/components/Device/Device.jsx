@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ListGroup, ListGroupItem, Form, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const Device = () => {
+function Device() {
   const [devices, setDevices] = useState([]);
   return (
     <>
@@ -76,6 +76,6 @@ const Device = () => {
       )}
     </>
   );
-};
+}
 
 export default Device;

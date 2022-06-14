@@ -1,4 +1,4 @@
-const Footer = () => {
+function Footer() {
   return (
     <footer className="d-flex bg-dark justify-content-center align-content-center py-3">
       <p className="text-white">
@@ -6,6 +6,6 @@ const Footer = () => {
       </p>
     </footer>
   );
-};
+}
 
 export default Footer;

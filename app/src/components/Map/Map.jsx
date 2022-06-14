@@ -13,18 +13,18 @@ const Location = () => {
     axios
       .get('api/1234')
       .then((res) => {
-        const position = [res.data.latitude, res.data.longitude];
-        setPosition(position);
-        map.flyTo(position);
+        const newPosition = [res.data.latitude, res.data.longitude];
+        setPosition(newPosition);
+        map.flyTo(newPosition);
         map.setZoom(18);
       })
       .catch((err) => console.log(err));
   }, []);
 };
 
-const Map = () => {
+function Map() {
   return (
-    <MapContainer center={defaultPosition} zoom={defaultZoom} scrollWheelZoom={true}>
+    <MapContainer center={defaultPosition} zoom={defaultZoom} scrollWheelZoom>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -35,6 +35,6 @@ const Map = () => {
       <Location />
     </MapContainer>
   );
-};
+}
 
 export default Map;
