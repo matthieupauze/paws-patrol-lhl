@@ -58,7 +58,14 @@ Coordinate.belongsTo(Device);
 const Perimeter = sequelize.define(
   'perimeter',
   {
-
+    left: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+    },
+    right: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+    }
   },
   {
     freezeTableName: true,
