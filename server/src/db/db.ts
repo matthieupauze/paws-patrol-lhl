@@ -163,3 +163,8 @@ const getTrips = () => {
   return Trip.findAll();
 };
 exports.getTrips = getTrips;
+
+const getCoordinatesForTrip = () => {
+  return;
+};
+exports.getCoordinatesForTrip = getCoordinatesForTrip;
