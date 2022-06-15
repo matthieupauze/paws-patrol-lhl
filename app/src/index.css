@@ -1,7 +1,9 @@
 :root {
-  --primary: #559f32;
-  --secondary: #fdcf73;
-  --grey: rgba(147, 145, 145, 0.75);
+  /* --primary: rgba(26, 178, 238, 0.75); */
+  --primary: #89B3DD;
+  --secondary: #FDCF73;
+  --third: #c5adf5;
+  --grey: rgba(147, 145, 145, 0.75)
 }
 
 * {
@@ -24,6 +26,11 @@
   background-color: var(--primary);
 }
 
+.nav-color {
+  background-color: var(--primary);
+}
+
+
 .btn-color {
   background-color: var(--secondary);
   color: black;
@@ -31,11 +38,11 @@
 }
 
 .btn-color:hover {
-  background-color: var(--primary);
+  background-color: var(--third);
   color: #ffffff;
 }
 
-.form {
+.form{
   background-color: var(--grey);
   color: #ffffff;
 }
