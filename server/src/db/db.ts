@@ -23,6 +23,9 @@ const Device = sequelize.define(
     name: {
       type: DataTypes.STRING,
     },
+    microchip: {
+      type: DataTypes.STRING,
+    },
   },
   {
     freezeTableName: true,
