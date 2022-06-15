@@ -149,8 +149,13 @@ const getTripsByIMEI = (imei: number) => {
 };
 exports.getTripsByIMEI = getTripsByIMEI;
 
-const updateTrip = () => {
-  return;
+const updateTrip = (id: number, end: Date) => {
+  return (
+    Trip.findByPk(id)
+    .then((data: any) => {
+      return data.update({ end: end });
+    })
+  );
 };
 exports.updateTrip = updateTrip;
 
