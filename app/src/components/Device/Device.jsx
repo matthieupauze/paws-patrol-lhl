@@ -9,7 +9,7 @@ const Device = () => {
     // {name: "Device 1", imei: "1"},
     // {name: "Device 2", imei: "2"}
   ]);
-  const [radioImei, setRadioImei] = useState('');
+  const [radioImei, setRadioImei] = useState('1');
   const radios = devices;
 
   const handleSubmit = (e) => {
@@ -88,6 +88,7 @@ const Device = () => {
                   checked={radioImei === radio.imei}
                   variant={radioImei === radio.imei ? 'secondary' : 'transparent'}
                   onChange={(e) => setRadioImei(e.currentTarget.value)}
+                  className="text-white "
                 >
                   {radio.name}
                 </ToggleButton>

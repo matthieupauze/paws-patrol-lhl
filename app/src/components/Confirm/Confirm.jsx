@@ -10,6 +10,14 @@ export default function Confirm() {
             </Card.Title>
           </Card.Body>
         </Card>
+        {/* CHANGE THIS TO REDIRECT AFTER 10 SECONDS OR SO */}
+        <div className="px-3">
+          <Link to="/">
+            <Button type="submit" className="btn-color rounded w-100">
+              Continue Tracking
+            </Button>
+          </Link>
+        </div>
       </div>
     </section>
   );
