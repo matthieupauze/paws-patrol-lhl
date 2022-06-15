@@ -29,7 +29,17 @@ module.exports = (router: any, db: any) => {
   });
 
   router.patch('/:imei', (req: any, res: any) => {
-    res.send('updated perimeter');
+    const { imei } = req.params;
+    const { left, right } = req.body;
+    db.updatePerimeter(imei, left, right)
+    .then((data: any) => {
+      console.log(data);
+      res.status(200).json(data);
+    })
+    .catch((err: any) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
   });
 
   return router;

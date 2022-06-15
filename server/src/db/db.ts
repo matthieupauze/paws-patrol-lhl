@@ -221,8 +221,16 @@ const getPerimeterByIMEI = (imei: number) => {
 };
 exports.getPerimeterByIMEI = getPerimeterByIMEI;
 
-const updatePerimeter = () => {
-  return;
+const updatePerimeter = (imei: number, left: number, right: number) => {
+  return (
+    getPerimeterByIMEI(imei)
+    .then((data: any) => {
+      return data.update({
+        left: left,
+        right: right,
+      })
+    })
+  );
 };
 exports.updatePerimeter = updatePerimeter;
 
