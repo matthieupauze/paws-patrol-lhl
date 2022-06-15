@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import axios from "axios"
 
 const Device = () => {
-  const [form, setForm] = useState(false)
+  const [form, setForm] = useState(true)
   const [devices, setDevices] = useState([
     // {name: "Device 1", imei: "1"}, 
     // {name: "Device 2", imei: "2"}
@@ -21,14 +21,14 @@ const Device = () => {
     }
     const newDevices = [...devices, newDevice]
     setDevices(newDevices)
-    axios.post(`/api/device/${newDevice.imei}`, newDevice)
+    axios.post(`http://localhost:8080/api/device/${newDevice.imei}`, newDevice)
       .then(res => setForm(!form), console.log("device uploaded"))
       .catch(err => console.log(err))
   }
 
   useEffect(() => {
     const loadDevices = async () => {
-      const { data } = await axios.get("/api/device")
+      const { data } = await axios.get("http://localhost/api/device")
       setDevices(data);
     };
     loadDevices();
