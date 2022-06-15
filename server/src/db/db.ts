@@ -208,3 +208,18 @@ const addPerimeter = () => {
   return;
 };
 exports.addPerimeter = addPerimeter;
+
+const getPerimeterByIMEI = () => {
+  return;
+};
+exports.getPerimeterByIMEI = getPerimeterByIMEI;
+
+const updatePerimeter = () => {
+  return;
+};
+exports.updatePerimeter = updatePerimeter;
+
+const getPerimeters = () => {
+  return;
+};
+exports.getPerimeters = getPerimeters;
