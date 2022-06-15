@@ -94,6 +94,27 @@ const Trip = sequelize.define(
 );
 Trip.belongsTo(Device);
 
+const User = sequelize.define(
+  'user',
+  {
+    name: {
+      type: DataTypes.STRING,
+    },
+    phone: {
+      type: DataTypes.INTEGER,
+    },
+    email: {
+      type: DataTypes.STRING,
+    },
+    password: {
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    freezeTableName: true,
+  }
+);
+
 // Reset functions
 
 const resetDB = () => {
