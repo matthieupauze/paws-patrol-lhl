@@ -5,6 +5,8 @@ import Footer from './components/Footer';
 import Map from './components/Map';
 import Account from './components/Account';
 import Device from './components/Device';
+import Contact from './components/Contact';
+import Confirm from './components/Confirm';
 
 function App() {
   return (
@@ -15,7 +17,8 @@ function App() {
         <Route path="/device" element={<Device />} />
         {/* <Route path="/perimeter" element={<Perimeter />} /> */}
         <Route path="/account" element={<Account />} />
-        {/* <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/confirm" element={<Confirm />} />
         <Route path="/login" element={<Login />} />
         {/* <Route path="/signup" element={<SignUp />} /> */}
         <Route path="*" element={<h2>404 page not found</h2>} />
