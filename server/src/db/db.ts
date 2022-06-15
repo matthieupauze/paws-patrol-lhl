@@ -167,6 +167,13 @@ exports.getTrips = getTrips;
 const getCoordinatesForTrip = (id: number, imei: number) => {
   return (
     Trip.findByPk(id)
+    .then((data: any) => {return (
+      Coordinate.findAll({
+        where: {
+          deviceId: imei
+        }
+      })
+      )})
   );
 };
 exports.getCoordinatesForTrip = getCoordinatesForTrip;
