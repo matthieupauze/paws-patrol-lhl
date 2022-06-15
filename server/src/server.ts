@@ -5,13 +5,13 @@ var logger = require('morgan');
 
 // All DB and routing files
 const db = require('./db/db.js');
-const coordinateApiRoutes = require('./routes/coordinateApi')
+const coordinateApiRoutes = require('./routes/coordinateApi');
 const deviceApiRoutes = require('./routes/deviceApi');
 const perimeterApiRoutes = require('./routes/perimeterApi');
 const resetApiRoutes = require('./routes/resetApi');
 const tripApiRoutes = require('./routes/tripApi');
 const userApiRoutes = require('./routes/userApi');
-import {Request, Response, NextFunction} from 'express'
+import { Request, Response, NextFunction } from 'express';
 
 const apiRouter = express.Router();
 const apiRoutes = require('./routes/api');
