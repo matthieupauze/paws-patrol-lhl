@@ -220,6 +220,6 @@ const updatePerimeter = () => {
 exports.updatePerimeter = updatePerimeter;
 
 const getPerimeters = () => {
-  return;
+  return Perimeter.findAll();
 };
 exports.getPerimeters = getPerimeters;
