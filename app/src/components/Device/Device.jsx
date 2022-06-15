@@ -88,6 +88,7 @@ const Device = () => {
                   checked={radioImei === radio.imei}
                   variant={radioImei === radio.imei ? 'secondary' : 'transparent'}
                   onChange={(e) => setRadioImei(e.currentTarget.value)}
+                  className="text-white "
                 >
                   {radio.name}
                 </ToggleButton>
