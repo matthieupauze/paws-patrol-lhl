@@ -46,7 +46,13 @@ module.exports = (router: any, db: any) => {
   });
 
   router.get('/:imei/:id', (req: any, res: any) => {
-    res.send('not brokey');
+    const { id, imei } = req.params;
+    db.getCoordinatesForTrip(id, imei)
+    .then((data: any) => res.send(data))
+    .catch((err: any) => {
+      console.log(err);
+      res.status(500).json(err);
+    })
   });
 
   return router;

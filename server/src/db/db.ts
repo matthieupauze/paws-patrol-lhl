@@ -164,7 +164,9 @@ const getTrips = () => {
 };
 exports.getTrips = getTrips;
 
-const getCoordinatesForTrip = () => {
-  return;
+const getCoordinatesForTrip = (id: number, imei: number) => {
+  return (
+    Trip.findByPk(id)
+  );
 };
 exports.getCoordinatesForTrip = getCoordinatesForTrip;
