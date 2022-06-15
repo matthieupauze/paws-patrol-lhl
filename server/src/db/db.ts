@@ -95,13 +95,13 @@ const Trip = sequelize.define(
 Trip.belongsTo(Device);
 
 const User = sequelize.define(
-  'user',
+  'admin',
   {
     name: {
       type: DataTypes.STRING,
     },
     phone: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     email: {
       type: DataTypes.STRING,
