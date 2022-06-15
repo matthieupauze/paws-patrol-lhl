@@ -55,6 +55,7 @@ const Coordinate = sequelize.define(
 );
 Coordinate.belongsTo(Device);
 
+// Define perimeter table
 const Perimeter = sequelize.define(
   'perimeter',
   {
