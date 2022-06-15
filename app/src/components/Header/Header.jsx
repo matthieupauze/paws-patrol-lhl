@@ -1,10 +1,9 @@
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-
-function Header() {
+const Header = () => {
   return (
     <header>
-      <Navbar className="primary" variant="dark" expand="lg" collapseOnSelect>
+      <Navbar className="nav-color" variant="light" expand="lg" collapseOnSelect>
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>Paw-Patrol</Navbar.Brand>
@@ -15,11 +14,14 @@ function Header() {
               <LinkContainer to="/">
                 <Nav.Link>Track Pet</Nav.Link>
               </LinkContainer>
+              <LinkContainer to="/trips">
+                <Nav.Link>History</Nav.Link>
+              </LinkContainer>
               <LinkContainer to="/device">
-                <Nav.Link>Manage Devices</Nav.Link>
+                <Nav.Link>Devices</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/addPerimeter">
-                <Nav.Link>Add Perimeter</Nav.Link>
+                <Nav.Link>Perimeters</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/account">
                 <Nav.Link>Account</Nav.Link>
@@ -36,6 +38,6 @@ function Header() {
       </Navbar>
     </header>
   );
-}
+};
 
 export default Header;
