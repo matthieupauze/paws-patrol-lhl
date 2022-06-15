@@ -131,6 +131,11 @@ const addDevice = (imei: number, name: string = '') => {
 };
 exports.addDevice = addDevice;
 
+const getDevice = (imei: number) => {
+  return Device.findByPk(imei);
+};
+exports.getDevice = getDevice;
+
 const updateDevice = (imei: number, name: string, microchip: string) => {
   return getDevice(imei).then((data: any) => {
     if (!data) {
@@ -144,11 +149,6 @@ const updateDevice = (imei: number, name: string, microchip: string) => {
   });
 };
 exports.updateDevice = updateDevice;
-
-const getDevice = (imei: number) => {
-  return Device.findByPk(imei);
-};
-exports.getDevice = getDevice;
 
 const getDevices = () => {
   return Device.findAll();
@@ -201,3 +201,10 @@ const getCoordinatesForTrip = (id: number, imei: number) => {
   });
 };
 exports.getCoordinatesForTrip = getCoordinatesForTrip;
+
+// Perimeter functions
+
+const addPerimeter = () => {
+  return;
+};
+exports.addPerimeter = addPerimeter;
