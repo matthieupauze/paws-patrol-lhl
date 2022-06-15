@@ -1,4 +1,5 @@
 module.exports = (router: any, db: any) => {
+  // Get all perimeters
   router.get('/', (req: any, res: any) => {
     db.getPerimeters()
     .then((data: any) => res.status(200).json(data))
@@ -8,6 +9,7 @@ module.exports = (router: any, db: any) => {
     });
   });
 
+  // Add a new perimeter based on imei
   router.post('/:imei', (req: any, res: any) => {
     const { imei } = req.params;
     const { left, right } = req.body;
@@ -19,6 +21,7 @@ module.exports = (router: any, db: any) => {
     });
   });
 
+  // Get one perimeter based on imei
   router.get('/:imei', (req: any, res: any) => {
     db.getPerimeterByIMEI(req.params.imei)
     .then((data: any) => res.status(200).json(data))
@@ -28,6 +31,7 @@ module.exports = (router: any, db: any) => {
     });
   });
 
+  // Update one perimeter based on imei
   router.patch('/:imei', (req: any, res: any) => {
     const { imei } = req.params;
     const { left, right } = req.body;
