@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import axios from "axios"
 
 const Device = () => {
-  const [form, setForm] = useState(true)
+  const [form, setForm] = useState(false)
   const [devices, setDevices] = useState([
     // {name: "Device 1", imei: "1"}, 
     // {name: "Device 2", imei: "2"}

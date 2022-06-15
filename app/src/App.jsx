@@ -18,6 +18,7 @@ function App() {
         {/* <Route path="/contact" element={<Contact />} /> */}
         <Route path="/login" element={<Login />} />
         {/* <Route path="/signup" element={<SignUp />} /> */}
+        <Route path="*" element={<h2>404 page not found</h2>} />
       </Routes>
       <Footer />
     </>
