@@ -3,7 +3,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 const Header = () => {
   return (
     <header>
-      <Navbar className="nav-color" variant="light" expand="lg" collapseOnSelect>
+      <Navbar className="nav-color " variant="light" expand="lg" collapseOnSelect>
         <Container>
         <LinkContainer to="/">
           <Navbar.Brand>Paw-Patrol</Navbar.Brand>

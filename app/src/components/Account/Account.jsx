@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import axios from "axios";
+import Map from "../Map"
 
 function Account() {
   const [users, setUsers] = useState([{name: "Robbie Prokop", phone: "1-234-567-8909", email: "support@paw-patrol.com", password: "123456789"}]);
@@ -13,8 +14,10 @@ function Account() {
   //   loadUsers();
   // }, []);
   return (
-    <section className="login d-flex justify-content-center align-items-center flex-column">
-      <div>
+    <section className=" d-flex justify-content-center align-items-center flex-column">
+      <Map />
+      <div className="info">
+        <h2 className='centered'>Account Info</h2>
         <Card className="text-center rounded form">
           <Card.Body>
             <Card.Text>Name</Card.Text>

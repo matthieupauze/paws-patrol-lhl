@@ -1,4 +1,4 @@
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function Contact() {
@@ -12,38 +12,40 @@ function Contact() {
             you as soon as possible.
           </p>
         </div>
-        <Form.Group className="form-group mb-2 p-3">
-          <Form.Control
-            className="form-control rounded text-white ph-color"
-            type="text"
-            id="name"
-            placeholder="Name"
-          />
-        </Form.Group>
-        <Form.Group className="form-group mb-2 p-3">
-          <Form.Control
-            className="form-control rounded text-white ph-color"
-            type="email"
-            id="email"
-            placeholder="Email"
-          />
-        </Form.Group>
-        <Form.Group className="form-group mb-2 p-3">
-          <Form.Control
-            className="form-control form-control text-white rounded ph-color"
-            as="textarea"
-            rows={4}
-            id="message"
-            placeholder="Enter a Message"
-          />
-        </Form.Group>
-        <div className="mb p-3">
-          <Link to="/confirm">
-            <Button type="submit" className="btn-color rounded w-100">
-              Submit
-            </Button>
-          </Link>
-        </div>
+        <Card className="text-center rounded form">
+          <Form.Group className="form-group mb-2 p-3">
+            <Form.Control
+              className="form-control rounded text-white ph-color"
+              type="text"
+              id="name"
+              placeholder="Name"
+            />
+          </Form.Group>
+          <Form.Group className="form-group mb-2 p-3">
+            <Form.Control
+              className="form-control rounded text-white ph-color"
+              type="email"
+              id="email"
+              placeholder="Email"
+            />
+          </Form.Group>
+          <Form.Group className="form-group mb-2 p-3">
+            <Form.Control
+              className="form-control form-control text-white rounded ph-color"
+              as="textarea"
+              rows={4}
+              id="message"
+              placeholder="Enter a Message"
+            />
+          </Form.Group>
+        </Card>
+          <div className="mb p-3">
+            <Link to="/confirm">
+              <Button type="submit" className="btn-color rounded w-100">
+                Submit
+              </Button>
+            </Link>
+          </div>
       </Form>
     </section>
   );
