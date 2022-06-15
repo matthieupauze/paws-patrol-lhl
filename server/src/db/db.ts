@@ -108,13 +108,16 @@ const addDevice = (imei: number, name: string = '') => {
 };
 exports.addDevice = addDevice;
 
-const updateDevice = (imei: number, name: string) => {
+const updateDevice = (imei: number, name: string, microchip: string) => {
   return getDevice(imei).then((data: any) => {
     if (!data) {
       console.log('no data');
       return;
     }
-    return data.update({ name: name });
+    return data.update({ 
+      name: name, 
+      microchip: microchip
+    });
   });
 };
 exports.updateDevice = updateDevice;

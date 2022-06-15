@@ -30,8 +30,8 @@ module.exports = (router: any, db: any) => {
 
   router.patch('/:imei', (req: any, res: any) => {
     const { imei } = req.params;
-    const { name } = req.body;
-    db.updateDevice(imei, name)
+    const { name, microchip } = req.body;
+    db.updateDevice(imei, name, microchip)
       .then((data: any) => {
         console.log(data);
         res.status(200).json(data);
