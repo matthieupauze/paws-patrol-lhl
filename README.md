@@ -21,15 +21,19 @@ npm run dev
 - Bootstrap 5
 
 ## Api Routes
-- api/device	
+
+- api/device
+
 ```
   get / list of all devices
-	
+
 	post /:imei add a device manually/change name
 	get /:imei info about 1 device
 	patch /:imei update a device
 ```
+
 - api/trip
+
 ```
 	get / get all trips
 
@@ -39,17 +43,23 @@ npm run dev
 
 	get /:imei/:id get the coordinates for the trip
 ```
+
 - api/coordinates
+
 ```
 	post /:imei add coordinate for a device
 	get /:imei get most recent for a device
 ```
+
 - api/user
+
 ```
 	post / change user info
 	get / user info
 ```
+
 - api/perimiter
+
 ```
 	get / all perimeters
 
@@ -59,6 +69,7 @@ npm run dev
 ```
 
 api/reset
+
 ```
 	get / reset db
 ```
