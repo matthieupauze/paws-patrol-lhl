@@ -20,7 +20,12 @@ module.exports = (router: any, db: any) => {
   });
 
   router.get('/:imei', (req: any, res: any) => {
-    res.send('one perimeter');
+    db.getPerimeterByIMEI(req.params.imei)
+    .then((data: any) => res.status(200).json(data))
+    .catch((err: any) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
   });
 
   router.patch('/:imei', (req: any, res: any) => {

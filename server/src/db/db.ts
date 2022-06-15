@@ -213,8 +213,11 @@ const addPerimeter = (imei: number, left: number, right: number) => {
 };
 exports.addPerimeter = addPerimeter;
 
-const getPerimeterByIMEI = () => {
-  return;
+const getPerimeterByIMEI = (imei: number) => {
+  return Perimeter.findOne({
+    order: [['updatedAt', 'DESC']],
+    where: { deviceId: imei },
+  });
 };
 exports.getPerimeterByIMEI = getPerimeterByIMEI;
 
