@@ -36,6 +36,8 @@ npm run dev
 	post /:imei start a trip
 	get /:imei get all trips for single device
 	patch /:imei end a trip
+
+	get /:imei/:id get the coordinates for the trip
 ```
 - api/coordinates
 ```
