@@ -10,6 +10,10 @@ export default function Confirm() {
             </Card.Title>
           </Card.Body>
         </Card>
+        {/* CHANGE THIS TO REDIRECT AFTER 10 SECONDS OR SO */}
+        <div className="d-grid mt-3">
+          <Button className="btn-color rounded">Return To Home</Button>
+        </div>
       </div>
     </section>
   );
