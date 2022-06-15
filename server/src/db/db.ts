@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const { DB_HOST, DB_USER, DB_PORT, DB_PASSWORD, DB_NAME } = process.env;
 
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes, Op } = require('sequelize');
 
 // Create connection to postgres
 const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
@@ -170,7 +170,10 @@ const getCoordinatesForTrip = (id: number, imei: number) => {
     .then((data: any) => {return (
       Coordinate.findAll({
         where: {
-          deviceId: imei
+          deviceId: imei,
+          time: {
+            [Op.between]: [data.start, data.end]
+          }
         }
       })
       )})
