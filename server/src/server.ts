@@ -1,3 +1,5 @@
+import { Request, Response, NextFunction } from 'express';
+
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -5,7 +7,7 @@ var logger = require('morgan');
 
 // All DB and routing files
 const db = require('./db/db.js');
-const coordinateApiRoutes = require('./routes/coordinateApi')
+const coordinateApiRoutes = require('./routes/coordinateApi');
 const deviceApiRoutes = require('./routes/deviceApi');
 const perimeterApiRoutes = require('./routes/perimeterApi');
 const resetApiRoutes = require('./routes/resetApi');
@@ -22,6 +24,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(function (req: Request, res: Response, next: NextFunction) {
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+
+  // Pass to next layer of middleware
+  next();
+});
 
 // coordinate endpoints
 const coordinateApiRouter = express.Router();

@@ -3,7 +3,7 @@ import random
 import time, threading
 from datetime import datetime
 
-imei = random.randrange(10000, 99999)
+imei = 34614
 coordList = [
     [43.57702250878536, -80.26393192432224],
     [43.576716844259394, -80.26433730441174],
