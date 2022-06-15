@@ -7,6 +7,7 @@ import Account from './components/Account';
 import Device from './components/Device';
 import Contact from './components/Contact';
 import Confirm from './components/Confirm';
+import Update from './components/Update';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/confirm" element={<Confirm />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/update" element={<Update />} />
         {/* <Route path="/signup" element={<SignUp />} /> */}
         <Route path="*" element={<h2>404 page not found</h2>} />
       </Routes>
