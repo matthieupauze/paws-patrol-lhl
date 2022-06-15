@@ -1,5 +1,4 @@
 import { Button, Card } from 'react-bootstrap';
-
 function Account() {
   return (
     <section className="login d-flex justify-content-center align-items-center flex-column">
@@ -27,5 +26,4 @@ function Account() {
     </section>
   );
 }
-
 export default Account;

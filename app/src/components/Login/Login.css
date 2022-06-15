@@ -8,8 +8,15 @@
 
 .ph-color {
   background-color: rgba(147, 145, 145, 0.5);
+  color: #ffffff;
 }
 
 .ph-color::placeholder {
   color: #ffffff;
+}
+
+.ph-color:focus {
+  background-color: rgba(147, 145, 145, 0.5);
+  border-color: #c5adf5;
+  
 }
