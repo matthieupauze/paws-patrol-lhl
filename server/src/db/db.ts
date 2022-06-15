@@ -55,6 +55,17 @@ const Coordinate = sequelize.define(
 );
 Coordinate.belongsTo(Device);
 
+const Perimeter = sequelize.define(
+  'perimeter',
+  {
+
+  },
+  {
+    freezeTableName: true,
+  }
+);
+Perimeter.belongsTo(Device);
+
 // Define trip table
 const Trip = sequelize.define(
   'trip',
