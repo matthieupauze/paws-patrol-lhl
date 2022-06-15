@@ -114,9 +114,9 @@ const updateDevice = (imei: number, name: string, microchip: string) => {
       console.log('no data');
       return;
     }
-    return data.update({ 
-      name: name, 
-      microchip: microchip
+    return data.update({
+      name: name,
+      microchip: microchip,
     });
   });
 };
@@ -139,29 +139,24 @@ const addTrip = (imei: number, start: Date, name: string = '') => {
     deviceId: imei,
     name: name,
     start: start,
-    end: start
+    end: start,
   });
 };
 exports.addTrip = addTrip;
 
 const getTripsByIMEI = (imei: number) => {
-  return (
-    Trip.findAll({
-      where: {
-        deviceId: imei
-      }
-    })
-  );
+  return Trip.findAll({
+    where: {
+      deviceId: imei,
+    },
+  });
 };
 exports.getTripsByIMEI = getTripsByIMEI;
 
 const updateTrip = (id: number, end: Date) => {
-  return (
-    Trip.findByPk(id)
-    .then((data: any) => {
-      return data.update({ end: end });
-    })
-  );
+  return Trip.findByPk(id).then((data: any) => {
+    return data.update({ end: end });
+  });
 };
 exports.updateTrip = updateTrip;
 
@@ -171,18 +166,15 @@ const getTrips = () => {
 exports.getTrips = getTrips;
 
 const getCoordinatesForTrip = (id: number, imei: number) => {
-  return (
-    Trip.findByPk(id)
-    .then((data: any) => {return (
-      Coordinate.findAll({
-        where: {
-          deviceId: imei,
-          time: {
-            [Op.between]: [data.start, data.end]
-          }
-        }
-      })
-      )})
-  );
+  return Trip.findByPk(id).then((data: any) => {
+    return Coordinate.findAll({
+      where: {
+        deviceId: imei,
+        time: {
+          [Op.between]: [data.start, data.end],
+        },
+      },
+    });
+  });
 };
 exports.getCoordinatesForTrip = getCoordinatesForTrip;
