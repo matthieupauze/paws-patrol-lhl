@@ -94,10 +94,14 @@ const Trip = sequelize.define(
 );
 Trip.belongsTo(Device);
 
+// Reset functions
+
 const resetDB = () => {
   return sequelize.sync({ force: true });
 };
 exports.resetDB = resetDB;
+
+// Coordinate functions
 
 const addCoordinate = (imei: number, lat: number, long: number, time: Date) => {
   return Coordinate.create({
