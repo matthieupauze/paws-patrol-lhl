@@ -204,8 +204,12 @@ exports.getCoordinatesForTrip = getCoordinatesForTrip;
 
 // Perimeter functions
 
-const addPerimeter = () => {
-  return;
+const addPerimeter = (imei: number, left: number, right: number) => {
+  return Perimeter.create({
+    deviceId: imei,
+    left: left,
+    right: right,
+  });
 };
 exports.addPerimeter = addPerimeter;
 
