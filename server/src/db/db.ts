@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const { DB_HOST, DB_USER, DB_PORT, DB_PASSWORD, DB_NAME } = process.env;
 
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes, Op } = require('sequelize');
 
 // Create connection to postgres
 const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
@@ -125,3 +125,58 @@ const getDevices = () => {
   return Device.findAll();
 };
 exports.getDevices = getDevices;
+
+// Trip functions
+
+const addTrip = (imei: number, start: Date, name: string = '') => {
+  return Trip.create({
+    deviceId: imei,
+    name: name,
+    start: start,
+    end: start
+  });
+};
+exports.addTrip = addTrip;
+
+const getTripsByIMEI = (imei: number) => {
+  return (
+    Trip.findAll({
+      where: {
+        deviceId: imei
+      }
+    })
+  );
+};
+exports.getTripsByIMEI = getTripsByIMEI;
+
+const updateTrip = (id: number, end: Date) => {
+  return (
+    Trip.findByPk(id)
+    .then((data: any) => {
+      return data.update({ end: end });
+    })
+  );
+};
+exports.updateTrip = updateTrip;
+
+const getTrips = () => {
+  return Trip.findAll();
+};
+exports.getTrips = getTrips;
+
+const getCoordinatesForTrip = (id: number, imei: number) => {
+  return (
+    Trip.findByPk(id)
+    .then((data: any) => {return (
+      Coordinate.findAll({
+        where: {
+          deviceId: imei,
+          time: {
+            [Op.between]: [data.start, data.end]
+          }
+        }
+      })
+      )})
+  );
+};
+exports.getCoordinatesForTrip = getCoordinatesForTrip;

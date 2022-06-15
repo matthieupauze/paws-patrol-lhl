@@ -37,9 +37,11 @@ npm run dev
 ```
 	get / get all trips
 
-	post /:imei start/stop recording a trip
+	post /:imei start a trip
 	get /:imei get all trips for single device
-	patch /:imei update a single trip
+	patch /:imei end a trip
+
+	get /:imei/:id get the coordinates for the trip
 ```
 
 - api/coordinates
