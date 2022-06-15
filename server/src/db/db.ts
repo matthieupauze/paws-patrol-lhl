@@ -66,7 +66,7 @@ const Perimeter = sequelize.define(
     right: {
       type: DataTypes.DOUBLE,
       allowNull: false,
-    }
+    },
   },
   {
     freezeTableName: true,
@@ -222,15 +222,12 @@ const getPerimeterByIMEI = (imei: number) => {
 exports.getPerimeterByIMEI = getPerimeterByIMEI;
 
 const updatePerimeter = (imei: number, left: number, right: number) => {
-  return (
-    getPerimeterByIMEI(imei)
-    .then((data: any) => {
-      return data.update({
-        left: left,
-        right: right,
-      })
-    })
-  );
+  return getPerimeterByIMEI(imei).then((data: any) => {
+    return data.update({
+      left: left,
+      right: right,
+    });
+  });
 };
 exports.updatePerimeter = updatePerimeter;
 
