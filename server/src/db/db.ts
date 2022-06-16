@@ -259,7 +259,7 @@ const updatePerimeter = (imei: number, left: number, right: number) => {
       return data.update({
         left: left,
         right: right,
-      })
+      });
     })
   );
 };
@@ -277,7 +277,17 @@ const getUser = () => {
 };
 exports.getUser = getUser;
 
-const updateUser = () => {
-  return;
+const updateUser = (name: string, phone: string, email: string, password: string) => {
+  return (
+    getUser()
+      .then((data: any) => {
+        data.update({
+          name: name,
+          phone: phone,
+          email: email,
+          password: password,
+        });
+      })
+  );
 };
 exports.updateUser = updateUser;
