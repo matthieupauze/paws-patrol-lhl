@@ -273,7 +273,7 @@ exports.getPerimeters = getPerimeters;
 // User functions
 
 const getUser = () => {
-  return;
+  return User.findOne();
 };
 exports.getUser = getUser;
 
