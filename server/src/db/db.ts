@@ -125,7 +125,7 @@ const resetDB = () => {
 exports.resetDB = resetDB
 
 const seedDB = () => {
-  return sequelize.sync({ force: true }).then(() => {
+  return resetDB().then(() => {
     return (Device.create({
       id: 1,
       name: 'admin',
