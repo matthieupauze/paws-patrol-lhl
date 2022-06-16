@@ -9,6 +9,7 @@ var logger = require('morgan');
 const db = require('./db/db.js');
 const coordinateApiRoutes = require('./routes/coordinateApi');
 const deviceApiRoutes = require('./routes/deviceApi');
+const emailApiRoutes = require('./routes/emailApi');
 const perimeterApiRoutes = require('./routes/perimeterApi');
 const resetApiRoutes = require('./routes/resetApi');
 const tripApiRoutes = require('./routes/tripApi');
@@ -50,6 +51,11 @@ app.use('/api/coordinate', coordinateApiRouter);
 const deviceApiRouter = express.Router();
 deviceApiRoutes(deviceApiRouter, db);
 app.use('/api/device', deviceApiRouter);
+
+// email endpoints
+const emailApiRouter = express.Router();
+emailApiRoutes(emailApiRouter, db);
+app.use('/api/email', emailApiRouter);
 
 // perimeter endpoints
 const perimeterApiRouter = express.Router();
