@@ -45,7 +45,7 @@ StartTime=time.time()
 
 def action(currentLocation) :
 
-    url = f'http://localhost:3000/api/coordinate/{imei}'
+    url = f'http://localhost:{port}/api/coordinate/{imei}'
     data = {'lat': coordList[currentLocation % 10][0], 'long': coordList[currentLocation % 10][1], 'time': datetime.now()}
 
     x = requests.post(url, data = data)
