@@ -13,7 +13,7 @@ const perimeterApiRoutes = require('./routes/perimeterApi');
 const resetApiRoutes = require('./routes/resetApi');
 const tripApiRoutes = require('./routes/tripApi');
 const userApiRoutes = require('./routes/userApi');
-const { REACT_PORT } = process.env;
+const { VITE_PORT_REACT } = process.env;
 
 var app = express();
 
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req: Request, res: Response, next: NextFunction) {
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', `http://localhost:${REACT_PORT}`);
+  res.setHeader('Access-Control-Allow-Origin', `http://localhost:${VITE_PORT_REACT}`);
 
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');

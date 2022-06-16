@@ -6,13 +6,15 @@ const defaultZoom = 4;
 const trackingZoom = 18;
 const defaultPosition = { id: 0, lat: 45, lng: -73 };
 
+const { VITE_PORT_EXPRESS } = import.meta.env;
+
 function Tracker() {
   const [position, setPosition] = useState([defaultPosition]);
   const map = useMap();
   const foundPosition = useRef(false);
 
   const fetchPosition = () => {
-    return axios.get('http://localhost:3000/api/coordinate/34614').then((res) => {
+    return axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/coordinate/34614`).then((res) => {
       const lat = res.data.latitude;
       const lng = res.data.longitude;
       const { id } = res.data;
@@ -34,11 +36,10 @@ function Tracker() {
 
   const setupTimer = () => {
     return setInterval(() => {
-      fetchPosition()
-        .then((data) => {
-          setPosition((prev) => changePosition(prev, data));
-        })
-        .catch((err) => console.log(err));
+      fetchPosition().then((data) => {
+        setPosition((prev) => changePosition(prev, data));
+      });
+      //.catch((err) => console.log(err));
     }, 1000);
   };
 
