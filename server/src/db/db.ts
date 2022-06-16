@@ -1,4 +1,6 @@
-require('dotenv').config();
+import path from 'path';
+
+require('dotenv').config({ path: path.resolve(process.cwd(), '../.env') });
 
 const { DB_HOST, DB_USER, DB_PORT, DB_PASSWORD, DB_NAME } = process.env;
 
