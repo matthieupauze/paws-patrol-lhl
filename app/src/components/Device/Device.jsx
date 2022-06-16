@@ -5,9 +5,7 @@ import axios from 'axios';
 import path from 'node:path';
 import Map from '../Map';
 
-require('dotenv').config({ path: path.resolve(process.cwd(), '../.env') });
-
-const { EXPRESS_PORT } = process.env;
+const { VITE_PORT_EXPRESS } = import.meta.env;
 
 function Device() {
   const [form, setForm] = useState(false);
@@ -27,15 +25,16 @@ function Device() {
     };
     const newDevices = [...devices, newDevice];
     setDevices(newDevices);
+    console.log(VITE_PORT_EXPRESS);
     axios
-      .post(`http://localhost:${EXPRESS_PORT}/api/device/${newDevice.imei}`, newDevice)
+      .post(`http://localhost:${VITE_PORT_EXPRESS}/api/device/${newDevice.imei}`, newDevice)
       .then((res) => setForm(!form), console.log('device uploaded'))
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
     const loadDevices = async () => {
-      const { data } = await axios.get(`http://localhost:${EXPRESS_PORT}/api/device`);
+      const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/device`);
       setDevices(data);
     };
     loadDevices();

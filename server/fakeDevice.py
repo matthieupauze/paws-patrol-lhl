@@ -7,7 +7,7 @@ from datetime import datetime
 f = open("../.env")
 text = f.read()
 f.close()
-indexStart = text.index("EXPRESS_PORT") + 13
+indexStart = text.index("VITE_PORT_EXPRESS") + 18
 indexEnd = indexStart + 4
 port = text[indexStart:indexEnd]
 
