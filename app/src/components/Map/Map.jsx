@@ -12,7 +12,7 @@ function Tracker() {
   const foundPosition = useRef(false);
 
   const fetchPosition = () => {
-    return axios.get('http://localhost:3000/api/coordinate/34614').then((res) => {
+    return axios.get('http://localhost:8080/api/coordinate/34614').then((res) => {
       const lat = res.data.latitude;
       const lng = res.data.longitude;
       const { id } = res.data;
