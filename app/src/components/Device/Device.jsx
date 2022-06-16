@@ -42,8 +42,8 @@ const Device = () => {
         <section className="login d-flex justify-content-center align-items-center flex-column">
         <Map interactive={false}/>
         <div className="info">
-          <h2 className='centered'>Account Info</h2>
-            <Card className="m-3 p-3 rounded w-25 ph-color">
+          <h2 className='centered'>Devices</h2>
+            <Card className="m-3 p-3 rounded w-25 ph-color w-100">
               <Form className="d-flex flex-column justify-content-center " onSubmit={handleSubmit}>
                 <Form.Group className="form-group my-2 p-3">
                   <Form.Control
@@ -82,9 +82,9 @@ const Device = () => {
       {!form && (
         <section className="login d-flex justify-content-center align-items-center flex-column">
           <Map interactive={false}/>
-          <div className="info">
-            <h2 className='centered'>Account Info</h2>
-            <Card className="m-3 p-3 rounded w-25 ph-color">
+          <div className="info w-25">
+            <h2 className='centered'>Devices</h2>
+            <Card className="p-3 w-100 rounded ph-color">
               <ButtonGroup className="mb-3 d-flex flex-column gap-2 rounded">
                 {radios.map((radio, idx) => (
                   <ToggleButton
