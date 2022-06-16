@@ -143,6 +143,7 @@ const seedDB = () => {
         time: 1,
         deviceId: 1,
       });
+      // Add Perimeter
     });
   });
 };
