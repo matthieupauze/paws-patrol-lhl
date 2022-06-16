@@ -118,17 +118,14 @@ const User = sequelize.define(
 // Reset functions
 
 const resetDB = () => {
-  return (
-    sequelize.sync({ force: true })
-      .then(() => {
-        User.create({
-          name: 'Admin',
-          phone: '1234567890',
-          email: 'admin@admin.admin',
-          password: 'admin',
-        });
-      })
-    );
+  return sequelize.sync({ force: true }).then(() => {
+    User.create({
+      name: 'Admin',
+      phone: '1234567890',
+      email: 'admin@admin.admin',
+      password: 'admin',
+    });
+  });
 };
 exports.resetDB = resetDB;
 
@@ -253,15 +250,12 @@ const getPerimeterByIMEI = (imei: number) => {
 exports.getPerimeterByIMEI = getPerimeterByIMEI;
 
 const updatePerimeter = (imei: number, left: number, right: number) => {
-  return (
-    getPerimeterByIMEI(imei)
-    .then((data: any) => {
-      return data.update({
-        left: left,
-        right: right,
-      });
-    })
-  );
+  return getPerimeterByIMEI(imei).then((data: any) => {
+    return data.update({
+      left: left,
+      right: right,
+    });
+  });
 };
 exports.updatePerimeter = updatePerimeter;
 
@@ -278,16 +272,13 @@ const getUser = () => {
 exports.getUser = getUser;
 
 const updateUser = (name: string, phone: string, email: string, password: string) => {
-  return (
-    getUser()
-      .then((data: any) => {
-        return data.update({
-          name: name,
-          phone: phone,
-          email: email,
-          password: password,
-        });
-      })
-  );
+  return getUser().then((data: any) => {
+    return data.update({
+      name: name,
+      phone: phone,
+      email: email,
+      password: password,
+    });
+  });
 };
 exports.updateUser = updateUser;
