@@ -120,18 +120,17 @@ const User = sequelize.define(
 // Reset functions
 
 const resetDB = () => {
-  return sequelize.sync({ force: true});
+  return sequelize.sync({ force: true });
 };
-exports.resetDB = resetDB
+exports.resetDB = resetDB;
 
 const seedDB = () => {
   return resetDB().then(() => {
-    return (Device.create({
+    return Device.create({
       id: 1,
       name: 'admin',
       microchip: 'test',
-    })
-    .then(() => {
+    }).then(() => {
       User.create({
         name: 'Admin',
         phone: '1234567890',
@@ -143,9 +142,8 @@ const seedDB = () => {
         longitude: -81.5088462007877,
         time: 1,
         deviceId: 1,
-      })
-    })
-  )
+      });
+    });
   });
 };
 exports.seedDB = seedDB;
