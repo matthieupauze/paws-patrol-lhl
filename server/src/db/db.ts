@@ -118,7 +118,17 @@ const User = sequelize.define(
 // Reset functions
 
 const resetDB = () => {
-  return sequelize.sync({ force: true });
+  return (
+    sequelize.sync({ force: true })
+      .then(() => {
+        User.create({
+          name: 'Admin',
+          phone: '1234567890',
+          email: 'admin@admin.admin',
+          password: 'admin',
+        });
+      })
+    );
 };
 exports.resetDB = resetDB;
 
