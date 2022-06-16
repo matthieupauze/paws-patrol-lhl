@@ -1,3 +1,5 @@
+import { Request, Response, NextFunction } from 'express';
+
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -13,8 +15,6 @@ const tripApiRoutes = require('./routes/tripApi');
 const userApiRoutes = require('./routes/userApi');
 const { REACT_PORT } = process.env;
 
-import { Request, Response, NextFunction } from 'express';
-
 var app = express();
 
 app.use(logger('dev'));
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function (req: Request, res: Response, next: any) {
+app.use(function (req: Request, res: Response, next: NextFunction) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', `http://localhost:${REACT_PORT}`);
 

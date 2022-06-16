@@ -1,7 +1,7 @@
 .login {
   background: url('https://c.tenor.com/X0lLW1hajSwAAAAM/chill-bro.gif') no-repeat;
   /* background: url("https://gfycat.com/downrightthinantelopegroundsquirrel") no-repeat; */
-  height: 100%;
+  height: 100vh;
   background-size: cover;
   background-position: center;
 }
