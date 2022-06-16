@@ -259,3 +259,15 @@ const getPerimeters = () => {
   return Perimeter.findAll();
 };
 exports.getPerimeters = getPerimeters;
+
+// User functions
+
+const getUser = () => {
+  return;
+};
+exports.getUser = getUser;
+
+const updateUser = () => {
+  return;
+};
+exports.updateUser = updateUser;
