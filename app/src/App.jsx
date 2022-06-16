@@ -1,44 +1,30 @@
-import { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import Login from './components/Login';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Map from './components/Map';
+import Account from './components/Account';
+import Device from './components/Device';
+import Contact from './components/Contact';
+import Confirm from './components/Confirm';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Map />} />
+        <Route path="/device" element={<Device />} />
+        {/* <Route path="/perimeter" element={<Perimeter />} /> */}
+        <Route path="/account" element={<Account />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/confirm" element={<Confirm />} />
+        <Route path="/login" element={<Login />} />
+        {/* <Route path="/signup" element={<SignUp />} /> */}
+        <Route path="*" element={<h2>404 page not found</h2>} />
+      </Routes>
+      <Footer />
+    </>
   );
 }
 

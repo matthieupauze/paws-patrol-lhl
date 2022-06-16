@@ -66,7 +66,7 @@ const Perimeter = sequelize.define(
     right: {
       type: DataTypes.DOUBLE,
       allowNull: false,
-    }
+    },
   },
   {
     freezeTableName: true,
