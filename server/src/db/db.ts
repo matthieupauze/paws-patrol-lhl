@@ -281,7 +281,7 @@ const updateUser = (name: string, phone: string, email: string, password: string
   return (
     getUser()
       .then((data: any) => {
-        data.update({
+        return data.update({
           name: name,
           phone: phone,
           email: email,
