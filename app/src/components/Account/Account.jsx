@@ -15,7 +15,7 @@ function Account() {
   // }, []);
   return (
     <section className=" d-flex justify-content-center align-items-center flex-column">
-      <Map />
+      <Map interactive={false}/>
       <div className="info">
         <h2 className='centered'>Account Info</h2>
         <Card className="text-center rounded form">

@@ -13,7 +13,7 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<Map />} />
+        <Route path="/" element={<Map interactive={true} />} />
         <Route path="/device" element={<Device />} />
         {/* <Route path="/perimeter" element={<Perimeter />} /> */}
         <Route path="/account" element={<Account />} />
