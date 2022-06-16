@@ -7,13 +7,13 @@ function Contact() {
       <Form className="d-flex flex-column justify-content-center h-25 w-50">
         <div className="d-flex flex-column justify-content-center px-3 mb-3 text-white">
           <h2 className="d-flex justify-content-center font-weight-bold mb-3">Contact Us</h2>
-          <p>
-            If you have any questions or concerns, please fill out the form and we will get back to
-            you as soon as possible.
-          </p>
         </div>
         <Card className="text-center rounded form">
           <Form.Group className="form-group mb-2 p-3">
+          <p classname="pt-3">
+            If you have any questions or concerns, please fill out the form and we will get back to
+            you as soon as possible.
+          </p>
             <Form.Control
               className="form-control rounded text-white ph-color"
               type="text"
