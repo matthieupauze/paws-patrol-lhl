@@ -3,6 +3,14 @@ import random
 import time, threading
 from datetime import datetime
 
+# Find express port in .env
+f = open("../.env")
+text = f.read()
+f.close()
+indexStart = text.index("EXPRESS_PORT") + 13
+indexEnd = indexStart + 4
+port = text[indexStart:indexEnd]
+
 imei = random.randrange(10000, 99999)
 coordList = [
     [43.57702250878536, -80.26393192432224],
@@ -17,7 +25,7 @@ coordList = [
     [43.57682172932061, -80.2635554999534]
     ]
 
-createDeviceUrl = f'http://localhost:3000/api/device/{imei}'
+createDeviceUrl = f'http://localhost:{port}/api/device/{imei}'
 deviceData = { 'name': f'{imei}'}
 requests.post(createDeviceUrl, data = deviceData)
 
