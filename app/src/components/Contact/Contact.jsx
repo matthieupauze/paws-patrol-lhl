@@ -10,10 +10,10 @@ function Contact() {
         </div>
         <Card className="text-center rounded form">
           <Form.Group className="form-group mb-2 p-3">
-          <p classname="pt-3">
-            If you have any questions or concerns, please fill out the form and we will get back to
-            you as soon as possible.
-          </p>
+            <p classname="pt-3">
+              If you have any questions or concerns, please fill out the form and we will get back
+              to you as soon as possible.
+            </p>
             <Form.Control
               className="form-control rounded text-white ph-color"
               type="text"
@@ -39,13 +39,13 @@ function Contact() {
             />
           </Form.Group>
         </Card>
-          <div className="mb p-3">
-            <Link to="/confirm">
-              <Button type="submit" className="btn-color rounded w-100">
-                Submit
-              </Button>
-            </Link>
-          </div>
+        <div className="mb p-3">
+          <Link to="/confirm">
+            <Button type="submit" className="btn-color rounded w-100">
+              Submit
+            </Button>
+          </Link>
+        </div>
       </Form>
     </section>
   );

@@ -76,10 +76,15 @@ function Tracker() {
   );
 }
 
-function Map({interactive}) {
+function Map({ interactive }) {
   return (
-    <MapContainer center={defaultPosition} zoom={defaultZoom} scrollWheelZoom  className={interactive ? "" : 'map-disabled'} zoomControl={interactive}>
-
+    <MapContainer
+      center={defaultPosition}
+      zoom={defaultZoom}
+      scrollWheelZoom
+      className={interactive ? '' : 'map-disabled'}
+      zoomControl={interactive}
+    >
       {/*  */}
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
