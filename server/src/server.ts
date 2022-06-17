@@ -9,7 +9,6 @@ var logger = require('morgan');
 const db = require('./db/db');
 const email = require('./routes/helpers/sendMail');
 
-
 const coordinateApiRoutes = require('./routes/coordinateApi');
 const deviceApiRoutes = require('./routes/deviceApi');
 const emailApiRoutes = require('./routes/emailApi');
