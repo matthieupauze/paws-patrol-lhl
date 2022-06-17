@@ -39,7 +39,7 @@ const Perimeter = () => {
       )}
       {active && (
         <section className=" d-flex justify-content-end align-items-center flex-column">
-          <Map interactive={active} perimeter={true} />
+          <Map interactive={active} perimeter={true} setActive={setActive} />
           {/* <div className="info w-25 mb-5">
             <Card className=" w-100 rounded ph-color">
               <div className="d-grid gap-3">

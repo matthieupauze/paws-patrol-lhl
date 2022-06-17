@@ -89,35 +89,42 @@ function Tracker() {
   );
 }
 
-function LocationMarker() {
-  const [position1, setPosition1] = useState(null);
-  const [position2, setPosition2] = useState(null);
+function LocationMarker({ p1, p2, setP1, setP2 }) {
   // const [position, setPosition] = useState(null);
   const [second, setSecond] = useState(false);
   const map = useMapEvents({
     click(e) {
-      second ? setPosition1(e.latlng) : setPosition2(e.latlng);
-
+      second ? setP1(e.latlng) : setP2(e.latlng);
+      console.log('set', e.latlng);
       setSecond(!second);
     },
   });
 
-  const rectangle = [position1, position2];
-  return position1 && position2 ? (
+  const rectangle = [p1, p2];
+  return p1 && p2 ? (
     <>
       <Rectangle bounds={rectangle} />
     </>
   ) : null;
 }
-const savePerimeter = (e) => {
-  e.preventDefault();
-  axios
-    .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
-    .then((res) => console.log('res', res))
-    .catch((err) => console.log('err', err));
-};
 
-function Map({ interactive, perimeter }) {
+function Map({ interactive, perimeter, setActive }) {
+  const [p1, setP1] = useState(null);
+  const [p2, setP2] = useState(null);
+
+  const savePerimeter = () => {
+    const data = { p1lat: p1.lat, p1long: p1.lng, p2lat: p2.lat, p2long: p2.lng };
+    console.log('clicked', data);
+    axios
+      // .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
+      .post(`http://localhost:8080/api/perimeter/1`, data)
+      .then((res) => {
+        console.log('res', res.data, setActive);
+        setActive && setActive(false);
+      })
+      .catch((err) => console.log('err', err.message));
+  };
+
   return (
     <>
       {perimeter && (
@@ -140,24 +147,19 @@ function Map({ interactive, perimeter }) {
               // url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
             />
             <Tracker />
-            <LocationMarker />
+            <LocationMarker p1={p1} p2={p2} setP1={setP1} setP2={setP2} />
           </MapContainer>
-          <div className="info w-25 mb-5">
-            <Card className=" w-100 rounded ph-color">
-              <div className="d-grid gap-3">
-                <Button
-                  type="submit"
-                  className="btn-color rounded w-100"
-                  onClick={(e) => {
-                    savePerimeter;
-                    // setActive(false);
-                  }}
-                >
-                  Save Perimeter
-                </Button>
-              </div>
-            </Card>
-          </div>
+          {p1 !== null && p2 !== null && (
+            <div className="info w-25 mb-5">
+              <Card className=" w-100 rounded ph-color">
+                <div className="d-grid gap-3">
+                  <Button className="btn-color rounded w-100" onClick={savePerimeter}>
+                    Save Perimeter
+                  </Button>
+                </div>
+              </Card>
+            </div>
+          )}
         </>
       )}
       {!perimeter && (
