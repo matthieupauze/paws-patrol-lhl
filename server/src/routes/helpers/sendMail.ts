@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const { SENDINBLUE_EMAIL, SENDINBLUE_API } = process.env;
 const nodemailer = require("nodemailer");
 
