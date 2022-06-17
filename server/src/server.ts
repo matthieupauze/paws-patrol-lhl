@@ -6,11 +6,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // All DB and routing files
-console.log('+++++++++++')
-const db = require('./db/db.js');
-console.log('+++++++++++')
+const db = require('./db/db');
 const email = require('./routes/helpers/sendMail');
-console.log('+++++++++++')
 
 
 const coordinateApiRoutes = require('./routes/coordinateApi');
