@@ -42,7 +42,7 @@ function Device() {
   return (
     <>
       {form && (
-        <section className="login d-flex justify-content-center align-items-center flex-column">
+        <section className=" d-flex justify-content-center align-items-center flex-column">
           <Map interactive={false} />
           <div className="info">
             <h2 className="centered">Devices</h2>
