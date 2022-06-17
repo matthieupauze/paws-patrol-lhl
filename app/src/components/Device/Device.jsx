@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Form, Button, Card, ButtonGroup, ToggleButton } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import path from 'node:path';
 import Map from '../Map';
 
 const { VITE_PORT_EXPRESS } = import.meta.env;
@@ -42,7 +43,7 @@ function Device() {
   return (
     <>
       {form && (
-        <section className="login d-flex justify-content-center align-items-center flex-column">
+        <section className=" d-flex justify-content-center align-items-center flex-column">
           <Map interactive={false} />
           <div className="info">
             <h2 className="centered">Devices</h2>

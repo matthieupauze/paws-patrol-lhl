@@ -9,16 +9,18 @@ const defaultPosition = { id: 0, lat: 45, lng: -73 };
 const { VITE_PORT_EXPRESS } = import.meta.env;
 
 function Tracker() {
-  const [position, setPosition] = useState([defaultPosition]);
+  const [positions, setPositions] = useState([defaultPosition]);
   const map = useMap();
   const foundPosition = useRef(false);
 
   const fetchPosition = () => {
-    return axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/coordinate/34614`).then((res) => {
-      const lat = res.data.latitude;
-      const lng = res.data.longitude;
-      const { id } = res.data;
-      return { id, lat, lng };
+    return axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/coordinate/34612`).then((res) => {
+      const { id, latitude, longitude } = res.data;
+      console.log(res.data);
+      if (!id || !latitude || !longitude) {
+        return defaultPosition;
+      }
+      return { id, lat: latitude, lng: longitude };
     });
   };
 
@@ -36,22 +38,23 @@ function Tracker() {
 
   const setupTimer = () => {
     return setInterval(() => {
-      fetchPosition().then((data) => {
-        setPosition((prev) => changePosition(prev, data));
-      });
-      //.catch((err) => console.log(err));
+      fetchPosition()
+        .then((data) => {
+          setPositions((prev) => changePosition(prev, data));
+        })
+        .catch((err) => console.log(err));
     }, 1000);
   };
 
   const genLine = () => {
-    return <Polyline positions={position} color="red" />;
+    return <Polyline positions={positions} color="red" />;
   };
 
   const genMarker = () => {
-    if (!foundPosition.current) {
+    if (!foundPosition.current || !positions) {
       return null;
     }
-    return <Marker position={position[position.length - 1]} />;
+    return <Marker position={positions[positions.length - 1]} />;
   };
 
   useEffect(() => {
@@ -65,9 +68,9 @@ function Tracker() {
     if (!foundPosition.current) {
       return;
     }
-    const p = position[position.length - 1];
+    const p = positions[positions.length - 1];
     map.flyTo(p, trackingZoom);
-  }, [position]);
+  }, [positions]);
 
   return (
     <>

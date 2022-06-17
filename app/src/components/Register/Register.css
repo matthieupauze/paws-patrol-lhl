@@ -1,0 +1,22 @@
+.login {
+  background: url('https://c.tenor.com/X0lLW1hajSwAAAAM/chill-bro.gif') no-repeat;
+  /* background: url("https://gfycat.com/downrightthinantelopegroundsquirrel") no-repeat; */
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.ph-color {
+  background-color: rgba(147, 145, 145, 0.5);
+  color: #ffffff;
+}
+
+.ph-color::placeholder {
+  color: #ffffff;
+}
+
+.ph-color:focus {
+  background-color: rgba(147, 145, 145, 0.5);
+  border-color: #c5adf5;
+  
+}
