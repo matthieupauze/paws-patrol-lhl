@@ -2,7 +2,6 @@ require("dotenv").config();
 
 const { EMAIL, PASS } = process.env;
 const nodemailer = require("nodemailer");
-const path = require("path");
 
 const sendEmail = async (to: string, subject: string, text: string) => {
   try {
