@@ -103,7 +103,7 @@ function LocationMarker() {
   const rectangle = [position1, position2];
   return position1 && position2 ? (
     <>
-      <Rectangle bounds={rectangle} />
+      <Rectangle bounds={rectangle} draggable={true} />
     </>
   ) : null;
 }
@@ -129,8 +129,6 @@ function Map({ interactive, perimeter }) {
 
             // url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
           />
-          <Marker position={[51.509, -0.08]} />
-          <Marker position={[50.509, -0.08]} />
           <Tracker />
           <LocationMarker />
         </MapContainer>
