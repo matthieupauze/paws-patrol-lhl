@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { EMAIL, PASS } = process.env;
+const { SENDINBLUE_EMAIL, SENDINBLUE_API } = process.env;
 const nodemailer = require("nodemailer");
 
 const sendEmail = async (to: string, subject: string, text: string) => {
@@ -9,13 +9,13 @@ const sendEmail = async (to: string, subject: string, text: string) => {
       host: "smtp-relay.sendinblue.com",
       port: 587,
       auth: {
-        user: EMAIL,
-        pass: PASS,
+        user: SENDINBLUE_EMAIL,
+        pass: SENDINBLUE_API,
       },
     });
 
     let info = await transporter.sendMail({
-      from: EMAIL,
+      from: SENDINBLUE_EMAIL,
       to: to,
       subject: subject,
       text: text,
