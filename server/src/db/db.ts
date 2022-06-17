@@ -155,13 +155,8 @@ const seedDB = () => {
         time: 1,
         deviceId: 1,
       });
-      // Add Perimeter
-    });
-
-    const testIMEI = 34612;
-    Device.create({ id: testIMEI, name: '', microchip: '' }).then(() => {
       Perimeter.create({
-        deviceId: testIMEI,
+        deviceId: 1,
         p1lat: 43.576052,
         p1long: -80.2646819,
         p2lat: 43.575428,
