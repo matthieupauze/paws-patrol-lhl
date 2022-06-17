@@ -1,8 +1,6 @@
 const { SENDINBLUE_EMAIL, SENDINBLUE_API } = process.env;
 const nodemailer = require("nodemailer");
 
-console.log(SENDINBLUE_API);
-
 const sendEmail = async (to: string, subject: string, text: string) => {
   console.log(SENDINBLUE_API);
   console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++")
