@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Form, Button, Card, ButtonGroup, ToggleButton } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import path from 'node:path';
 import Map from '../Map';
 
 const { VITE_PORT_EXPRESS } = import.meta.env;
