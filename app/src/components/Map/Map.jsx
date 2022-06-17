@@ -1,6 +1,14 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
-import { MapContainer, Marker, Polyline, TileLayer, useMap } from 'react-leaflet';
+import {
+  MapContainer,
+  Marker,
+  Polyline,
+  TileLayer,
+  useMap,
+  useMapEvents,
+  Rectangle,
+} from 'react-leaflet';
 
 const defaultZoom = 4;
 const trackingZoom = 18;
@@ -80,27 +88,74 @@ function Tracker() {
   );
 }
 
-function Map({ interactive }) {
+function LocationMarker() {
+  const [position1, setPosition1] = useState(null);
+  const [position2, setPosition2] = useState(null);
+  // const [position, setPosition] = useState(null);
+  const [second, setSecond] = useState(false);
+  const map = useMapEvents({
+    click(e) {
+      second ? setPosition1(e.latlng) : setPosition2(e.latlng);
+
+      setSecond(!second);
+    },
+  });
+  const rectangle = [position1, position2];
+  return position1 && position2 ? (
+    <>
+      <Rectangle bounds={rectangle} />
+    </>
+  ) : null;
+}
+
+function Map({ interactive, perimeter }) {
   return (
-    <MapContainer
-      center={defaultPosition}
-      zoom={defaultZoom}
-      scrollWheelZoom
-      className={interactive ? '' : 'map-disabled'}
-      zoomControl={interactive}
-    >
-      {/*  */}
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    <>
+      {perimeter && (
+        <MapContainer
+          center={defaultPosition}
+          zoom={defaultZoom}
+          scrollWheelZoom
+          className={interactive ? '' : 'map-disabled'}
+          zoomControl={interactive}
+          doubleClickZoom={false}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 
-        // className={interactive ? "" : 'map-disabled'}
-        // attribution={"Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"}
+            // className={interactive ? "" : 'map-disabled'}
+            // attribution={"Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"}
 
-        // url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-      />
-      <Tracker />
-    </MapContainer>
+            // url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+          />
+          <Marker position={[51.509, -0.08]} />
+          <Marker position={[50.509, -0.08]} />
+          <Tracker />
+          <LocationMarker />
+        </MapContainer>
+      )}
+      {!perimeter && (
+        <MapContainer
+          center={defaultPosition}
+          zoom={defaultZoom}
+          scrollWheelZoom
+          className={interactive ? '' : 'map-disabled'}
+          zoomControl={interactive}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+
+            // className={interactive ? "" : 'map-disabled'}
+            // attribution={"Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"}
+
+            // url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+          />
+          <Tracker />
+        </MapContainer>
+      )}
+    </>
   );
 }
 

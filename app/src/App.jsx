@@ -17,7 +17,7 @@ function App() {
     <>
       <Header logged={logged} setLogged={setLogged} />
       <Routes>
-        <Route path="/" element={<Map interactive={true} />} />
+        <Route path="/" element={<Map interactive={true} perimeter={false} />} />
         <Route path="/device" element={<Device />} />
         <Route path="/perimeter" element={<Perimeter />} />
         <Route path="/account" element={<Account />} />
