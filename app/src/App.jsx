@@ -9,6 +9,7 @@ import Account from './components/Account';
 import Device from './components/Device';
 import Contact from './components/Contact';
 import Confirm from './components/Confirm';
+import Perimeter from './components/Perimeter';
 
 function App() {
   const [logged, setLogged] = useState(false);
@@ -18,7 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Map interactive={true} />} />
         <Route path="/device" element={<Device />} />
-        {/* <Route path="/perimeter" element={<Perimeter />} /> */}
+        <Route path="/perimeter" element={<Perimeter />} />
         <Route path="/account" element={<Account />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/confirm" element={<Confirm />} />
