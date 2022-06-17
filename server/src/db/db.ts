@@ -1,4 +1,8 @@
 import path from 'path';
+interface Coord {
+  lat: Number;
+  long: Number;
+}
 
 require('dotenv').config({ path: path.resolve(process.cwd(), '../.env') });
 
@@ -61,11 +65,19 @@ Coordinate.belongsTo(Device);
 const Perimeter = sequelize.define(
   'perimeter',
   {
-    left: {
+    p1lat: {
       type: DataTypes.DOUBLE,
       allowNull: false,
     },
-    right: {
+    p1long: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+    },
+    p2lat: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+    },
+    p2long: {
       type: DataTypes.DOUBLE,
       allowNull: false,
     },
@@ -126,6 +138,17 @@ const resetDB = () => {
       phone: '1234567890',
       email: 'admin@admin.admin',
       password: 'admin',
+    });
+
+    const testIMEI = 34612;
+    Device.create({ id: testIMEI, name: '', microchip: '' }).then(() => {
+      Perimeter.create({
+        deviceId: testIMEI,
+        p1lat: 43.576052,
+        p1long: -80.2646819,
+        p2lat: 43.575428,
+        p2long: -80.264532,
+      });
     });
   });
 };
@@ -234,11 +257,13 @@ exports.getCoordinatesForTrip = getCoordinatesForTrip;
 
 // Perimeter functions
 
-const addPerimeter = (imei: number, left: number, right: number) => {
+const addPerimeter = (imei: number, p1: Coord, p2: Coord) => {
   return Perimeter.create({
     deviceId: imei,
-    left: left,
-    right: right,
+    p1lat: p1.lat,
+    p1long: p1.long,
+    p2lat: p2.lat,
+    p2long: p2.long,
   });
 };
 exports.addPerimeter = addPerimeter;
@@ -251,11 +276,14 @@ const getPerimeterByIMEI = (imei: number) => {
 };
 exports.getPerimeterByIMEI = getPerimeterByIMEI;
 
-const updatePerimeter = (imei: number, left: number, right: number) => {
+const updatePerimeter = (imei: number, p1: Coord, p2: Coord) => {
   return getPerimeterByIMEI(imei).then((data: any) => {
     return data.update({
-      left: left,
-      right: right,
+      deviceId: imei,
+      p1lat: p1.lat,
+      p1long: p1.long,
+      p2lat: p2.lat,
+      p2long: p2.long,
     });
   });
 };
