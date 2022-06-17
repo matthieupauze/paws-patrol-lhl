@@ -1,7 +1,7 @@
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-const Header = ({logged, setLogged}) => {
+const Header = ({ logged, setLogged }) => {
   return (
     <header>
       <Navbar className="nav-color " variant="light" expand="lg" collapseOnSelect>
@@ -32,7 +32,13 @@ const Header = ({logged, setLogged}) => {
                   <Nav.Link>Contact</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/login">
-                  <Nav.Link onClick={() => {setLogged(!logged)}}>Logout</Nav.Link>
+                  <Nav.Link
+                    onClick={() => {
+                      setLogged(!logged);
+                    }}
+                  >
+                    Logout
+                  </Nav.Link>
                 </LinkContainer>
               </Nav>
             </Navbar.Collapse>
@@ -40,8 +46,7 @@ const Header = ({logged, setLogged}) => {
           {!logged && (
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ms-auto">
-                
-                <LinkContainer to="/signup">
+                <LinkContainer to="/register">
                   <Nav.Link>Register</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/login">
