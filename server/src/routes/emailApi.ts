@@ -1,6 +1,7 @@
-module.exports = (router: any, db: any) => {
+module.exports = (router: any, email: any) => {
 
-  router.post('/', (req: any, res: any) => {
+  router.get('/', (req: any, res: any) => {
+    email.sendEmail();
     res.send("brokey?");
   });
 

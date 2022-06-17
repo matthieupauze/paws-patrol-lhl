@@ -6,7 +6,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // All DB and routing files
+console.log('+++++++++++')
 const db = require('./db/db.js');
+console.log('+++++++++++')
+const email = require('./routes/helpers/sendMail');
+console.log('+++++++++++')
+
+
 const coordinateApiRoutes = require('./routes/coordinateApi');
 const deviceApiRoutes = require('./routes/deviceApi');
 const emailApiRoutes = require('./routes/emailApi');
@@ -54,7 +60,7 @@ app.use('/api/device', deviceApiRouter);
 
 // email endpoints
 const emailApiRouter = express.Router();
-emailApiRoutes(emailApiRouter, db);
+emailApiRoutes(emailApiRouter, email);
 app.use('/api/email', emailApiRouter);
 
 // perimeter endpoints
