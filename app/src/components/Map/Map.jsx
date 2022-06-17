@@ -9,6 +9,7 @@ import {
   useMapEvents,
   Rectangle,
 } from 'react-leaflet';
+import { Button, Card } from 'react-bootstrap';
 
 const defaultZoom = 4;
 const trackingZoom = 18;
@@ -100,38 +101,64 @@ function LocationMarker() {
       setSecond(!second);
     },
   });
+
   const rectangle = [position1, position2];
   return position1 && position2 ? (
     <>
-      <Rectangle bounds={rectangle} draggable={true} />
+      <Rectangle bounds={rectangle} />
     </>
   ) : null;
 }
+const savePerimeter = (e) => {
+  e.preventDefault();
+  axios
+    .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
+    .then((res) => console.log('res', res))
+    .catch((err) => console.log('err', err));
+};
 
 function Map({ interactive, perimeter }) {
   return (
     <>
       {perimeter && (
-        <MapContainer
-          center={defaultPosition}
-          zoom={defaultZoom}
-          scrollWheelZoom
-          className={interactive ? '' : 'map-disabled'}
-          zoomControl={interactive}
-          doubleClickZoom={false}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        <>
+          <MapContainer
+            center={defaultPosition}
+            zoom={defaultZoom}
+            scrollWheelZoom
+            className={interactive ? '' : 'map-disabled'}
+            zoomControl={interactive}
+            doubleClickZoom={false}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 
-            // className={interactive ? "" : 'map-disabled'}
-            // attribution={"Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"}
+              // className={interactive ? "" : 'map-disabled'}
+              // attribution={"Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"}
 
-            // url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-          />
-          <Tracker />
-          <LocationMarker />
-        </MapContainer>
+              // url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+            />
+            <Tracker />
+            <LocationMarker />
+          </MapContainer>
+          <div className="info w-25 mb-5">
+            <Card className=" w-100 rounded ph-color">
+              <div className="d-grid gap-3">
+                <Button
+                  type="submit"
+                  className="btn-color rounded w-100"
+                  onClick={(e) => {
+                    savePerimeter;
+                    // setActive(false);
+                  }}
+                >
+                  Save Perimeter
+                </Button>
+              </div>
+            </Card>
+          </div>
+        </>
       )}
       {!perimeter && (
         <MapContainer

@@ -13,6 +13,12 @@ module.exports = (router: any, db: any) => {
   router.post('/:imei', (req: any, res: any) => {
     const { imei } = req.params;
     const { p1lat, p1long, p2lat, p2long } = req.body;
+    console.log(req.body);
+    res.json([
+      [p1lat, p1long],
+      [p2lat, p2long],
+    ]);
+    return;
     db.addPerimeter(imei, { lat: p1lat, long: p1long }, { lat: p2lat, long: p2long })
       .then((data: any) => res.status(200).json(data))
       .catch((err: any) => {

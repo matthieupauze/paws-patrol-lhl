@@ -9,7 +9,7 @@ const Perimeter = () => {
   const savePerimeter = (e) => {
     e.preventDefault();
     axios
-      .get(`http://localhost:${VITE_PORT_EXPRESS}/api/perimeter/1`)
+      .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
       .then((res) => console.log('res', res))
       .catch((err) => console.log('err', err));
     // axios.post(`http://localhost:${VITE_PORT_EXPRESS}/api/perimeter/1`);
@@ -40,7 +40,7 @@ const Perimeter = () => {
       {active && (
         <section className=" d-flex justify-content-end align-items-center flex-column">
           <Map interactive={active} perimeter={true} />
-          <div className="info w-25 mb-5">
+          {/* <div className="info w-25 mb-5">
             <Card className=" w-100 rounded ph-color">
               <div className="d-grid gap-3">
                 <Button
@@ -55,7 +55,7 @@ const Perimeter = () => {
                 </Button>
               </div>
             </Card>
-          </div>
+          </div> */}
         </section>
       )}
     </>
