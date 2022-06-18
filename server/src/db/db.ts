@@ -1,4 +1,8 @@
 import path from 'path';
+interface Coord {
+  lat: Number;
+  long: Number;
+}
 
 require('dotenv').config({ path: path.resolve(process.cwd(), '../.env') });
 
@@ -61,11 +65,19 @@ Coordinate.belongsTo(Device);
 const Perimeter = sequelize.define(
   'perimeter',
   {
-    left: {
+    p1lat: {
       type: DataTypes.DOUBLE,
       allowNull: false,
     },
-    right: {
+    p1long: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+    },
+    p2lat: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+    },
+    p2long: {
       type: DataTypes.DOUBLE,
       allowNull: false,
     },
@@ -120,16 +132,40 @@ const User = sequelize.define(
 // Reset functions
 
 const resetDB = () => {
-  return sequelize.sync({ force: true }).then(() => {
-    User.create({
-      name: 'Admin',
-      phone: '1234567890',
-      email: 'admin@admin.admin',
-      password: 'admin',
+  return sequelize.sync({ force: true });
+};
+exports.resetDB = resetDB;
+
+const seedDB = () => {
+  return resetDB().then(() => {
+    return Device.create({
+      id: 1,
+      name: 'admin',
+      microchip: 'test',
+    }).then(() => {
+      User.create({
+        name: 'Admin',
+        phone: '1234567890',
+        email: 'admin@admin.admin',
+        password: 'admin',
+      });
+      Coordinate.create({
+        latitude: 42.774749900216115,
+        longitude: -81.5088462007877,
+        time: 1,
+        deviceId: 1,
+      });
+      Perimeter.create({
+        deviceId: 1,
+        p1lat: 43.576052,
+        p1long: -80.2646819,
+        p2lat: 43.575428,
+        p2long: -80.264532,
+      });
     });
   });
 };
-exports.resetDB = resetDB;
+exports.seedDB = seedDB;
 
 // Coordinate functions
 
@@ -234,11 +270,13 @@ exports.getCoordinatesForTrip = getCoordinatesForTrip;
 
 // Perimeter functions
 
-const addPerimeter = (imei: number, left: number, right: number) => {
+const addPerimeter = (imei: number, p1: Coord, p2: Coord) => {
   return Perimeter.create({
     deviceId: imei,
-    left: left,
-    right: right,
+    p1lat: p1.lat,
+    p1long: p1.long,
+    p2lat: p2.lat,
+    p2long: p2.long,
   });
 };
 exports.addPerimeter = addPerimeter;
@@ -251,11 +289,14 @@ const getPerimeterByIMEI = (imei: number) => {
 };
 exports.getPerimeterByIMEI = getPerimeterByIMEI;
 
-const updatePerimeter = (imei: number, left: number, right: number) => {
+const updatePerimeter = (imei: number, p1: Coord, p2: Coord) => {
   return getPerimeterByIMEI(imei).then((data: any) => {
     return data.update({
-      left: left,
-      right: right,
+      deviceId: imei,
+      p1lat: p1.lat,
+      p1long: p1.long,
+      p2lat: p2.lat,
+      p2long: p2.long,
     });
   });
 };

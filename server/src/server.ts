@@ -6,9 +6,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // All DB and routing files
-const db = require('./db/db.js');
+const db = require('./db/db');
+const email = require('./routes/helpers/sendMail');
+
 const coordinateApiRoutes = require('./routes/coordinateApi');
 const deviceApiRoutes = require('./routes/deviceApi');
+const emailApiRoutes = require('./routes/emailApi');
 const perimeterApiRoutes = require('./routes/perimeterApi');
 const resetApiRoutes = require('./routes/resetApi');
 const tripApiRoutes = require('./routes/tripApi');
@@ -50,6 +53,11 @@ app.use('/api/coordinate', coordinateApiRouter);
 const deviceApiRouter = express.Router();
 deviceApiRoutes(deviceApiRouter, db);
 app.use('/api/device', deviceApiRouter);
+
+// email endpoints
+const emailApiRouter = express.Router();
+emailApiRoutes(emailApiRouter, email);
+app.use('/api/email', emailApiRouter);
 
 // perimeter endpoints
 const perimeterApiRouter = express.Router();

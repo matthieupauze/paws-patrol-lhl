@@ -1,11 +1,26 @@
-import './Login.css';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-function Login({ logged, setLogged }) {
+function Register({ logged, setLogged }) {
   return (
     <section className="login d-flex justify-content-center align-items-center flex-column">
       <Form className="d-flex flex-column justify-content-center h-25 w-25">
+        <Form.Group className="form-group p-3 ">
+          <Form.Control
+            className="form-control rounded text-white ph-color"
+            type="text"
+            id="name"
+            placeholder="Name"
+          />
+        </Form.Group>
+        <Form.Group className="form-group p-3 ">
+          <Form.Control
+            className="form-control rounded text-white ph-color"
+            type="text"
+            id="phone"
+            placeholder="Phone"
+          />
+        </Form.Group>
         <Form.Group className="form-group p-3 ">
           <Form.Control
             className="form-control rounded text-white ph-color"
@@ -22,6 +37,7 @@ function Login({ logged, setLogged }) {
             placeholder="Password"
           />
         </Form.Group>
+
         <div className="px-3 m-3">
           <Link to="/">
             <Button
@@ -31,12 +47,16 @@ function Login({ logged, setLogged }) {
                 setLogged(!logged);
               }}
             >
-              Login
+              Register
             </Button>
           </Link>
-          <Link to="/register">
-            <Button type="submit" className="btn-color rounded w-100 mt-4">
-              Not a member? Register Here!
+          <Link to="/login">
+            <Button
+              type="submit"
+              className="btn-color rounded w-100 mt-4"
+              onClick={() => setLogged(true)}
+            >
+              Already a member? Login!
             </Button>
           </Link>
         </div>
@@ -45,4 +65,4 @@ function Login({ logged, setLogged }) {
   );
 }
 
-export default Login;
+export default Register;

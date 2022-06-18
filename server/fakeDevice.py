@@ -11,7 +11,7 @@ indexStart = text.index("VITE_PORT_EXPRESS") + 18
 indexEnd = indexStart + 4
 port = text[indexStart:indexEnd]
 
-imei = random.randrange(10000, 99999)
+imei = 2
 coordList = [
     [43.57702250878536, -80.26393192432224],
     [43.576716844259394, -80.26433730441174],
