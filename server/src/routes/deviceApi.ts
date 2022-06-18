@@ -10,8 +10,8 @@ module.exports = (router: any, db: any) => {
 
   router.post('/:imei', (req: any, res: any) => {
     const { imei } = req.params;
-    const { name } = req.body;
-    db.addDevice(imei, name)
+    const { name, microchip } = req.body;
+    db.addDevice(imei, name, microchip)
       .then((data: any) => {
         db.addPerimeter(imei, { lat: 0, long: 0 }, { lat: 0, long: 0 });
         res.status(200).json(data);
