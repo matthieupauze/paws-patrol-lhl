@@ -51,11 +51,11 @@
 }
 
 .satelite-view {
-  background: url('../public/images/earth.jpeg') center / contain;
+  background: url('/images/earth.jpeg') center / contain;
   padding: 2rem;
 }
 .street-view {
-  background: url('../public/images/street.png') center / contain;
+  background: url('/images/street.png') center / contain;
   padding: 2rem;
 }
 

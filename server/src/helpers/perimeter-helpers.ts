@@ -1,6 +1,6 @@
 interface Coord {
   latitude: Number; // This is up-down
-  longitude: Number; //
+  longitude: Number; // This is left-right
   time: Date;
 }
 
