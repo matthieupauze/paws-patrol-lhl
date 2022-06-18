@@ -6,7 +6,7 @@ import usePoll from '../../hooks/usePoll';
 import useTracker from '../../hooks/useTracker';
 import useEvent from '../../hooks/useEvent';
 
-// const { VITE_PORT_EXPRESS } = import.meta.env;
+const { VITE_PORT_EXPRESS } = import.meta.env;
 
 const defaultZoom = 4;
 const trackingZoom = 18;
