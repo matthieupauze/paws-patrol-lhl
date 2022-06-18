@@ -26,10 +26,17 @@ npm run dev
 
 # Coordinates
 ```
+
 /api/coordinate
 
-post /:imei add coordinate for a device
-get /:imei get most recent for a device
+post /:imei 
+	add coordinate for a device
+	body = {lat, long, time}
+	all required
+
+get /:imei
+	get most recent for a device
+
 ```
 
 # Devices
