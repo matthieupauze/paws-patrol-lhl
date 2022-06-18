@@ -7,9 +7,9 @@
 var app = require('./server');
 var debug = require('debug')('server:server');
 var http = require('http');
-const { Server } = require('socket.io');
-const { handleConnection, serverConfig } = require('./helpers/socket-helpers');
-const { VITE_PORT_EXPRESS, VITE_PORT_REACT } = process.env;
+const { registerGPS, serverConfig } = require('./helpers/socket-helpers');
+const { VITE_PORT_EXPRESS } = process.env;
+import { Server } from 'socket.io';
 
 /**
  * Get port from environment and store in Express.
@@ -26,7 +26,9 @@ app.set('port', port);
 var server = http.createServer(app);
 const io = new Server(server, serverConfig);
 
-io.on('connection', handleConnection);
+io.on('connection', (socket) => {
+  registerGPS(io, socket);
+});
 
 /**
  * Listen on provided port, on all network interfaces.
