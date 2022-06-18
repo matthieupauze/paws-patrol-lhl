@@ -134,10 +134,16 @@ get /:imei/:id
 
 # Users
 ```
+
 /api/user
 
-post / change user info
-get / user info
+get /
+	get user info
+patch /
+	change user info
+	body = {name, phone, email, password}
+	all required
+
 ```
 
 
