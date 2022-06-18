@@ -22,60 +22,62 @@ npm run dev
 
 ## Api Routes
 
-- api/device
-
+- /api/coordinate
 ```
-  get / list of all devices
-
-	post /:imei add a device manually/change name
-	get /:imei info about 1 device
-	patch /:imei update a device
+post /:imei add coordinate for a device
+get /:imei get most recent for a device
 ```
 
-- api/trip
-
+- /api/device
 ```
-	get / get all trips
+get / list of all devices
 
-	post /:imei start a trip
-	get /:imei get all trips for single device
-	patch /:imei end a trip
-
-	get /:imei/:id get the coordinates for the trip
+post /:imei add a device manually/change name
+get /:imei info about 1 device
+patch /:imei update a device
 ```
 
-- api/coordinates
-
+- /api/email
 ```
-	post /:imei add coordinate for a device
-	get /:imei get most recent for a device
+post / send an email
 ```
 
-- api/user
-
+- /api/perimiter
 ```
-	post / change user info
-	get / user info
-```
+get / all perimeters
 
-- api/perimiter
-
-```
-	get / all perimeters
-
-	post /:imei add perimiter for device
-	get /:imei perimiter for single device
-	patch /:imei update perimiter values
+post /:imei add perimiter for device
+get /:imei perimiter for single device
+patch /:imei update perimiter values
 ```
 
-api/reset
+- /api/reset
+```
+get / 
+- reset db leaving it empty
 
-```
-	get / reset db
+get /seed 
+- reset db then seed with default device, user, perimeter, and single coordinate
 ```
 
-api/email
+- /api/trip
+```
+get / get all trips
 
+post /:imei start a trip
+get /:imei get all trips for single device
+patch /:imei end a trip
+
+get /:imei/:id get the coordinates for the trip
 ```
-	post / send an email
+
+
+- /api/user
 ```
+post / change user info
+get / user info
+```
+
+
+
+
