@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { MapContainer, Marker, Polyline, TileLayer, useMap } from 'react-leaflet';
+import { io } from 'socket.io-client';
 
 const defaultZoom = 4;
 const trackingZoom = 18;
 const defaultPosition = { id: 0, lat: 45, lng: -73 };
+const socket = io('ws://localhost:3005');
 
 const { VITE_PORT_EXPRESS } = import.meta.env;
 
@@ -13,10 +15,14 @@ function Tracker() {
   const map = useMap();
   const foundPosition = useRef(false);
 
+  socket.on('gps-update', (coords) => {
+    console.log('received new coordinates', coords);
+    setPositions((prev) => changePosition(prev, coords));
+  });
+
   const fetchPosition = () => {
     return axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/coordinate/34612`).then((res) => {
       const { id, latitude, longitude } = res.data;
-      console.log(res.data);
       if (!id || !latitude || !longitude) {
         return defaultPosition;
       }
@@ -43,7 +49,7 @@ function Tracker() {
           setPositions((prev) => changePosition(prev, data));
         })
         .catch((err) => console.log(err));
-    }, 1000);
+    }, 10000);
   };
 
   const genLine = () => {
