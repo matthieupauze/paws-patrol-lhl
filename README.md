@@ -41,13 +41,23 @@ get /:imei
 
 # Devices
 ```
+
 /api/device
 
-get / list of all devices
+get /
+	list of all devices
 
-post /:imei add a device manually/change name
-get /:imei info about 1 device
-patch /:imei update a device
+post /:imei
+	add device
+	body = {name, microchip}
+	all optional	
+get /:imei
+	info about device with matching imei
+patch /:imei 
+	update a device
+	body = {name, microchip}
+	all optional
+
 ```
 
 # Email
