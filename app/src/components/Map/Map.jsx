@@ -25,7 +25,6 @@ function Tracker() {
   const fetchPosition = () => {
     return axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/coordinate/34612`).then((res) => {
       const { id, latitude, longitude } = res.data;
-      console.log(res.data);
       if (!id || !latitude || !longitude) {
         return defaultPosition;
       }
@@ -95,7 +94,6 @@ function LocationMarker({ p1, p2, setP1, setP2 }) {
   const map = useMapEvents({
     click(e) {
       second ? setP1(e.latlng) : setP2(e.latlng);
-      console.log('set', e.latlng);
       setSecond(!second);
     },
   });
@@ -112,45 +110,18 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
   const [p1, setP1] = useState(null);
   const [p2, setP2] = useState(null);
   const [tracking, setTracking] = useState(false);
-  console.log('setPerimeters', setPerimeters);
+  const [sateliteView, setSateliteView] = useState(true);
 
   const savePerimeter = () => {
     const data = { p1lat: p1.lat, p1long: p1.lng, p2lat: p2.lat, p2long: p2.lng };
-    console.log('clicked', data);
     axios
       // .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
       .post(`http://localhost:${VITE_PORT_EXPRESS}/api/perimeter/1`, data)
       .then((res) => {
-        console.log('res', res.data, setActive);
         setActive && setActive(false);
       })
       .catch((err) => console.log('err', err.message));
   };
-
-  const startTracking = () => {
-    //CHANGE THE IMEI !!!
-    const data = { start: Date.now() };
-    console.log('clicked', data);
-    axios
-      // .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
-      .post(`http://localhost:${VITE_PORT_EXPRESS}/api/trip/1`, data)
-      .then((res) => {
-        console.log('res', res.data), setTracking(true);
-      })
-      .catch((err) => console.log('err', err.message));
-  };
-  const stopTracking = () => {
-    const data = { end: Date.now() };
-    console.log('clicked', data);
-    axios
-      // .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
-      .post(`http://localhost:${VITE_PORT_EXPRESS}/api/trip/1`, data)
-      .then((res) => {
-        console.log('res', res.data), setTracking(false);
-      })
-      .catch((err) => console.log('err', err.message));
-  };
-
   useEffect(() => {
     const loadPerimeters = async () => {
       const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/perimeter`);
@@ -158,6 +129,28 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
     };
     loadPerimeters();
   }, []);
+
+  const startTracking = () => {
+    //CHANGE THE IMEI !!!
+    const data = { start: Date.now() };
+    axios
+      // .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
+      .post(`http://localhost:${VITE_PORT_EXPRESS}/api/trip/1`, data)
+      .then((res) => {
+        setTracking(true);
+      })
+      .catch((err) => console.log('err', err.message));
+  };
+  const stopTracking = () => {
+    const data = { end: Date.now() };
+    axios
+      // .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
+      .post(`http://localhost:${VITE_PORT_EXPRESS}/api/trip/1`, data)
+      .then((res) => {
+        setTracking(false);
+      })
+      .catch((err) => console.log('err', err.message));
+  };
 
   return (
     <>
@@ -171,15 +164,20 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
             zoomControl={interactive}
             doubleClickZoom={false}
           >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-
-              // className={interactive ? "" : 'map-disabled'}
-              // attribution={"Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"}
-
-              // url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-            />
+            {!sateliteView && (
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+            )}
+            {sateliteView && (
+              <TileLayer
+                attribution={
+                  'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                }
+                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+              />
+            )}
             <Tracker />
             <LocationMarker p1={p1} p2={p2} setP1={setP1} setP2={setP2} />
           </MapContainer>
@@ -196,13 +194,30 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
             </div>
           )}
           {/* satelite view button */}
-          <div className="info w-25 align-self-start m-3">
-            <Card className=" w-25 rounded ph-color">
-              <div className="d-grid gap-3">
-                <Button className="satelite-view rounded w-100"></Button>
-              </div>
-            </Card>
-          </div>
+          {!sateliteView && (
+            <div className="info w-25 align-self-start m-3">
+              <Card className=" w-25 rounded ph-color">
+                <div className="d-grid gap-3">
+                  <Button
+                    className="satelite-view rounded w-100"
+                    onClick={(e) => setSateliteView(!sateliteView)}
+                  ></Button>
+                </div>
+              </Card>
+            </div>
+          )}
+          {sateliteView && (
+            <div className="info w-25 align-self-start m-3">
+              <Card className=" w-25 rounded ph-color">
+                <div className="d-grid gap-3">
+                  <Button
+                    className="street-view rounded w-100"
+                    onClick={(e) => setSateliteView(!sateliteView)}
+                  ></Button>
+                </div>
+              </Card>
+            </div>
+          )}
         </>
       )}
       {!perimeter && track && (
