@@ -95,13 +95,16 @@ patch /:imei
 
 # Reset
 ```
+
 /api/reset
 
 get / 
-- reset db leaving it empty
+	reset db leaving it empty
 
 get /seed 
-- reset db then seed with default device, user, perimeter, and single coordinate
+	reset db before seeding with dummy data
+	1 device, user, coordinate, and perimeter
+
 ```
 
 # Trips
