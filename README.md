@@ -75,13 +75,22 @@ post /
 
 # Perimeters
 ```
+
 /api/perimeter
 
-get / all perimeters
+get /
+	get all perimeters in db
 
-post /:imei add perimeter for device
-get /:imei perimeter for single device
-patch /:imei update perimeter values
+post /:imei
+	add perimeter for a device
+	body = {p1lat, p1long, p2lat, p2long}
+	all required
+get /:imei
+	get perimeter for device with matching imei
+patch /:imei
+	update perimeter for a device
+	body = {p1lat, p1long, p2lat, p2long}
+
 ```
 
 # Reset
