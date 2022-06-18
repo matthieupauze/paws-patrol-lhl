@@ -20,62 +20,133 @@ npm run dev
 - Express
 - Bootstrap 5
 
-## Api Routes
+# Api
 
-- api/device
-
-```
-  get / list of all devices
-
-	post /:imei add a device manually/change name
-	get /:imei info about 1 device
-	patch /:imei update a device
-```
-
-- api/trip
+# Coordinates
 
 ```
-	get / get all trips
 
-	post /:imei start a trip
-	get /:imei get all trips for single device
-	patch /:imei end a trip
+/api/coordinate
 
-	get /:imei/:id get the coordinates for the trip
-```
+post /:imei
+	add coordinate for a device
+	body = {lat, long, time}
+	all required
 
-- api/coordinates
-
-```
-	post /:imei add coordinate for a device
-	get /:imei get most recent for a device
-```
-
-- api/user
+get /:imei
+	get most recent for a device
 
 ```
-	post / change user info
-	get / user info
-```
 
-- api/perimiter
+# Devices
 
 ```
-	get / all perimeters
 
-	post /:imei add perimiter for device
-	get /:imei perimiter for single device
-	patch /:imei update perimiter values
+/api/device
+
+get /
+	list of all devices
+
+post /:imei
+	add device
+	body = {name, microchip}
+	all optional
+get /:imei
+	info about device with matching imei
+patch /:imei
+	update a device
+	body = {name, microchip}
+	all optional
+
 ```
 
-api/reset
+# Email
 
 ```
-	get / reset db
+
+/api/email
+
+post /
+	send an email
+	body = {to, subject, body}
+	to is required
+	subject and body are optional
+
 ```
 
-api/email
+# Perimeters
 
 ```
-	post / send an email
+
+/api/perimeter
+
+get /
+	get all perimeters in db
+
+post /:imei
+	add perimeter for a device
+	body = {p1lat, p1long, p2lat, p2long}
+	all required
+get /:imei
+	get perimeter for device with matching imei
+patch /:imei
+	update perimeter for a device
+	body = {p1lat, p1long, p2lat, p2long}
+
+```
+
+# Reset
+
+```
+
+/api/reset
+
+get /
+	reset db leaving it empty
+
+get /seed
+	reset db before seeding with dummy data
+	1 device, user, coordinate, and perimeter
+
+```
+
+# Trips
+
+```
+
+/api/trip
+
+get /
+	get all trips
+
+post /:imei
+	start a trip
+	body = {name, start}
+	name is optional
+	start is required
+get /:imei
+	get all trips for a device with matching imei
+patch /:imei
+	end a trip
+	body = {id, end}
+	both required
+
+get /:imei/:id
+	get the coordinates for a trip
+
+```
+
+# Users
+
+```
+
+/api/user
+
+get /
+	get user info
+patch /
+	change user info
+	body = {name, phone, email, password}
+	all required
+
 ```

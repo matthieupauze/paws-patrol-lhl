@@ -14,13 +14,18 @@ import Perimeter from './components/Perimeter';
 
 function App() {
   const [logged, setLogged] = useState(false);
+  const [perimeters, setPerimeters] = useState([]);
+
   return (
     <>
       <Header logged={logged} setLogged={setLogged} />
       <Routes>
-        <Route path="/" element={<Map interactive />} />
+        <Route path="/" element={<Map interactive perimeter track />} />
         <Route path="/device" element={<Device />} />
-        <Route path="/perimeter" element={<Perimeter />} />
+        <Route
+          path="/perimeter"
+          element={<Perimeter perimeters={perimeters} setPerimeters={setPerimeters} />}
+        />
         <Route path="/account" element={<Account />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/confirm" element={<Confirm />} />
