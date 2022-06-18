@@ -5,7 +5,7 @@ function Contact() {
   return (
     <>
       <section className="login d-flex justify-content-center align-items-center flex-column">
-        <Form className="d-flex flex-column justify-content-center h-25 w-50">
+        <Form className="d-flex flex-column justify-content-center h-25 w-25">
           <div className="d-flex flex-column justify-content-center px-3 mb-3 text-white">
             <h2 className="d-flex justify-content-center font-weight-bold mb-3">Contact Us</h2>
           </div>

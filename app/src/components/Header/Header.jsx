@@ -22,7 +22,7 @@ const Header = ({ logged, setLogged }) => {
                 <LinkContainer to="/device">
                   <Nav.Link>Devices</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/addPerimeter">
+                <LinkContainer to="/perimeter">
                   <Nav.Link>Perimeters</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/account">
