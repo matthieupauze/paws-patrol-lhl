@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { disableCors } from './helpers/express-helpers';
 
 var express = require('express');
 var path = require('path');
@@ -16,7 +16,6 @@ const perimeterApiRoutes = require('./routes/perimeterApi');
 const resetApiRoutes = require('./routes/resetApi');
 const tripApiRoutes = require('./routes/tripApi');
 const userApiRoutes = require('./routes/userApi');
-const { VITE_PORT_REACT } = process.env;
 
 var app = express();
 
@@ -26,23 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function (req: Request, res: Response, next: NextFunction) {
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', `http://localhost:${VITE_PORT_REACT}`);
-
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-  // Request headers you wish to allow
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-
-  // Pass to next layer of middleware
-  next();
-});
+app.use(disableCors);
 
 // coordinate endpoints
 const coordinateApiRouter = express.Router();
