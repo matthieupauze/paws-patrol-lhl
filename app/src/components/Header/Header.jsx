@@ -1,7 +1,7 @@
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-const Header = ({ logged, setLogged }) => {
+function Header({ logged, setLogged }) {
   return (
     <header>
       <Navbar className="nav-color " variant="light" expand="lg" collapseOnSelect>
@@ -59,6 +59,6 @@ const Header = ({ logged, setLogged }) => {
       </Navbar>
     </header>
   );
-};
+}
 
 export default Header;
