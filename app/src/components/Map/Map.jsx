@@ -111,7 +111,7 @@ function LocationMarker({ p1, p2, setP1, setP2 }) {
 function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
   const [p1, setP1] = useState(null);
   const [p2, setP2] = useState(null);
-  // const [perimeters, setPerimeters] = useState([]);
+  const [tracking, setTracking] = useState(false);
   console.log('setPerimeters', setPerimeters);
 
   const savePerimeter = () => {
@@ -135,7 +135,18 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
       // .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
       .post(`http://localhost:${VITE_PORT_EXPRESS}/api/trip/1`, data)
       .then((res) => {
-        console.log('res', res.data);
+        console.log('res', res.data), setTracking(true);
+      })
+      .catch((err) => console.log('err', err.message));
+  };
+  const stopTracking = () => {
+    const data = { end: Date.now() };
+    console.log('clicked', data);
+    axios
+      // .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
+      .post(`http://localhost:${VITE_PORT_EXPRESS}/api/trip/1`, data)
+      .then((res) => {
+        console.log('res', res.data), setTracking(false);
       })
       .catch((err) => console.log('err', err.message));
   };
@@ -209,9 +220,16 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
             <div className="info w-25 mb-5 d-flex justify-content-center align-content-center">
               <Card className=" w-100 rounded ph-color">
                 <div className="d-grid gap-3">
-                  <Button className="btn-color rounded w-100" onClick={startTracking}>
-                    Start Tracking
-                  </Button>
+                  {!tracking && (
+                    <Button className="btn-color rounded w-100" onClick={startTracking}>
+                      Start Tracking
+                    </Button>
+                  )}
+                  {tracking && (
+                    <Button className="btn-color rounded w-100" onClick={stopTracking}>
+                      Stop
+                    </Button>
+                  )}
                 </div>
               </Card>
             </div>
