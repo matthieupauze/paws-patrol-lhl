@@ -189,10 +189,11 @@ exports.getCoordinate = getCoordinate;
 
 // Device functions
 
-const addDevice = (imei: number, name: string = '') => {
+const addDevice = (imei: number, name: string = '', microchip: string = '') => {
   return Device.create({
     id: imei,
     name: name,
+    microchip: microchip,
   });
 };
 exports.addDevice = addDevice;
