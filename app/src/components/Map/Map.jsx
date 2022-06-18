@@ -145,7 +145,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
     const data = { end: Date.now() };
     axios
       // .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
-      .post(`http://localhost:${VITE_PORT_EXPRESS}/api/trip/1`, data)
+      .patch(`http://localhost:${VITE_PORT_EXPRESS}/api/trip/1`, data)
       .then((res) => {
         setTracking(false);
       })
