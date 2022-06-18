@@ -109,15 +109,27 @@ get /seed
 
 # Trips
 ```
+
 /api/trip
 
-get / get all trips
+get /
+	get all trips
 
-post /:imei start a trip
-get /:imei get all trips for single device
-patch /:imei end a trip
+post /:imei
+	start a trip
+	body = {name, start}
+	name is optional
+	start is required
+get /:imei
+	get all trips for a device with matching imei
+patch /:imei
+	end a trip
+	body = {id, end}
+	both required
 
-get /:imei/:id get the coordinates for the trip
+get /:imei/:id
+	get the coordinates for a trip 
+
 ```
 
 # Users
