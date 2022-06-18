@@ -206,6 +206,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
               </Card>
             </div>
           )}
+          {/* street view button */}
           {sateliteView && (
             <div className="info w-25 align-self-start m-3">
               <Card className=" w-25 rounded ph-color">
@@ -230,15 +231,20 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
               className={interactive ? '' : 'map-disabled'}
               zoomControl={interactive}
             >
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-
-                // className={interactive ? "" : 'map-disabled'}
-                // attribution={"Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"}
-
-                // url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-              />
+              {!sateliteView && (
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+              )}
+              {sateliteView && (
+                <TileLayer
+                  attribution={
+                    'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                  }
+                  url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                />
+              )}
               <Tracker />
             </MapContainer>
             <div className="info w-25 mb-5 d-flex justify-content-center align-content-center">
@@ -257,6 +263,32 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
                 </div>
               </Card>
             </div>
+            {/* satelite view button */}
+            {!sateliteView && (
+              <div className="info w-25 align-self-start m-3">
+                <Card className=" w-25 rounded ph-color">
+                  <div className="d-grid gap-3">
+                    <Button
+                      className="satelite-view rounded w-100"
+                      onClick={(e) => setSateliteView(!sateliteView)}
+                    ></Button>
+                  </div>
+                </Card>
+              </div>
+            )}
+            {/* street view button */}
+            {sateliteView && (
+              <div className="info w-25 align-self-start m-3">
+                <Card className=" w-25 rounded ph-color">
+                  <div className="d-grid gap-3">
+                    <Button
+                      className="street-view rounded w-100"
+                      onClick={(e) => setSateliteView(!sateliteView)}
+                    ></Button>
+                  </div>
+                </Card>
+              </div>
+            )}
           </section>
         </>
       )}
@@ -270,17 +302,48 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
               className={interactive ? '' : 'map-disabled'}
               zoomControl={interactive}
             >
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-
-                // className={interactive ? "" : 'map-disabled'}
-                // attribution={"Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"}
-
-                // url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-              />
+              {!sateliteView && (
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+              )}
+              {sateliteView && (
+                <TileLayer
+                  attribution={
+                    'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                  }
+                  url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                />
+              )}
               <Tracker />
             </MapContainer>
+            {/* satelite view button */}
+            {!sateliteView && (
+              <div className="info w-25 align-self-start m-3">
+                <Card className=" w-25 rounded ph-color">
+                  <div className="d-grid gap-3">
+                    <Button
+                      className="satelite-view rounded w-100"
+                      onClick={(e) => setSateliteView(!sateliteView)}
+                    ></Button>
+                  </div>
+                </Card>
+              </div>
+            )}
+            {/* street view button */}
+            {sateliteView && (
+              <div className="info w-25 align-self-start m-3">
+                <Card className=" w-25 rounded ph-color">
+                  <div className="d-grid gap-3">
+                    <Button
+                      className="street-view rounded w-100"
+                      onClick={(e) => setSateliteView(!sateliteView)}
+                    ></Button>
+                  </div>
+                </Card>
+              </div>
+            )}
           </section>
         </>
       )}
