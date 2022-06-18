@@ -20,16 +20,15 @@ npm run dev
 - Express
 - Bootstrap 5
 
-
-
 # Api
 
 # Coordinates
+
 ```
 
 /api/coordinate
 
-post /:imei 
+post /:imei
 	add coordinate for a device
 	body = {lat, long, time}
 	all required
@@ -40,6 +39,7 @@ get /:imei
 ```
 
 # Devices
+
 ```
 
 /api/device
@@ -50,10 +50,10 @@ get /
 post /:imei
 	add device
 	body = {name, microchip}
-	all optional	
+	all optional
 get /:imei
 	info about device with matching imei
-patch /:imei 
+patch /:imei
 	update a device
 	body = {name, microchip}
 	all optional
@@ -61,6 +61,7 @@ patch /:imei
 ```
 
 # Email
+
 ```
 
 /api/email
@@ -74,6 +75,7 @@ post /
 ```
 
 # Perimeters
+
 ```
 
 /api/perimeter
@@ -94,20 +96,22 @@ patch /:imei
 ```
 
 # Reset
+
 ```
 
 /api/reset
 
-get / 
+get /
 	reset db leaving it empty
 
-get /seed 
+get /seed
 	reset db before seeding with dummy data
 	1 device, user, coordinate, and perimeter
 
 ```
 
 # Trips
+
 ```
 
 /api/trip
@@ -128,11 +132,12 @@ patch /:imei
 	both required
 
 get /:imei/:id
-	get the coordinates for a trip 
+	get the coordinates for a trip
 
 ```
 
 # Users
+
 ```
 
 /api/user
@@ -145,7 +150,3 @@ patch /
 	all required
 
 ```
-
-
-
-
