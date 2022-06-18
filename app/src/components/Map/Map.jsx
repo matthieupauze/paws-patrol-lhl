@@ -183,6 +183,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
             <Tracker />
             <LocationMarker p1={p1} p2={p2} setP1={setP1} setP2={setP2} />
           </MapContainer>
+          {/* save perimeter button */}
           {p1 !== null && p2 !== null && (
             <div className="info w-25 mb-5">
               <Card className=" w-100 rounded ph-color">
@@ -194,6 +195,14 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
               </Card>
             </div>
           )}
+          {/* satelite view button */}
+          <div className="info w-25 align-self-start m-3">
+            <Card className=" w-25 rounded ph-color">
+              <div className="d-grid gap-3">
+                <Button className="satelite-view rounded w-100"></Button>
+              </div>
+            </Card>
+          </div>
         </>
       )}
       {!perimeter && track && (
