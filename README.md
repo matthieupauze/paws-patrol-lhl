@@ -62,9 +62,15 @@ patch /:imei
 
 # Email
 ```
+
 /api/email
 
-post / send an email
+post /
+	send an email
+	body = {to, subject, body}
+	to is required
+	subject and body are optional
+
 ```
 
 # Perimeters
