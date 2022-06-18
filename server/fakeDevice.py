@@ -9,9 +9,9 @@ text = f.read()
 f.close()
 indexStart = text.index("VITE_PORT_EXPRESS") + 18
 indexEnd = indexStart + 4
-port = 3005
+port = text[indexStart:indexEnd]
 
-imei = 34612
+imei = 2
 coordList = [
     [43.57702250878536, -80.26393192432224],
     [43.576716844259394, -80.26433730441174],

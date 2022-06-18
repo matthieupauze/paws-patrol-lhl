@@ -73,3 +73,9 @@ api/reset
 ```
 	get / reset db
 ```
+
+api/email
+
+```
+	post / send an email
+```
