@@ -1,4 +1,6 @@
-require('dotenv').config();
+import path from 'path';
+
+require('dotenv').config({ path: path.resolve(process.cwd(), '../.env') });
 
 const { DB_HOST, DB_USER, DB_PORT, DB_PASSWORD, DB_NAME } = process.env;
 
@@ -94,10 +96,38 @@ const Trip = sequelize.define(
 );
 Trip.belongsTo(Device);
 
+const User = sequelize.define(
+  'admin',
+  {
+    name: {
+      type: DataTypes.STRING,
+    },
+    phone: {
+      type: DataTypes.STRING,
+    },
+    email: {
+      type: DataTypes.STRING,
+    },
+    password: {
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    freezeTableName: true,
+  }
+);
+
 // Reset functions
 
 const resetDB = () => {
-  return sequelize.sync({ force: true });
+  return sequelize.sync({ force: true }).then(() => {
+    User.create({
+      name: 'Admin',
+      phone: '1234567890',
+      email: 'admin@admin.admin',
+      password: 'admin',
+    });
+  });
 };
 exports.resetDB = resetDB;
 
@@ -235,3 +265,22 @@ const getPerimeters = () => {
   return Perimeter.findAll();
 };
 exports.getPerimeters = getPerimeters;
+
+// User functions
+
+const getUser = () => {
+  return User.findOne();
+};
+exports.getUser = getUser;
+
+const updateUser = (name: string, phone: string, email: string, password: string) => {
+  return getUser().then((data: any) => {
+    return data.update({
+      name: name,
+      phone: phone,
+      email: email,
+      password: password,
+    });
+  });
+};
+exports.updateUser = updateUser;
