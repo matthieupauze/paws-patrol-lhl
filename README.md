@@ -20,16 +20,22 @@ npm run dev
 - Express
 - Bootstrap 5
 
-## Api Routes
 
-- /api/coordinate
+
+# Api
+
+# Coordinates
 ```
+/api/coordinate
+
 post /:imei add coordinate for a device
 get /:imei get most recent for a device
 ```
 
-- /api/device
+# Devices
 ```
+/api/device
+
 get / list of all devices
 
 post /:imei add a device manually/change name
@@ -37,22 +43,28 @@ get /:imei info about 1 device
 patch /:imei update a device
 ```
 
-- /api/email
+# Email
 ```
+/api/email
+
 post / send an email
 ```
 
-- /api/perimiter
+# Perimeters
 ```
+/api/perimeter
+
 get / all perimeters
 
-post /:imei add perimiter for device
-get /:imei perimiter for single device
-patch /:imei update perimiter values
+post /:imei add perimeter for device
+get /:imei perimeter for single device
+patch /:imei update perimeter values
 ```
 
-- /api/reset
+# Reset
 ```
+/api/reset
+
 get / 
 - reset db leaving it empty
 
@@ -60,8 +72,10 @@ get /seed
 - reset db then seed with default device, user, perimeter, and single coordinate
 ```
 
-- /api/trip
+# Trips
 ```
+/api/trip
+
 get / get all trips
 
 post /:imei start a trip
@@ -71,9 +85,10 @@ patch /:imei end a trip
 get /:imei/:id get the coordinates for the trip
 ```
 
-
-- /api/user
+# Users
 ```
+/api/user
+
 post / change user info
 get / user info
 ```
