@@ -9,7 +9,7 @@ import {
   useMapEvents,
   Rectangle,
 } from 'react-leaflet';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, ButtonGroup, ToggleButton } from 'react-bootstrap';
 
 const defaultZoom = 4;
 const trackingZoom = 18;
@@ -108,22 +108,45 @@ function LocationMarker({ p1, p2, setP1, setP2 }) {
   ) : null;
 }
 
-function Map({ interactive, perimeter, setActive }) {
+function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
   const [p1, setP1] = useState(null);
   const [p2, setP2] = useState(null);
+  // const [perimeters, setPerimeters] = useState([]);
+  console.log('setPerimeters', setPerimeters);
 
   const savePerimeter = () => {
     const data = { p1lat: p1.lat, p1long: p1.lng, p2lat: p2.lat, p2long: p2.lng };
     console.log('clicked', data);
     axios
       // .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
-      .post(`http://localhost:8080/api/perimeter/1`, data)
+      .post(`http://localhost:${VITE_PORT_EXPRESS}/api/perimeter/1`, data)
       .then((res) => {
         console.log('res', res.data, setActive);
         setActive && setActive(false);
       })
       .catch((err) => console.log('err', err.message));
   };
+
+  const startTracking = () => {
+    //CHANGE THE IMEI !!!
+    const data = { start: Date.now() };
+    console.log('clicked', data);
+    axios
+      // .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
+      .post(`http://localhost:${VITE_PORT_EXPRESS}/api/trip/1`, data)
+      .then((res) => {
+        console.log('res', res.data);
+      })
+      .catch((err) => console.log('err', err.message));
+  };
+
+  useEffect(() => {
+    const loadPerimeters = async () => {
+      const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/perimeter`);
+      setPerimeters(data);
+    };
+    loadPerimeters();
+  }, []);
 
   return (
     <>
@@ -162,25 +185,62 @@ function Map({ interactive, perimeter, setActive }) {
           )}
         </>
       )}
-      {!perimeter && (
-        <MapContainer
-          center={defaultPosition}
-          zoom={defaultZoom}
-          scrollWheelZoom
-          className={interactive ? '' : 'map-disabled'}
-          zoomControl={interactive}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      {!perimeter && track && (
+        <>
+          <section className=" d-flex justify-content-end align-items-center flex-column">
+            <MapContainer
+              center={defaultPosition}
+              zoom={defaultZoom}
+              scrollWheelZoom
+              className={interactive ? '' : 'map-disabled'}
+              zoomControl={interactive}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 
-            // className={interactive ? "" : 'map-disabled'}
-            // attribution={"Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"}
+                // className={interactive ? "" : 'map-disabled'}
+                // attribution={"Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"}
 
-            // url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-          />
-          <Tracker />
-        </MapContainer>
+                // url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+              />
+              <Tracker />
+            </MapContainer>
+            <div className="info w-25 mb-5 d-flex justify-content-center align-content-center">
+              <Card className=" w-100 rounded ph-color">
+                <div className="d-grid gap-3">
+                  <Button className="btn-color rounded w-100" onClick={startTracking}>
+                    Start Tracking
+                  </Button>
+                </div>
+              </Card>
+            </div>
+          </section>
+        </>
+      )}
+      {!perimeter && !track && (
+        <>
+          <section className=" d-flex justify-content-end align-items-center flex-column">
+            <MapContainer
+              center={defaultPosition}
+              zoom={defaultZoom}
+              scrollWheelZoom
+              className={interactive ? '' : 'map-disabled'}
+              zoomControl={interactive}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+
+                // className={interactive ? "" : 'map-disabled'}
+                // attribution={"Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"}
+
+                // url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+              />
+              <Tracker />
+            </MapContainer>
+          </section>
+        </>
       )}
     </>
   );
