@@ -1,82 +1,20 @@
-import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
-import { MapContainer, Marker, Polyline, TileLayer, useMap } from 'react-leaflet';
-import { io } from 'socket.io-client';
+import { MapContainer, TileLayer } from 'react-leaflet';
+import usePoll from '../../hooks/usePoll';
+import useTracker from '../../hooks/useTracker';
+import useEvent from '../../hooks/useEvent';
 
 const defaultZoom = 4;
 const trackingZoom = 18;
-const defaultPosition = { id: 0, lat: 45, lng: -73 };
-const socket = io('ws://localhost:3005');
-
-const { VITE_PORT_EXPRESS } = import.meta.env;
+const defaultPosition = { imei: 0, lat: 45, lng: -73 };
 
 function Tracker() {
-  const [positions, setPositions] = useState([defaultPosition]);
-  const map = useMap();
-  const foundPosition = useRef(false);
-
-  socket.on('gps-update', (coords) => {
-    console.log('received new coordinates', coords);
-    setPositions((prev) => changePosition(prev, coords));
+  const { genLine, genMarker, updatePosition, foundPosition } = useTracker({
+    defaultPosition,
+    trackingZoom,
   });
 
-  const fetchPosition = () => {
-    return axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/coordinate/34612`).then((res) => {
-      const { id, latitude, longitude } = res.data;
-      if (!id || !latitude || !longitude) {
-        return defaultPosition;
-      }
-      return { id, lat: latitude, lng: longitude };
-    });
-  };
-
-  const changePosition = (prevPosition, newPosition) => {
-    const last = prevPosition[prevPosition.length - 1];
-    if (last.lat !== newPosition.lat || last.lng !== newPosition.lng) {
-      if (!foundPosition.current) {
-        foundPosition.current = true;
-        return [newPosition];
-      }
-      return [...prevPosition, newPosition];
-    }
-    return prevPosition;
-  };
-
-  const setupTimer = () => {
-    return setInterval(() => {
-      fetchPosition()
-        .then((data) => {
-          setPositions((prev) => changePosition(prev, data));
-        })
-        .catch((err) => console.log(err));
-    }, 10000);
-  };
-
-  const genLine = () => {
-    return <Polyline positions={positions} color="red" />;
-  };
-
-  const genMarker = () => {
-    if (!foundPosition.current || !positions) {
-      return null;
-    }
-    return <Marker position={positions[positions.length - 1]} />;
-  };
-
-  useEffect(() => {
-    const interval = setupTimer();
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!foundPosition.current) {
-      return;
-    }
-    const p = positions[positions.length - 1];
-    map.flyTo(p, trackingZoom);
-  }, [positions]);
+  // usePoll(updatePosition, foundPosition, defaultPosition);
+  useEvent(updatePosition, foundPosition, defaultPosition);
 
   return (
     <>
