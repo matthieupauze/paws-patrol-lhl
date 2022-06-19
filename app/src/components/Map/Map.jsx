@@ -144,9 +144,9 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           )}
           {/* satelite view button */}
           {!satelliteView && (
-            <div className="info w-25 align-self-start m-3">
+            <div className="info w-25 align-self-start m-3 pb-4">
               <Card className=" w-25 rounded ph-color">
-                <div className="d-grid gap-3">
+                <div className="d-grid">
                   <Button
                     className="satelite-view rounded w-100"
                     onClick={(e) => setSatellite(!satelliteView)}
@@ -157,9 +157,9 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           )}
           {/* street view button */}
           {satelliteView && (
-            <div className="info w-25 align-self-start m-3">
+            <div className="info w-25 align-self-start m-3 pb-4">
               <Card className=" w-25 rounded ph-color">
-                <div className="d-grid gap-3">
+                <div className="d-grid">
                   <Button
                     className="street-view rounded w-100"
                     onClick={(e) => setSatellite(!satelliteView)}
@@ -182,7 +182,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
             {!satelliteView && (
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                url={tileLayerURL}
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
             )}
             {satelliteView && (
@@ -190,7 +190,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
                 attribution={
                   'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
                 }
-                url={tileLayerURL}
+                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
               />
             )}
             <Tracker />
@@ -213,12 +213,12 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           </div>
           {/* satelite view button */}
           {!satelliteView && (
-            <div className="info w-25 align-self-start m-3">
+            <div className="info w-25 align-self-start m-3 pb-4">
               <Card className=" w-25 rounded ph-color">
-                <div className="d-grid gap-3">
+                <div className="d-grid contain">
                   <Button
                     className="satelite-view rounded w-100"
-                    onClick={(e) => setSatellite(!satelliteView)}
+                    onClick={(e) => setSatelliteView(!satelliteView)}
                   />
                 </div>
               </Card>
@@ -226,12 +226,12 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           )}
           {/* street view button */}
           {satelliteView && (
-            <div className="info w-25 align-self-start m-3">
+            <div className="info w-25 align-self-start m-3 pb-4">
               <Card className=" w-25 rounded ph-color">
-                <div className="d-grid gap-3">
+                <div className="d-grid">
                   <Button
                     className="street-view rounded w-100"
-                    onClick={(e) => setSatellite(!satelliteView)}
+                    onClick={(e) => setSatelliteView(!satelliteView)}
                   />
                 </div>
               </Card>
@@ -266,9 +266,9 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           </MapContainer>
           {/* satelite view button */}
           {!satelliteView && (
-            <div className="info w-25 align-self-start m-3">
+            <div className="info w-25 align-self-start m-3 pb-4">
               <Card className=" w-25 rounded ph-color">
-                <div className="d-grid gap-3">
+                <div className="d-grid">
                   <Button
                     className="satelite-view rounded w-100"
                     onClick={(e) => setSatellite(!satelliteView)}
@@ -279,9 +279,9 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           )}
           {/* street view button */}
           {satelliteView && (
-            <div className="info w-25 align-self-start m-3">
+            <div className="info w-25 align-self-start m-3 pb-4">
               <Card className=" w-25 rounded ph-color">
-                <div className="d-grid gap-3">
+                <div className="d-grid">
                   <Button
                     className="street-view rounded w-100"
                     onClick={(e) => setSatellite(!satelliteView)}

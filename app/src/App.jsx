@@ -20,7 +20,7 @@ function App() {
     <>
       <Header logged={logged} setLogged={setLogged} />
       <Routes>
-        <Route path="/" element={<Map interactive perimeter track />} />
+        <Route path="/" element={<Map interactive perimeter={false} track />} />
         <Route path="/device" element={<Device />} />
         <Route
           path="/perimeter"
@@ -33,7 +33,14 @@ function App() {
         {/* <Route path="/signup" element={<SignUp />} /> */}
         <Route path="/login" element={<Login logged={logged} setLogged={setLogged} />} />
         <Route path="/register" element={<Register logged={logged} setLogged={setLogged} />} />
-        <Route path="*" element={<h2>404 page not found</h2>} />
+        <Route
+          path="*"
+          element={
+            <div>
+              <h2>404 page not found</h2>
+            </div>
+          }
+        />
       </Routes>
       <Footer />
     </>

@@ -50,12 +50,17 @@
   border: none;
 }
 
+.conatin {
+  max-width: 66px;
+}
+
 .satelite-view {
-  background: url('/images/earth.jpeg') center / contain;
+  background: center / cover no-repeat url('/images/earth.jpeg');
   padding: 2rem;
+  max-width: 66px;
 }
 .street-view {
-  background: url('/images/street.png') center / contain;
+  background: url('/images/street.png') no-repeat center / cover;
   padding: 2rem;
 }
 
