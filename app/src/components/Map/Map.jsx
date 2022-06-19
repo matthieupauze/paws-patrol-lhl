@@ -11,6 +11,9 @@ const { VITE_PORT_EXPRESS } = import.meta.env;
 const defaultZoom = 4;
 const trackingZoom = 18;
 const defaultPosition = { imei: 0, lat: 45, lng: -73 };
+const streetMapURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+const satelliteMapURL =
+  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 
 function Tracker() {
   const { genLine, genMarker, updatePosition, foundPosition } = useTracker({
@@ -47,7 +50,8 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
   const [p1, setP1] = useState(null);
   const [p2, setP2] = useState(null);
   const [tracking, setTracking] = useState(false);
-  const [sateliteView, setSateliteView] = useState(true);
+  const [satelliteView, setSatelliteView] = useState(false);
+  const [tileLayerURL, setTileLayerURL] = useState(streetMapURL);
 
   const savePerimeter = () => {
     const data = { p1lat: p1.lat, p1long: p1.lng, p2lat: p2.lat, p2long: p2.lng };
@@ -87,6 +91,16 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
       .catch((err) => console.log('err', err.message));
   };
 
+  const setSatellite = (isSatellite) => {
+    if (isSatellite) {
+      setTileLayerURL(satelliteMapURL);
+      setSatelliteView(true);
+      return;
+    }
+    setTileLayerURL(streetMapURL);
+    setSatelliteView(false);
+  };
+
   return (
     <>
       {perimeter && (
@@ -99,18 +113,18 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
             zoomControl={interactive}
             doubleClickZoom={false}
           >
-            {!sateliteView && (
+            {!satelliteView && (
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                url={tileLayerURL}
               />
             )}
-            {sateliteView && (
+            {satelliteView && (
               <TileLayer
                 attribution={
                   'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
                 }
-                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                url={tileLayerURL}
               />
             )}
             <Tracker />
@@ -129,26 +143,26 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
             </div>
           )}
           {/* satelite view button */}
-          {!sateliteView && (
+          {!satelliteView && (
             <div className="info w-25 align-self-start m-3">
               <Card className=" w-25 rounded ph-color">
                 <div className="d-grid gap-3">
                   <Button
                     className="satelite-view rounded w-100"
-                    onClick={(e) => setSateliteView(!sateliteView)}
+                    onClick={(e) => setSatellite(!satelliteView)}
                   />
                 </div>
               </Card>
             </div>
           )}
           {/* street view button */}
-          {sateliteView && (
+          {satelliteView && (
             <div className="info w-25 align-self-start m-3">
               <Card className=" w-25 rounded ph-color">
                 <div className="d-grid gap-3">
                   <Button
                     className="street-view rounded w-100"
-                    onClick={(e) => setSateliteView(!sateliteView)}
+                    onClick={(e) => setSatellite(!satelliteView)}
                   />
                 </div>
               </Card>
@@ -165,18 +179,18 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
             className={interactive ? '' : 'map-disabled'}
             zoomControl={interactive}
           >
-            {!sateliteView && (
+            {!satelliteView && (
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                url={tileLayerURL}
               />
             )}
-            {sateliteView && (
+            {satelliteView && (
               <TileLayer
                 attribution={
                   'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
                 }
-                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                url={tileLayerURL}
               />
             )}
             <Tracker />
@@ -198,26 +212,26 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
             </Card>
           </div>
           {/* satelite view button */}
-          {!sateliteView && (
+          {!satelliteView && (
             <div className="info w-25 align-self-start m-3">
               <Card className=" w-25 rounded ph-color">
                 <div className="d-grid gap-3">
                   <Button
                     className="satelite-view rounded w-100"
-                    onClick={(e) => setSateliteView(!sateliteView)}
+                    onClick={(e) => setSatellite(!satelliteView)}
                   />
                 </div>
               </Card>
             </div>
           )}
           {/* street view button */}
-          {sateliteView && (
+          {satelliteView && (
             <div className="info w-25 align-self-start m-3">
               <Card className=" w-25 rounded ph-color">
                 <div className="d-grid gap-3">
                   <Button
                     className="street-view rounded w-100"
-                    onClick={(e) => setSateliteView(!sateliteView)}
+                    onClick={(e) => setSatellite(!satelliteView)}
                   />
                 </div>
               </Card>
@@ -234,43 +248,43 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
             className={interactive ? '' : 'map-disabled'}
             zoomControl={interactive}
           >
-            {!sateliteView && (
+            {!satelliteView && (
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                url={tileLayerURL}
               />
             )}
-            {sateliteView && (
+            {satelliteView && (
               <TileLayer
                 attribution={
                   'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
                 }
-                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                url={tileLayerURL}
               />
             )}
             <Tracker />
           </MapContainer>
           {/* satelite view button */}
-          {!sateliteView && (
+          {!satelliteView && (
             <div className="info w-25 align-self-start m-3">
               <Card className=" w-25 rounded ph-color">
                 <div className="d-grid gap-3">
                   <Button
                     className="satelite-view rounded w-100"
-                    onClick={(e) => setSateliteView(!sateliteView)}
+                    onClick={(e) => setSatellite(!satelliteView)}
                   />
                 </div>
               </Card>
             </div>
           )}
           {/* street view button */}
-          {sateliteView && (
+          {satelliteView && (
             <div className="info w-25 align-self-start m-3">
               <Card className=" w-25 rounded ph-color">
                 <div className="d-grid gap-3">
                   <Button
                     className="street-view rounded w-100"
-                    onClick={(e) => setSateliteView(!sateliteView)}
+                    onClick={(e) => setSatellite(!satelliteView)}
                   />
                 </div>
               </Card>
