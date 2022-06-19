@@ -67,6 +67,14 @@
   max-width: 66px;
 }
 
+.satellite-bg {
+  background: url('/images/earth.jpeg') no-repeat center / cover;
+}
+
+.street-bg {
+  background: url('/images/street.png') no-repeat center / cover;
+}
+
 .view-button {
   padding: 2rem;
   max-width: 66px;
