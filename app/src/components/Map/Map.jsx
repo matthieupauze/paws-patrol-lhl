@@ -130,9 +130,9 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           )}
           {/* satelite view button */}
           {!sateliteView && (
-            <div className="info w-25 align-self-start m-3">
+            <div className="info w-25 align-self-start m-3 pb-4">
               <Card className=" w-25 rounded ph-color">
-                <div className="d-grid gap-3">
+                <div className="d-grid">
                   <Button
                     className="satelite-view rounded w-100"
                     onClick={(e) => setSateliteView(!sateliteView)}
@@ -143,9 +143,9 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           )}
           {/* street view button */}
           {sateliteView && (
-            <div className="info w-25 align-self-start m-3">
+            <div className="info w-25 align-self-start m-3 pb-4">
               <Card className=" w-25 rounded ph-color">
-                <div className="d-grid gap-3">
+                <div className="d-grid">
                   <Button
                     className="street-view rounded w-100"
                     onClick={(e) => setSateliteView(!sateliteView)}
@@ -157,73 +157,75 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
         </>
       )}
       {!perimeter && track && (
-        <section className=" d-flex justify-content-end align-items-center flex-column">
-          <MapContainer
-            center={defaultPosition}
-            zoom={defaultZoom}
-            scrollWheelZoom
-            className={interactive ? '' : 'map-disabled'}
-            zoomControl={interactive}
-          >
+        <>
+          <section className=" d-flex justify-content-end align-items-center flex-column">
+            <MapContainer
+              center={defaultPosition}
+              zoom={defaultZoom}
+              scrollWheelZoom
+              className={interactive ? '' : 'map-disabled'}
+              zoomControl={interactive}
+            >
+              {!sateliteView && (
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+              )}
+              {sateliteView && (
+                <TileLayer
+                  attribution={
+                    'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                  }
+                  url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                />
+              )}
+              <Tracker />
+            </MapContainer>
+            <div className="info w-25 mb-5 d-flex justify-content-center align-content-center">
+              <Card className=" w-100 rounded ph-color">
+                <div className="d-grid gap-3">
+                  {!tracking && (
+                    <Button className="btn-color rounded w-100" onClick={startTracking}>
+                      Start Tracking
+                    </Button>
+                  )}
+                  {tracking && (
+                    <Button className="btn-color rounded w-100" onClick={stopTracking}>
+                      Stop
+                    </Button>
+                  )}
+                </div>
+              </Card>
+            </div>
+            {/* satelite view button */}
             {!sateliteView && (
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-            )}
-            {sateliteView && (
-              <TileLayer
-                attribution={
-                  'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-                }
-                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-              />
-            )}
-            <Tracker />
-          </MapContainer>
-          <div className="info w-25 mb-5 d-flex justify-content-center align-content-center">
-            <Card className=" w-100 rounded ph-color">
-              <div className="d-grid gap-3">
-                {!tracking && (
-                  <Button className="btn-color rounded w-100" onClick={startTracking}>
-                    Start Tracking
-                  </Button>
-                )}
-                {tracking && (
-                  <Button className="btn-color rounded w-100" onClick={stopTracking}>
-                    Stop
-                  </Button>
-                )}
+              <div className="info w-25 align-self-start m-3 pb-4">
+                <Card className=" w-25 rounded ph-color">
+                  <div className="d-grid contain">
+                    <Button
+                      className="satelite-view rounded w-100"
+                      onClick={(e) => setSateliteView(!sateliteView)}
+                    />
+                  </div>
+                </Card>
               </div>
-            </Card>
-          </div>
-          {/* satelite view button */}
-          {!sateliteView && (
-            <div className="info w-25 align-self-start m-3">
-              <Card className=" w-25 rounded ph-color">
-                <div className="d-grid gap-3">
-                  <Button
-                    className="satelite-view rounded w-100"
-                    onClick={(e) => setSateliteView(!sateliteView)}
-                  />
-                </div>
-              </Card>
-            </div>
-          )}
-          {/* street view button */}
-          {sateliteView && (
-            <div className="info w-25 align-self-start m-3">
-              <Card className=" w-25 rounded ph-color">
-                <div className="d-grid gap-3">
-                  <Button
-                    className="street-view rounded w-100"
-                    onClick={(e) => setSateliteView(!sateliteView)}
-                  />
-                </div>
-              </Card>
-            </div>
-          )}
-        </section>
+            )}
+            {/* street view button */}
+            {sateliteView && (
+              <div className="info w-25 align-self-start m-3 pb-4">
+                <Card className=" w-25 rounded ph-color">
+                  <div className="d-grid">
+                    <Button
+                      className="street-view rounded w-100"
+                      onClick={(e) => setSateliteView(!sateliteView)}
+                    />
+                  </div>
+                </Card>
+              </div>
+            )}
+          </section>
+        </>
       )}
       {!perimeter && !track && (
         <section className=" d-flex justify-content-end align-items-center flex-column">
@@ -252,9 +254,9 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           </MapContainer>
           {/* satelite view button */}
           {!sateliteView && (
-            <div className="info w-25 align-self-start m-3">
+            <div className="info w-25 align-self-start m-3 pb-4">
               <Card className=" w-25 rounded ph-color">
-                <div className="d-grid gap-3">
+                <div className="d-grid">
                   <Button
                     className="satelite-view rounded w-100"
                     onClick={(e) => setSateliteView(!sateliteView)}
@@ -265,9 +267,9 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           )}
           {/* street view button */}
           {sateliteView && (
-            <div className="info w-25 align-self-start m-3">
+            <div className="info w-25 align-self-start m-3 pb-4">
               <Card className=" w-25 rounded ph-color">
-                <div className="d-grid gap-3">
+                <div className="d-grid">
                   <Button
                     className="street-view rounded w-100"
                     onClick={(e) => setSateliteView(!sateliteView)}
