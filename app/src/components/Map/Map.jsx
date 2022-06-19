@@ -131,7 +131,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           {/* satelite view button */}
           {!sateliteView && (
             <div className="info w-25 align-self-start m-3 pb-4">
-              <Card className=" w-25 rounded ph-color">
+              <Card className=" w-25 rounded ph-color contain">
                 <div className="d-grid">
                   <Button
                     className="satelite-view rounded w-100"
@@ -144,7 +144,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           {/* street view button */}
           {sateliteView && (
             <div className="info w-25 align-self-start m-3 pb-4">
-              <Card className=" w-25 rounded ph-color">
+              <Card className=" w-25 rounded ph-color contain">
                 <div className="d-grid">
                   <Button
                     className="street-view rounded w-100"
@@ -201,7 +201,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
             {/* satelite view button */}
             {!sateliteView && (
               <div className="info w-25 align-self-start m-3 pb-4">
-                <Card className=" w-25 rounded ph-color">
+                <Card className=" w-25 rounded ph-color contain">
                   <div className="d-grid contain">
                     <Button
                       className="satelite-view rounded w-100"
@@ -214,7 +214,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
             {/* street view button */}
             {sateliteView && (
               <div className="info w-25 align-self-start m-3 pb-4">
-                <Card className=" w-25 rounded ph-color">
+                <Card className=" w-25 rounded ph-color contain">
                   <div className="d-grid">
                     <Button
                       className="street-view rounded w-100"
@@ -255,7 +255,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           {/* satelite view button */}
           {!sateliteView && (
             <div className="info w-25 align-self-start m-3 pb-4">
-              <Card className=" w-25 rounded ph-color">
+              <Card className=" w-25 rounded ph-color contain">
                 <div className="d-grid">
                   <Button
                     className="satelite-view rounded w-100"
@@ -268,7 +268,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           {/* street view button */}
           {sateliteView && (
             <div className="info w-25 align-self-start m-3 pb-4">
-              <Card className=" w-25 rounded ph-color">
+              <Card className=" w-25 rounded ph-color contain">
                 <div className="d-grid">
                   <Button
                     className="street-view rounded w-100"
