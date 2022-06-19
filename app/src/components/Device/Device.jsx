@@ -9,11 +9,9 @@ const { VITE_PORT_EXPRESS } = import.meta.env;
 
 function Device() {
   const [form, setForm] = useState(false);
-  const [devices, setDevices] = useState([
-    // {name: "Device 1", imei: "1"},
-    // {name: "Device 2", imei: "2"}
-  ]);
-  const [radioImei, setRadioImei] = useState('1');
+  const [devices, setDevices] = useState([]);
+  const [radioImei, setRadioImei] = useState('0');
+  console.log('radioImei', radioImei);
   const radios = devices;
 
   const handleSubmit = (e) => {
@@ -89,22 +87,27 @@ function Device() {
           <div className="info w-25">
             <h2 className="centered">Devices</h2>
             <Card className="p-3 w-100 rounded ph-color">
-              <ButtonGroup className="mb-3 d-flex flex-column gap-2 rounded">
-                {radios.map((radio, idx) => (
-                  <ToggleButton
-                    key={idx}
-                    id={`radio-${idx}`}
-                    type="radio"
-                    name="radio"
-                    value={radio.imei}
-                    checked={radioImei === radio.imei}
-                    variant={radioImei === radio.imei ? 'secondary' : 'transparent'}
-                    onChange={(e) => setRadioImei(e.currentTarget.value)}
-                  >
-                    {radio.name}
-                  </ToggleButton>
-                  // react initial render get request api to get all the devices useeffect to set Devices to all the devices available in the db
-                ))}
+              <ButtonGroup className="mb-3 d-flex flex-column gap-2 rounded list-item">
+                {radios.map(
+                  (radio, idx) => (
+                    console.log(radio),
+                    (
+                      <ToggleButton
+                        key={idx}
+                        id={`radio-${idx}`}
+                        type="radio"
+                        name="radio"
+                        value={radio.id}
+                        checked={Number(radioImei) === radio.id}
+                        variant={Number(radioImei) === radio.id ? 'secondary' : 'transparent'}
+                        onChange={(e) => setRadioImei(e.currentTarget.value)}
+                      >
+                        {radio.name}
+                      </ToggleButton>
+                    )
+                    // react initial render get request api to get all the devices useeffect to set Devices to all the devices available in the db
+                  )
+                )}
               </ButtonGroup>
               <div className="d-grid gap-3">
                 <Link to="/device">

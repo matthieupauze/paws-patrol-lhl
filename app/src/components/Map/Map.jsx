@@ -6,14 +6,20 @@ import usePoll from '../../hooks/usePoll';
 import useTracker from '../../hooks/useTracker';
 import useEvent from '../../hooks/useEvent';
 
-const { VITE_PORT_EXPRESS } = import.meta.env;
+// const { VITE_PORT_EXPRESS } = import.meta.env;
 
 const defaultZoom = 4;
 const trackingZoom = 18;
 const defaultPosition = { imei: 0, lat: 45, lng: -73 };
-const streetMapURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-const satelliteMapURL =
-  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+const streetData = {
+  url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+};
+const satelliteData = {
+  url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+  attribution:
+    'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+};
 
 function Tracker() {
   const { genLine, genMarker, updatePosition, foundPosition } = useTracker({
@@ -51,12 +57,11 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
   const [p2, setP2] = useState(null);
   const [tracking, setTracking] = useState(false);
   const [satelliteView, setSatelliteView] = useState(false);
-  const [tileLayerURL, setTileLayerURL] = useState(streetMapURL);
+  const [tileLayerData, setTileLayerData] = useState(streetData);
 
   const savePerimeter = () => {
     const data = { p1lat: p1.lat, p1long: p1.lng, p2lat: p2.lat, p2long: p2.lng };
     axios
-      // .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
       .post(`http://localhost:${VITE_PORT_EXPRESS}/api/perimeter/1`, data)
       .then((res) => setActive && setActive(false))
       .catch((err) => console.log('err', err.message));
@@ -73,7 +78,6 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
     // CHANGE THE IMEI !!!
     const data = { start: Date.now() };
     axios
-      // .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
       .post(`http://localhost:${VITE_PORT_EXPRESS}/api/trip/1`, data)
       .then((res) => {
         setTracking(true);
@@ -83,7 +87,6 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
   const stopTracking = () => {
     const data = { end: Date.now() };
     axios
-      // .post(`/api/perimeter/1`, { p1lat, p1long, p2lat, p2long })
       .patch(`http://localhost:${VITE_PORT_EXPRESS}/api/trip/1`, data)
       .then((res) => {
         setTracking(false);
@@ -93,11 +96,11 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
 
   const setSatellite = (isSatellite) => {
     if (isSatellite) {
-      setTileLayerURL(satelliteMapURL);
+      setTileLayerData(satelliteData);
       setSatelliteView(true);
       return;
     }
-    setTileLayerURL(streetMapURL);
+    setTileLayerData(streetData);
     setSatelliteView(false);
   };
 
@@ -113,20 +116,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
             zoomControl={interactive}
             doubleClickZoom={false}
           >
-            {!satelliteView && (
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                url={tileLayerURL}
-              />
-            )}
-            {satelliteView && (
-              <TileLayer
-                attribution={
-                  'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-                }
-                url={tileLayerURL}
-              />
-            )}
+            <TileLayer url={tileLayerData.url} attribution={tileLayerData.attribution} />
             <Tracker />
             <LocationMarker p1={p1} p2={p2} setP1={setP1} setP2={setP2} />
           </MapContainer>
@@ -145,7 +135,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           {/* satelite view button */}
           {!satelliteView && (
             <div className="info w-25 align-self-start m-3 pb-4">
-              <Card className=" w-25 rounded ph-color">
+              <Card className=" w-25 rounded ph-color contain">
                 <div className="d-grid">
                   <Button
                     className="satelite-view rounded w-100"
@@ -158,7 +148,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           {/* street view button */}
           {satelliteView && (
             <div className="info w-25 align-self-start m-3 pb-4">
-              <Card className=" w-25 rounded ph-color">
+              <Card className=" w-25 rounded ph-color contain">
                 <div className="d-grid">
                   <Button
                     className="street-view rounded w-100"
@@ -182,7 +172,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
             {!satelliteView && (
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                url={tileLayerData}
               />
             )}
             {satelliteView && (
@@ -190,7 +180,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
                 attribution={
                   'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
                 }
-                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                url={tileLayerData}
               />
             )}
             <Tracker />
@@ -224,10 +214,23 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
               </Card>
             </div>
           )}
+          {/* satelite view button */}
+          {!satelliteView && (
+            <div className="info w-25 align-self-start m-3 pb-4">
+              <Card className=" w-25 rounded ph-color contain">
+                <div className="d-grid contain">
+                  <Button
+                    className="satelite-view rounded w-100"
+                    onClick={(e) => setSatelliteView(!satelliteView)}
+                  />
+                </div>
+              </Card>
+            </div>
+          )}
           {/* street view button */}
           {satelliteView && (
             <div className="info w-25 align-self-start m-3 pb-4">
-              <Card className=" w-25 rounded ph-color">
+              <Card className=" w-25 rounded ph-color contain">
                 <div className="d-grid">
                   <Button
                     className="street-view rounded w-100"
@@ -251,7 +254,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
             {!satelliteView && (
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                url={tileLayerURL}
+                url={tileLayerData}
               />
             )}
             {satelliteView && (
@@ -259,7 +262,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
                 attribution={
                   'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
                 }
-                url={tileLayerURL}
+                url={tileLayerData}
               />
             )}
             <Tracker />
@@ -267,7 +270,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           {/* satelite view button */}
           {!satelliteView && (
             <div className="info w-25 align-self-start m-3 pb-4">
-              <Card className=" w-25 rounded ph-color">
+              <Card className=" w-25 rounded ph-color contain">
                 <div className="d-grid">
                   <Button
                     className="satelite-view rounded w-100"
@@ -280,7 +283,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           {/* street view button */}
           {satelliteView && (
             <div className="info w-25 align-self-start m-3 pb-4">
-              <Card className=" w-25 rounded ph-color">
+              <Card className=" w-25 rounded ph-color contain">
                 <div className="d-grid">
                   <Button
                     className="street-view rounded w-100"
