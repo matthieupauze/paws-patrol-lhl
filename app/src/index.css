@@ -44,6 +44,14 @@
   background-color: var(--primary);
 }
 
+.nav-link {
+  transition: font-size 0.5s, padding 0.5s;
+}
+.nav-link:hover {
+  font-size: 1.1rem;
+  padding: 0.5rem 0.5rem 0;
+}
+
 .btn-color {
   background-color: var(--secondary);
   color: black;
@@ -60,6 +68,15 @@
 }
 
 .list-item {
+  font-size: 1rem;
+  padding: 0.3rem 0.7rem;
+  transition: font-size 0.5s, padding 0.5s, background-color 0.5s;
+}
+
+.list-item:hover {
+  font-size: 1.1rem;
+  background-color: var(--third);
+  padding: 0.5rem 0.7rem;
 }
 
 .contain {
@@ -107,8 +124,20 @@
   justify-content: center;
   align-items: center;
   color: #ffffff;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
   font-size: 2.5rem;
+  animation: title 2s;
+}
+
+@keyframes title {
+  from {
+    color: transparent;
+    font-size: 0.5rem;
+  }
+  to {
+    color: #ffffff;
+    font-size: 2.5rem;
+  }
 }
 
 .map-disabled {

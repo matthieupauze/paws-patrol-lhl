@@ -41,7 +41,7 @@ function Device() {
   return (
     <>
       {form && (
-        <section className=" d-flex justify-content-center align-items-center flex-column">
+        <section className=" d-flex justify-content-center align-items-center flex-column animate">
           <Map interactive={false} />
           <div className="info">
             <h2 className="centered">Devices</h2>
@@ -87,7 +87,7 @@ function Device() {
           <div className="info w-25">
             <h2 className="centered">Devices</h2>
             <Card className="p-3 w-100 rounded ph-color">
-              <ButtonGroup className="mb-3 d-flex flex-column gap-2 rounded list-item">
+              <ButtonGroup className="mb-3 d-flex flex-column gap-2 rounded">
                 {radios.map(
                   (radio, idx) => (
                     console.log(radio),
@@ -101,6 +101,7 @@ function Device() {
                         checked={Number(radioImei) === radio.id}
                         variant={Number(radioImei) === radio.id ? 'secondary' : 'transparent'}
                         onChange={(e) => setRadioImei(e.currentTarget.value)}
+                        className="list-item"
                       >
                         {radio.name}
                       </ToggleButton>

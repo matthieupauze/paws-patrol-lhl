@@ -5,6 +5,9 @@ function Register({ logged, setLogged }) {
   return (
     <section className="login d-flex justify-content-center align-items-center flex-column">
       <Form className="d-flex flex-column justify-content-center h-25 w-25">
+        <div className="d-flex flex-column justify-content-center px-3 text-white">
+          <h2 className="d-flex justify-content-center font-weight-bold centered">Register</h2>
+        </div>
         <Form.Group className="form-group p-3 ">
           <Form.Control
             className="form-control rounded text-white ph-color"

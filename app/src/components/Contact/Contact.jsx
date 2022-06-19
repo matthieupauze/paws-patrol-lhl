@@ -5,8 +5,8 @@ function Contact() {
   return (
     <section className="login d-flex justify-content-center align-items-center flex-column">
       <Form className="d-flex flex-column justify-content-center h-25 w-25">
-        <div className="d-flex flex-column justify-content-center px-3 mb-3 text-white">
-          <h2 className="d-flex justify-content-center font-weight-bold mb-3">Contact Us</h2>
+        <div className="d-flex flex-column justify-content-center px-3 text-white">
+          <h2 className="d-flex justify-content-center font-weight-bold centered">Contact Us</h2>
         </div>
         <Card className="text-center rounded form">
           <Form.Group className="form-group mb-2 p-3">
@@ -39,7 +39,7 @@ function Contact() {
             />
           </Form.Group>
         </Card>
-        <div className="mb p-3">
+        <div className="p-hover p-3">
           <Link to="/confirm">
             <Button type="submit" className="btn-color rounded w-100">
               Submit
