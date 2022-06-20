@@ -62,4 +62,4 @@ const userApiRouter = express.Router();
 userApiRoutes(userApiRouter, db);
 app.use('/api/user', userApiRouter);
 
-module.exports = app;
+module.exports = {app, db};
