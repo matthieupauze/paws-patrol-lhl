@@ -1,7 +1,9 @@
 import { useEffect, useReducer, useRef } from 'react';
 import { Marker, Polyline, useMap } from 'react-leaflet';
 
-const useTracker = ({ defaultPosition, trackingZoom }) => {
+const trackingZoom = 18;
+
+const useTracker = (defaultPosition) => {
   const reducer = (positions, { coords, foundPosition }) => {
     const last = positions[positions.length - 1];
     if (last.lat !== coords.lat || last.lng !== coords.lng) {

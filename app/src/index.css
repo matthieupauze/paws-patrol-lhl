@@ -83,28 +83,22 @@
   max-width: 66px;
 }
 
-.satelite-view {
-  background: center / cover no-repeat url('/images/earth.jpeg');
-  padding: 2rem;
-  max-width: 66px;
-  border: none;
-  transition: max-width 0.5s, padding 0.5s;
+.satellite-bg {
+  background: url('/images/earth.jpeg') no-repeat center / cover;
 }
 
-.satelite-view:hover {
-  padding: 2.3rem;
-  max-width: 90px;
-}
-
-.street-view {
+.street-bg {
   background: url('/images/street.png') no-repeat center / cover;
+}
+
+.view-button {
   padding: 2rem;
   max-width: 66px;
   border: none;
   transition: max-width 0.5s, padding 0.5s;
 }
 
-.street-view:hover {
+.view-button:hover {
   padding: 2.3rem;
   max-width: 90px;
 }
