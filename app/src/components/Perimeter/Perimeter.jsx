@@ -24,8 +24,8 @@ function Perimeter({ perimeters, setPerimeters }) {
                     type="radio"
                     name="radio"
                     value={radio.id}
-                    checked={radioImei === radio.id}
-                    variant={radioImei === radio.id ? 'secondary' : 'transparent'}
+                    checked={Number(radioImei) === radio.id}
+                    variant={Number(radioImei) === radio.id ? 'secondary' : 'transparent'}
                     onChange={(e) => setRadioImei(e.currentTarget.value)}
                   >
                     {radio.id}
