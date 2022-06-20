@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var {app, db} = require('./server');
+var { app, db } = require('./server');
 var debug = require('debug')('server:server');
 var http = require('http');
 const { registerGPS, serverConfig } = require('./helpers/socket-helpers');
