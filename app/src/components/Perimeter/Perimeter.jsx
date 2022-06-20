@@ -3,12 +3,11 @@ import { useState } from 'react';
 import { Button, ButtonGroup, ToggleButton, Card } from 'react-bootstrap';
 import axios from 'axios';
 
-const Perimeter = ({ perimeters, setPerimeters }) => {
+function Perimeter({ perimeters, setPerimeters }) {
   const [active, setActive] = useState(false);
   const [radioImei, setRadioImei] = useState('');
   const radios = perimeters;
 
-  console.log('This is the current radioIMEI', radioImei);
   return (
     <>
       {!active && (
@@ -38,7 +37,7 @@ const Perimeter = ({ perimeters, setPerimeters }) => {
                 <Button
                   type="submit"
                   className="btn-color rounded w-100"
-                  onClick={(e) => {
+                  onClick={() => {
                     setActive(true);
                   }}
                 >

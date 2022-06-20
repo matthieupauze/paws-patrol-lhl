@@ -2,15 +2,13 @@ import { MapContainer, Rectangle, TileLayer, useMapEvents } from 'react-leaflet'
 import { Card, Button } from 'react-bootstrap';
 import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import usePoll from '../../hooks/usePoll';
-import useTracker from '../../hooks/useTracker';
-import useEvent from '../../hooks/useEvent';
+import Tracker from '../Tracker';
 
 const { VITE_PORT_EXPRESS } = import.meta.env;
 
 const defaultZoom = 4;
-const trackingZoom = 18;
 const defaultPosition = { imei: 0, lat: 45, lng: -73 };
+
 const streetData = {
   url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -23,25 +21,7 @@ const satelliteData = {
   iconClass: 'street-bg',
 };
 
-function Tracker() {
-  const { genLine, genMarker, updatePosition, foundPosition } = useTracker({
-    defaultPosition,
-    trackingZoom,
-  });
-
-  // usePoll(updatePosition, foundPosition, defaultPosition);
-  useEvent(updatePosition, foundPosition, defaultPosition);
-
-  return (
-    <>
-      {genLine()}
-      {genMarker()}
-    </>
-  );
-}
-
 function LocationMarker({ p1, p2, setP1, setP2 }) {
-  // const [position, setPosition] = useState(null);
   const [second, setSecond] = useState(false);
   const map = useMapEvents({
     click(e) {
@@ -127,7 +107,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
         doubleClickZoom={false}
       >
         <TileLayer ref={urlRef} url={tileLayerData.url} attribution={tileLayerData.attribution} />
-        <Tracker />
+        <Tracker defaultPosition={defaultPosition} />
         {perimeter && <LocationMarker p1={p1} p2={p2} setP1={setP1} setP2={setP2} />}
       </MapContainer>
       {/* satelite view button */}
@@ -165,7 +145,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
               <div className="d-grid gap-3">
                 <Button
                   className="btn-color rounded w-100"
-                  onClick={tracking ? stopTracking: startTracking}
+                  onClick={tracking ? stopTracking : startTracking}
                 >
                   {tracking ? 'Stop tracking' : 'Start Tracking'}
                 </Button>
