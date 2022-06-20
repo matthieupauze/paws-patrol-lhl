@@ -60,5 +60,5 @@ function Perimeter({ perimeters, setPerimeters }) {
       )}
     </>
   );
-};
+}
 export default Perimeter;
