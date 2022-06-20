@@ -95,16 +95,6 @@
   background: url('../public/images/day-and-night.png') no-repeat center / cover;
 }
 
-.button-container {
-  background-color: gray;
-  min-width: 64px;
-  transition: width 0.5s;
-}
-
-.button-container:hover {
-  min-width: 80px;
-}
-
 .view-button {
   padding: 2rem;
   max-width: 66px;
