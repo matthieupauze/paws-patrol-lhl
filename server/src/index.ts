@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var {app, db} = require('./server');
+var app = require('./server');
 var debug = require('debug')('server:server');
 var http = require('http');
 const { registerGPS, serverConfig } = require('./helpers/socket-helpers');
@@ -24,11 +24,10 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-
 const io = new Server(server, serverConfig);
 
 io.on('connection', (socket) => {
-  registerGPS(io, socket, db);
+  registerGPS(io, socket);
 });
 
 /**
