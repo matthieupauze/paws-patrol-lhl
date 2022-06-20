@@ -109,8 +109,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
       setDarkView(true);
       return;
     }
-    setTileLayerData(streetData);
-    setSatelliteView(false);
+    setSatellite(false);
     setDarkView(false);
   };
 
@@ -134,7 +133,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
           <Card className=" w-25 rounded ph-color dark contain">
             <div className="d-grid">
               <Button
-                className={`view-button rounded w-100 dark-bg`}
+                className="view-button rounded w-100 dark-bg"
                 onClick={() => setDark(!darkView)}
               />
             </div>
