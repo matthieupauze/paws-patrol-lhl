@@ -91,6 +91,10 @@
   background: url('/images/street.png') no-repeat center / cover;
 }
 
+.dark-bg {
+  background: url('../public/images/day-and-night.png') no-repeat center / cover;
+}
+
 .view-button {
   padding: 2rem;
   max-width: 66px;
@@ -99,8 +103,12 @@
 }
 
 .view-button:hover {
+  background-color: transparent;
   padding: 2.3rem;
-  max-width: 90px;
+}
+
+.view-button:focus {
+  background-color: transparent;
 }
 
 .form {

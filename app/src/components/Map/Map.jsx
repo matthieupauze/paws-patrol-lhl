@@ -20,6 +20,12 @@ const satelliteData = {
     'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
   iconClass: 'street-bg',
 };
+const darkData = {
+  //DARK MODE!
+  url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  iconClass: 'satellite-bg',
+};
 
 function LocationMarker({ p1, p2, setP1, setP2 }) {
   const [second, setSecond] = useState(false);
@@ -39,6 +45,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
   const [p2, setP2] = useState(null);
   const [tracking, setTracking] = useState(false);
   const [satelliteView, setSatelliteView] = useState(false);
+  const [darkView, setDarkView] = useState(false);
   const [tileLayerData, setTileLayerData] = useState(streetData);
   const urlRef = useRef(null);
 
@@ -96,6 +103,16 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
     setSatelliteView(false);
   };
 
+  const setDark = (isDark) => {
+    if (isDark) {
+      setTileLayerData(darkData);
+      setDarkView(true);
+      return;
+    }
+    setSatellite(false);
+    setDarkView(false);
+  };
+
   return (
     <section className=" d-flex justify-content-end align-items-center flex-column">
       <MapContainer
@@ -110,8 +127,21 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
         <Tracker defaultPosition={defaultPosition} />
         {perimeter && <LocationMarker p1={p1} p2={p2} setP1={setP1} setP2={setP2} />}
       </MapContainer>
+      {/* Dark Mode button */}
+      {!satelliteView && (
+        <div className="info w-25 align-self-start m-3 mb-5 pb-5">
+          <Card className=" w-25 rounded ph-color contain">
+            <div className="d-grid">
+              <Button
+                className="view-button rounded w-100 dark-bg"
+                onClick={() => setDark(!darkView)}
+              />
+            </div>
+          </Card>
+        </div>
+      )}
       {/* satelite view button */}
-      <div className="info w-25 align-self-start m-3 pb-4">
+      <div className="info w-25 align-self-start m-3 mb-2 pb-2">
         <Card className=" w-25 rounded ph-color contain">
           <div className="d-grid">
             <Button
