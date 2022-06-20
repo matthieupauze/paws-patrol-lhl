@@ -95,6 +95,16 @@
   background: url('../public/images/day-and-night.png') no-repeat center / cover;
 }
 
+.dark {
+  background-color: rgba(147, 145, 145, 0.5);
+  padding-right: 4rem;
+  transition: padding-right 0.5s;
+}
+
+.dark:hover {
+  padding-right: 4.6rem;
+}
+
 .view-button {
   padding: 2rem;
   max-width: 66px;

@@ -24,7 +24,6 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-
 const io = new Server(server, serverConfig);
 
 io.on('connection', (socket) => {
