@@ -33,8 +33,9 @@ module.exports = (router: any, db: any) => {
 
   // end a trip with end time
   router.patch('/:imei', (req: any, res: any) => {
-    const { id, end } = req.body;
-    db.updateTrip(id, end)
+    const { imei } = req.params;
+    const { end } = req.body;
+    db.updateTrip(imei, end)
       .then((data: any) => {
         console.log(data);
         res.status(200).json(data);
