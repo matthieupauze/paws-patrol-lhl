@@ -131,7 +131,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
       {/* Dark Mode button */}
       {!satelliteView && (
         <div className="info w-25 align-self-start m-3 mb-5 pb-5">
-          <Card className=" w-25 rounded ph-color contain">
+          <Card className=" w-25 rounded ph-color dark contain">
             <div className="d-grid">
               <Button
                 className={`view-button rounded w-100 dark-bg`}
