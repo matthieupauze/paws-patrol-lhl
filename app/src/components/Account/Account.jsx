@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import { Form, Button, Card, Toast } from 'react-bootstrap';
 import axios from 'axios';
 import Map from '../Map';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const { VITE_PORT_EXPRESS } = import.meta.env;
 
 function Account() {
   const [users, setUsers] = useState({});
-  const [update, setUpdate] = useState('Update');
 
   const updateUser = async (e) => {
     e.preventDefault();
@@ -19,9 +20,9 @@ function Account() {
     };
     const data = await axios.patch(`http://localhost:${VITE_PORT_EXPRESS}/api/user`, user);
     if (data.error) {
-      return setUpdate('An Error Occured');
+      return toast('An error occured while updating, please try again briefly.');
     }
-    return setUpdate('Account Updated');
+    return toast('Account information updated.');
   };
 
   useEffect(() => {
@@ -79,12 +80,13 @@ function Account() {
             </Form.Group>
             <Form.Group className=" my-2 px-3">
               <Button type="submit" className="btn-color rounded w-100">
-                {update}
+                Update
               </Button>
             </Form.Group>
           </Form>
         </Card>
       </div>
+      <ToastContainer autoClose={2500} />
     </section>
   );
 }
