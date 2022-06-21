@@ -78,7 +78,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
     axios
       .post(`http://localhost:${VITE_PORT_EXPRESS}/api/trip/1`, data)
       .then(() => {
-        setTracking(!tracking);
+        setTracking(true);
       })
       .catch((err) => console.log('err', err.message));
   };
@@ -88,7 +88,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
     axios
       .patch(`http://localhost:${VITE_PORT_EXPRESS}/api/trip/1`, data)
       .then(() => {
-        setTracking(!tracking);
+        setTracking(false);
       })
       .catch((err) => console.log('err', err.message));
   };
@@ -124,7 +124,7 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
         doubleClickZoom={false}
       >
         <TileLayer ref={urlRef} url={tileLayerData.url} attribution={tileLayerData.attribution} />
-        <Tracker defaultPosition={defaultPosition} />
+        <Tracker defaultPosition={defaultPosition} isPolling={tracking} />
         {perimeter && <LocationMarker p1={p1} p2={p2} setP1={setP1} setP2={setP2} />}
       </MapContainer>
       {/* Dark Mode button */}

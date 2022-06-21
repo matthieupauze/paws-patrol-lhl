@@ -1,34 +1,46 @@
 import axios from 'axios';
-import { useEffect } from 'react';
-const { VITE_PORT_EXPRESS } = import.meta.env;
+import { useEffect, useState } from 'react';
 
-const usePoll = (updatePosition, foundPosition, defaultPosition) => {
+const { VITE_PORT_EXPRESS } = import.meta.env;
+const deviceId = 2;
+
+const usePoll = (updatePosition, foundPosition, defaultPosition, isPolling) => {
+  const [poller, setPoller] = useState(undefined);
+
   const fetchPosition = () => {
-    return axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/coordinate/34612`).then((res) => {
-      const { id, latitude, longitude } = res.data;
-      if (!id || !latitude || !longitude) {
-        return defaultPosition;
-      }
-      return { imei: id, lat: latitude, lng: longitude };
-    });
+    return axios
+      .get(`http://localhost:${VITE_PORT_EXPRESS}/api/coordinate/${deviceId}`)
+      .then((res) => {
+        const { id, latitude, longitude } = res.data;
+        if (!id || !latitude || !longitude) {
+          return defaultPosition;
+        }
+        return { imei: id, lat: latitude, lng: longitude };
+      });
   };
 
   const setupTimer = () => {
-    return setInterval(() => {
-      fetchPosition()
-        .then((data) => {
-          updatePosition({ coords: data, foundPosition });
-        })
-        .catch((err) => console.log(err));
-    }, 5000);
+    if (poller) {
+      return;
+    }
+    setPoller(
+      setInterval(() => {
+        fetchPosition()
+          .then((data) => {
+            updatePosition({ coords: data, foundPosition });
+          })
+          .catch((err) => console.log(err));
+      }, 1000)
+    );
   };
 
   useEffect(() => {
-    const interval = setupTimer();
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+    if (isPolling) {
+      return setupTimer();
+    }
+    clearInterval(poller);
+    setPoller(undefined);
+  }, [isPolling]);
 };
 
 export default usePoll;
