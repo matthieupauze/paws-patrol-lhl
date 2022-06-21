@@ -1,24 +1,27 @@
 import { useEffect, useState } from 'react';
-import { Form, Button, Card, ButtonGroup, ToggleButton } from 'react-bootstrap';
+import { Form, Button, Card, Toast } from 'react-bootstrap';
 import axios from 'axios';
 import Map from '../Map';
 
 const { VITE_PORT_EXPRESS } = import.meta.env;
 
 function Account() {
-  const [users, setUsers] = useState(
-    {
-      id: 1,
-      name: 'Robbie Prokop',
-      phone: '1-234-567-8909',
-      email: 'support@paw-patrol.com',
-      password: '123456789',
-    },
-  );
+  const [users, setUsers] = useState({});
+  const [update, setUpdate] = useState('Update');
 
-  const updateUser = (e) => {
+  const updateUser = async (e) => {
     e.preventDefault();
-    console.log("hello");
+    const user = {
+      name: e.target[0].value,
+      phone: e.target[1].value,
+      email: e.target[2].value,
+      password: e.target[3].value,
+    }
+    const data = await axios.patch(`http://localhost:${VITE_PORT_EXPRESS}/api/user`, user);
+    if (data.error) {
+      return setUpdate('An Error Occured');
+    }
+    return setUpdate('Account Updated');
   };
 
   useEffect(() => {
@@ -47,7 +50,7 @@ function Account() {
                     className="form-control bg-transparent text-white ph-color"
                     type="text"
                     id="name"
-                    placeholder={users.name}
+                    defaultValue={users.name}
                   />
                 </Form.Group>
                 <Form.Group className="form-group my-2 pb-3 px-3">
@@ -55,15 +58,15 @@ function Account() {
                     className="form-control form-control bg-transparent text-white ph-color"
                     type="text"
                     id="phone"
-                    placeholder={users.phone}
+                    defaultValue={users.phone}
                   />
                 </Form.Group>
                 <Form.Group className="form-group my-2 pb-3 px-3">
                   <Form.Control
                     className="form-control bg-transparent text-white ph-color"
-                    type="text"
+                    type="email"
                     id="email"
-                    placeholder={users.email}
+                    defaultValue={users.email}
                   />
                 </Form.Group>
                 <Form.Group className="form-group my-2 pb-3 px-3">
@@ -71,15 +74,16 @@ function Account() {
                     className="form-control bg-transparent text-white ph-color"
                     type="password"
                     id="password"
+                    defaultValue={users.password}
                   />
                 </Form.Group>
                 <Form.Group className=" my-2 px-3">
                   <Button type="submit" className="btn-color rounded w-100">
-                    Add Device
+                    {update}
                   </Button>
                 </Form.Group>
               </Form>
-            </Card>
+            </Card>          
       </div>
     </section>
   );
