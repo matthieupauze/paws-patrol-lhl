@@ -14,7 +14,6 @@ import Perimeter from './components/Perimeter';
 
 function App() {
   const [logged, setLogged] = useState(false);
-  const [perimeters, setPerimeters] = useState([]);
 
   return (
     <>
@@ -22,13 +21,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Map interactive perimeter={false} track />} />
         <Route path="/device" element={<Device />} />
-        <Route
-          path="/perimeter"
-          element={<Perimeter perimeters={perimeters} setPerimeters={setPerimeters} />}
-        />
+        <Route path="/perimeter" element={<Perimeter />} />
         <Route path="/account" element={<Account />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/confirm" element={<Confirm />} />
+        {/* <Route path="/confirm" element={<Confirm />} /> */}
         <Route path="/update" element={<Update />} />
         {/* <Route path="/signup" element={<SignUp />} /> */}
         <Route path="/login" element={<Login logged={logged} setLogged={setLogged} />} />
@@ -36,8 +32,8 @@ function App() {
         <Route
           path="*"
           element={
-            <div>
-              <h2>404 page not found</h2>
+            <div className="d-flex login justify-content-center align-items-center">
+              <h2 className="text-white">404 page not found</h2>
             </div>
           }
         />

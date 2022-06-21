@@ -16,9 +16,9 @@ function Header({ logged, setLogged }) {
                 <LinkContainer to="/">
                   <Nav.Link>Track Pet</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/trips">
+                {/* <LinkContainer to="/trips">
                   <Nav.Link>History</Nav.Link>
-                </LinkContainer>
+                </LinkContainer> */}
                 <LinkContainer to="/device">
                   <Nav.Link>Devices</Nav.Link>
                 </LinkContainer>

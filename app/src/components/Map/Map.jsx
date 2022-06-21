@@ -40,7 +40,7 @@ function LocationMarker({ p1, p2, setP1, setP2 }) {
   return p1 && p2 ? <Rectangle bounds={rectangle} /> : null;
 }
 
-function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
+function Map({ interactive, perimeter, setActive, track, updatePerimeters }) {
   const [p1, setP1] = useState(null);
   const [p2, setP2] = useState(null);
   const [tracking, setTracking] = useState(false);
@@ -55,21 +55,14 @@ function Map({ interactive, perimeter, setPerimeters, setActive, track }) {
     }
   }, [tileLayerData]);
 
-  useEffect(() => {
-    if (setPerimeters) {
-      const loadPerimeters = async () => {
-        const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/perimeter`);
-        setPerimeters(data);
-      };
-      loadPerimeters();
-    }
-  }, []);
-
   const savePerimeter = () => {
     const data = { p1lat: p1.lat, p1long: p1.lng, p2lat: p2.lat, p2long: p2.lng };
     axios
       .post(`http://localhost:${VITE_PORT_EXPRESS}/api/perimeter/1`, data)
-      .then(() => setActive && setActive(false))
+      .then(() => {
+        setActive(false);
+        updatePerimeters();
+      })
       .catch((err) => console.log('err', err.message));
   };
 

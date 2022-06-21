@@ -217,6 +217,16 @@ const updateDevice = (imei: number, name: string, microchip: string) => {
 };
 exports.updateDevice = updateDevice;
 
+const deleteDevice = (id: number) => {
+  return Device.destroy({
+    where: {
+      id: id,
+    },
+  });
+};
+
+exports.deleteDevice = deleteDevice;
+
 const getDevices = () => {
   return Device.findAll();
 };
@@ -302,6 +312,16 @@ const updatePerimeter = (imei: number, p1: Coord, p2: Coord) => {
   });
 };
 exports.updatePerimeter = updatePerimeter;
+
+const deletePerimeter = (id: number) => {
+  return Perimeter.destroy({
+    where: {
+      id: id,
+    },
+  });
+};
+
+exports.deletePerimeter = deletePerimeter;
 
 const getPerimeters = () => {
   return Perimeter.findAll();
