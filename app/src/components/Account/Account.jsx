@@ -1,48 +1,92 @@
 import { useEffect, useState } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Form, Button, Card, Toast } from 'react-bootstrap';
 import axios from 'axios';
 import Map from '../Map';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const { VITE_PORT_EXPRESS } = import.meta.env;
 
 function Account() {
-  const [users, setUsers] = useState([
-    {
-      name: 'Robbie Prokop',
-      phone: '1-234-567-8909',
-      email: 'support@paw-patrol.com',
-      password: '123456789',
-    },
-  ]);
+  const [users, setUsers] = useState({});
 
-  // useEffect(() => {
-  //   const loadUsers = async () => {
-  //     const { data } = await axios.get('http://localhost:8080/api/user');
-  //     setUsers(data);
-  //   };
-  //   loadUsers();
-  // }, []);
+  const updateUser = async (e) => {
+    e.preventDefault();
+    const user = {
+      name: e.target[0].value,
+      phone: e.target[1].value,
+      email: e.target[2].value,
+      password: e.target[3].value,
+    };
+    const data = await axios.patch(`http://localhost:${VITE_PORT_EXPRESS}/api/user`, user);
+    if (data.error) {
+      return toast('An error occured while updating, please try again briefly.');
+    }
+    return toast('Account information updated.');
+  };
+
+  useEffect(() => {
+    const loadUsers = async () => {
+      const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/user`);
+      console.log(data);
+      setUsers({
+        id: data.id,
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        password: data.password,
+      });
+    };
+    loadUsers();
+  }, []);
   return (
     <section className=" d-flex justify-content-center align-items-center flex-column">
       <Map interactive={false} />
       <div className="info">
         <h2 className="centered">Account Info</h2>
-        <Card className="text-center rounded form">
-          <Card.Body>
-            <Card.Text>Name</Card.Text>
-            <Card.Title className="border-bottom border-dark pb-1 text-white">
-              {users[0].name}
-            </Card.Title>
-            <Card.Text>Phone</Card.Text>
-            <Card.Title className="border-bottom border-dark pb-1 ">{users[0].phone}</Card.Title>
-            <Card.Text>Email</Card.Text>
-            <Card.Title className="border-bottom border-dark pb-1">{users[0].email}</Card.Title>
-            <Card.Text>Password</Card.Text>
-            <Card.Title className="border-bottom border-dark pb-1">{users[0].password}</Card.Title>
-          </Card.Body>
+        <Card className="m-3 p-3 rounded w-25 ph-color w-100">
+          <Form className="d-flex flex-column justify-content-center " onSubmit={updateUser}>
+            <Form.Group className="form-group my-2 p-3">
+              <Form.Control
+                className="form-control bg-transparent text-white ph-color"
+                type="text"
+                id="name"
+                defaultValue={users.name}
+              />
+            </Form.Group>
+            <Form.Group className="form-group my-2 pb-3 px-3">
+              <Form.Control
+                className="form-control form-control bg-transparent text-white ph-color"
+                type="text"
+                id="phone"
+                defaultValue={users.phone}
+              />
+            </Form.Group>
+            <Form.Group className="form-group my-2 pb-3 px-3">
+              <Form.Control
+                className="form-control bg-transparent text-white ph-color"
+                type="email"
+                id="email"
+                defaultValue={users.email}
+              />
+            </Form.Group>
+            <Form.Group className="form-group my-2 pb-3 px-3">
+              <Form.Control
+                className="form-control bg-transparent text-white ph-color"
+                type="password"
+                id="password"
+                defaultValue={users.password}
+              />
+            </Form.Group>
+            <Form.Group className=" my-2 px-3">
+              <Button type="submit" className="btn-color rounded w-100">
+                Update
+              </Button>
+            </Form.Group>
+          </Form>
         </Card>
-        <div className="d-grid mt-3">
-          <Button className="btn-color rounded">Edit</Button>
-        </div>
       </div>
+      <ToastContainer autoClose={2500} />
     </section>
   );
 }
