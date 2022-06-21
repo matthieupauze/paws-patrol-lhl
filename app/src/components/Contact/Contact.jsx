@@ -7,9 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const { VITE_PORT_EXPRESS } = import.meta.env;
 
-
 function Contact() {
-
   const [user, setUser] = useState({});
 
   const sendEmail = async (e) => {
