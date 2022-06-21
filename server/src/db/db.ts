@@ -21,7 +21,7 @@ const Device = sequelize.define(
   'device',
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       allowNull: false,
       unique: true,
       primaryKey: true,
