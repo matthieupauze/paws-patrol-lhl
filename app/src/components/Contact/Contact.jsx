@@ -1,10 +1,43 @@
+import { useEffect, useState } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const { VITE_PORT_EXPRESS } = import.meta.env;
 
 function Contact() {
+  const [user, setUser] = useState({});
+
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    const email = {
+      subject: e.target[0].value,
+      to: e.target[1].value,
+      body: e.target[2].value,
+    };
+    console.log(email);
+    const data = await axios.post(`http://localhost:${VITE_PORT_EXPRESS}/api/email`, email);
+    if (data.error) {
+      return toast('An error occured with email, please try again briefly.');
+    }
+    return toast('Email sent.');
+  };
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/user`);
+      setUser({
+        name: data.name,
+        email: data.email,
+      });
+    })();
+  }, []);
+
   return (
     <section className="login d-flex justify-content-center align-items-center flex-column">
-      <Form className="d-flex flex-column justify-content-center h-25 w-25">
+      <Form className="d-flex flex-column justify-content-center h-25 w-25" onSubmit={sendEmail}>
         <div className="d-flex flex-column justify-content-center px-3 text-white">
           <h2 className="d-flex justify-content-center font-weight-bold centered">Contact Us</h2>
         </div>
@@ -19,6 +52,7 @@ function Contact() {
               type="text"
               id="name"
               placeholder="Name"
+              value={user.name}
             />
           </Form.Group>
           <Form.Group className="form-group mb-2 p-3">
@@ -27,6 +61,7 @@ function Contact() {
               type="email"
               id="email"
               placeholder="Email"
+              value={user.email}
             />
           </Form.Group>
           <Form.Group className="form-group mb-2 p-3">
@@ -40,13 +75,12 @@ function Contact() {
           </Form.Group>
         </Card>
         <div className="p-hover p-3">
-          <Link to="/confirm">
-            <Button type="submit" className="btn-color rounded w-100">
-              Submit
-            </Button>
-          </Link>
+          <Button type="submit" className="btn-color rounded w-100">
+            Submit
+          </Button>
         </div>
       </Form>
+      <ToastContainer autoClose={2500} />
     </section>
   );
 }
