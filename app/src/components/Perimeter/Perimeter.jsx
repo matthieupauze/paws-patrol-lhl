@@ -34,6 +34,10 @@ function Perimeter() {
           <Map interactive={active} perimeter={false} />
           <div className="info w-25">
             <h2 className="centered">Perimeter</h2>
+            <p className="text-white">
+              Set a safe zone for your furry friend to explore. If your pet leaves the safe zone, we
+              will notify you via SMS.
+            </p>
             <Card className="p-3 w-100 rounded ph-color">
               <ButtonGroup className="mb-3 d-flex flex-column gap-2 rounded">
                 {perimeters.map((perimeter, idx) => (

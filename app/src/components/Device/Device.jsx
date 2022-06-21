@@ -92,6 +92,7 @@ function Device() {
           <Map interactive={false} />
           <div className="info w-25">
             <h2 className="centered">Devices</h2>
+            <p className="text-white">Keep track of multiple pets with multiple devices!</p>
             <Card className="p-3 w-100 rounded ph-color">
               <ButtonGroup className="mb-3 d-flex flex-column gap-2 rounded">
                 {devices.map(

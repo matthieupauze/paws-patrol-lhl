@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -37,7 +36,13 @@ function Contact() {
 
   return (
     <section className="login d-flex justify-content-center align-items-center flex-column">
-      <Form className="d-flex flex-column justify-content-center h-25 w-25" onSubmit={sendEmail}>
+      <Form
+        className="d-flex flex-column justify-content-center h-25 w-25"
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        onSubmit={sendEmail}
+      >
         <div className="d-flex flex-column justify-content-center px-3 text-white">
           <h2 className="d-flex justify-content-center font-weight-bold centered">Contact Us</h2>
         </div>
