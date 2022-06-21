@@ -1,7 +1,28 @@
+import { useEffect, useState } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const { VITE_PORT_EXPRESS } = import.meta.env;
+
 
 function Contact() {
+
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    (async () => {
+      console.log("hitting");
+      const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/user`);
+      setUser({
+        name: data.name,
+        email: data.email,
+      });
+    })();
+  }, []);
+
   return (
     <section className="login d-flex justify-content-center align-items-center flex-column">
       <Form className="d-flex flex-column justify-content-center h-25 w-25">
@@ -19,6 +40,7 @@ function Contact() {
               type="text"
               id="name"
               placeholder="Name"
+              value={user.name}
             />
           </Form.Group>
           <Form.Group className="form-group mb-2 p-3">
@@ -27,6 +49,7 @@ function Contact() {
               type="email"
               id="email"
               placeholder="Email"
+              value={user.email}
             />
           </Form.Group>
           <Form.Group className="form-group mb-2 p-3">
@@ -47,6 +70,7 @@ function Contact() {
           </Link>
         </div>
       </Form>
+      <ToastContainer autoClose={2500} />
     </section>
   );
 }
