@@ -9,7 +9,7 @@ function Contact() {
         name="contact"
         method="POST"
         data-netlify="true"
-        onSubmit={sendEmail}
+        // onSubmit={sendEmail}
       >
         <div className="d-flex flex-column justify-content-center px-3 text-white">
           <h2 className="d-flex justify-content-center font-weight-bold centered">Contact Us</h2>
