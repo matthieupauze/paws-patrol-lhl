@@ -34,6 +34,7 @@ function Header({ logged, setLogged }) {
                 <LinkContainer to="/login">
                   <Nav.Link
                     onClick={() => {
+                      document.cookie = 'logged=false';
                       setLogged(!logged);
                     }}
                   >
