@@ -46,5 +46,15 @@ module.exports = (router: any, db: any) => {
       });
   });
 
+  // Delete Perimeter
+  router.delete('/:imei', (req: any, res: any) => {
+    db.deletePerimeter(req.params.imei)
+      .then((data: any) => res.status(200).json(data))
+      .catch((err: any) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
+
   return router;
 };

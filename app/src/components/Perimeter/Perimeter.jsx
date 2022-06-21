@@ -1,12 +1,27 @@
 import Map from '../Map';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, ButtonGroup, ToggleButton, Card } from 'react-bootstrap';
 import axios from 'axios';
+const { VITE_PORT_EXPRESS } = import.meta.env;
 
 function Perimeter({ perimeters, setPerimeters }) {
   const [active, setActive] = useState(false);
   const [radioImei, setRadioImei] = useState('');
   const radios = perimeters;
+
+  const deleteItem = async (imei) => {
+    const { data } = await axios.delete(
+      `http://localhost:${VITE_PORT_EXPRESS}/api/perimeter/${imei}`
+    );
+  };
+
+  useEffect(() => {
+    const loadPerimeters = async () => {
+      const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/perimeter`);
+      setPerimeters(data);
+    };
+    loadPerimeters();
+  }, [deleteItem]);
 
   return (
     <>
@@ -30,7 +45,7 @@ function Perimeter({ perimeters, setPerimeters }) {
                   >
                     <div className="d-flex justify-content-between px-3">
                       <div>{radio.id}</div>
-                      <Button className="delete-button">
+                      <Button className="delete-button" onClick={() => deleteItem(radio.id)}>
                         <img src="" alt="" />
                       </Button>
                     </div>

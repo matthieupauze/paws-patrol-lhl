@@ -30,13 +30,17 @@ function Device() {
       .catch((err) => console.log(err));
   };
 
+  const deleteItem = async (imei) => {
+    const { data } = await axios.delete(`http://localhost:${VITE_PORT_EXPRESS}/api/device/${imei}`);
+  };
+
   useEffect(() => {
     const loadDevices = async () => {
       const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/device`);
       setDevices(data);
     };
     loadDevices();
-  }, []);
+  }, [deleteItem]);
 
   return (
     <>
@@ -90,7 +94,7 @@ function Device() {
               <ButtonGroup className="mb-3 d-flex flex-column gap-2 rounded">
                 {radios.map(
                   (radio, idx) => (
-                    console.log(radio),
+                    console.log('radio', radio),
                     (
                       <ToggleButton
                         key={idx}
@@ -105,7 +109,7 @@ function Device() {
                       >
                         <div className="d-flex justify-content-between px-3">
                           <div>{radio.name}</div>
-                          <Button className="delete-button">
+                          <Button className="delete-button" onClick={() => deleteItem(radio.id)}>
                             <img src="" alt="" />
                           </Button>
                         </div>
