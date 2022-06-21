@@ -45,11 +45,14 @@
 }
 
 .nav-link {
-  transition: font-size 0.5s, padding 0.5s;
+  border-bottom: 2px solid var(--primary);
+  transition: font-size 0.5s, padding 0.5s, ease-in-out border-bottom 0.5s, transform 0.7s;
 }
 .nav-link:hover {
   font-size: 1.1rem;
   padding: 0.5rem 0.5rem 0;
+  border-bottom: 2px solid #000000;
+  transform: translate(0, -5px);
 }
 
 .btn-color {
@@ -67,14 +70,30 @@
   font-size: 1.1rem;
 }
 
+.delete-button {
+  background: url('../public/images/trash-can.png') no-repeat center/contain;
+  border: none;
+  align-self: end;
+  max-width: 25px;
+  max-height: 25px;
+  transition: transform 0.5s;
+}
+.delete-button:focus,
+.delete-button:hover {
+  background-color: transparent;
+  transform: rotate(20deg);
+}
+
 .list-item {
+  font-weight: 500;
   font-size: 1rem;
   padding: 0.3rem 0.7rem;
   transition: font-size 0.5s, padding 0.5s, background-color 0.5s;
 }
 
 .list-item:hover {
-  font-size: 1.1rem;
+  font-weight: 600;
+  font-size: 1.2rem;
   background-color: var(--third);
   padding: 0.5rem 0.7rem;
 }

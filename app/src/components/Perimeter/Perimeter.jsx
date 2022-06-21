@@ -28,7 +28,12 @@ function Perimeter({ perimeters, setPerimeters }) {
                     variant={Number(radioImei) === radio.id ? 'secondary' : 'transparent'}
                     onChange={(e) => setRadioImei(e.currentTarget.value)}
                   >
-                    {radio.id}
+                    <div className="d-flex justify-content-between px-3">
+                      <div>{radio.id}</div>
+                      <Button className="delete-button">
+                        <img src="" alt="" />
+                      </Button>
+                    </div>
                   </ToggleButton>
                   // react initial render get request api to get all the devices useeffect to set Devices to all the devices available in the db
                 ))}

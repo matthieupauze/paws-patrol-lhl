@@ -36,7 +36,7 @@ function App() {
         <Route
           path="*"
           element={
-            <div>
+            <div className="d-flex justify-content-center align-items-center m-5 p-5">
               <h2>404 page not found</h2>
             </div>
           }
