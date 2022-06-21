@@ -10,37 +10,39 @@ const { VITE_PORT_EXPRESS } = import.meta.env;
 function Device() {
   const [form, setForm] = useState(false);
   const [devices, setDevices] = useState([]);
-  const [radioImei, setRadioImei] = useState('0');
-  console.log('radioImei', radioImei);
-  const radios = devices;
+  const [deviceImei, setdeviceImei] = useState('0');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newDevice = {
       name: e.target[0].value,
-      imei: e.target[1].value,
+      id: e.target[1].value,
       microchip: e.target[2].value,
     };
     const newDevices = [...devices, newDevice];
     setDevices(newDevices);
-    console.log(VITE_PORT_EXPRESS);
+
     axios
-      .post(`http://localhost:${VITE_PORT_EXPRESS}/api/device/${newDevice.imei}`, newDevice)
+      .post(`http://localhost:${VITE_PORT_EXPRESS}/api/device/${newDevice.id}`, newDevice)
       .then((res) => setForm(!form), console.log('device uploaded'))
       .catch((err) => console.log(err));
   };
 
-  const deleteItem = async (imei) => {
-    const { data } = await axios.delete(`http://localhost:${VITE_PORT_EXPRESS}/api/device/${imei}`);
+  const deleteItem = async (id) => {
+    axios
+      .delete(`http://localhost:${VITE_PORT_EXPRESS}/api/device/${id}`)
+      .then(() => {
+        setDevices(devices.filter((d) => d.id !== id));
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
-    const loadDevices = async () => {
+    (async () => {
       const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/device`);
       setDevices(data);
-    };
-    loadDevices();
-  }, [deleteItem]);
+    })();
+  }, []);
 
   return (
     <>
@@ -92,24 +94,24 @@ function Device() {
             <h2 className="centered">Devices</h2>
             <Card className="p-3 w-100 rounded ph-color">
               <ButtonGroup className="mb-3 d-flex flex-column gap-2 rounded">
-                {radios.map(
-                  (radio, idx) => (
-                    console.log('radio', radio),
+                {devices.map(
+                  (device, idx) => (
+                    console.log('Device:', device),
                     (
                       <ToggleButton
                         key={idx}
-                        id={`radio-${idx}`}
+                        id={`device-${idx}`}
                         type="radio"
-                        name="radio"
-                        value={radio.id}
-                        checked={Number(radioImei) === radio.id}
-                        variant={Number(radioImei) === radio.id ? 'secondary' : 'transparent'}
-                        onChange={(e) => setRadioImei(e.currentTarget.value)}
+                        name="device"
+                        value={device.id}
+                        checked={Number(deviceImei) === device.id}
+                        variant={Number(deviceImei) === device.id ? 'secondary' : 'transparent'}
+                        onChange={(e) => setdeviceImei(e.currentTarget.value)}
                         className="list-item"
                       >
                         <div className="d-flex justify-content-between px-3">
-                          <div>{radio.name}</div>
-                          <Button className="delete-button" onClick={() => deleteItem(radio.id)}>
+                          <div>{device.name}</div>
+                          <Button className="delete-button" onClick={() => deleteItem(device.id)}>
                             <img src="" alt="" />
                           </Button>
                         </div>
