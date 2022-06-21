@@ -92,6 +92,7 @@
 }
 
 .list-item:hover {
+  border-radius: 5px;
   font-weight: 600;
   font-size: 1.2rem;
   background-color: var(--third);
