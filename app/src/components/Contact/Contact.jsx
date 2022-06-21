@@ -12,9 +12,23 @@ function Contact() {
 
   const [user, setUser] = useState({});
 
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    const email = {
+      subject: e.target[0].value,
+      to: e.target[1].value,
+      body: e.target[2].value,
+    };
+    console.log(email);
+    const data = await axios.post(`http://localhost:${VITE_PORT_EXPRESS}/api/email`, email);
+    if (data.error) {
+      return toast('An error occured with email, please try again briefly.');
+    }
+    return toast('Email sent.');
+  };
+
   useEffect(() => {
     (async () => {
-      console.log("hitting");
       const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/user`);
       setUser({
         name: data.name,
@@ -25,7 +39,7 @@ function Contact() {
 
   return (
     <section className="login d-flex justify-content-center align-items-center flex-column">
-      <Form className="d-flex flex-column justify-content-center h-25 w-25">
+      <Form className="d-flex flex-column justify-content-center h-25 w-25" onSubmit={sendEmail}>
         <div className="d-flex flex-column justify-content-center px-3 text-white">
           <h2 className="d-flex justify-content-center font-weight-bold centered">Contact Us</h2>
         </div>
@@ -63,11 +77,9 @@ function Contact() {
           </Form.Group>
         </Card>
         <div className="p-hover p-3">
-          <Link to="/confirm">
-            <Button type="submit" className="btn-color rounded w-100">
-              Submit
-            </Button>
-          </Link>
+          <Button type="submit" className="btn-color rounded w-100">
+            Submit
+          </Button>
         </div>
       </Form>
       <ToastContainer autoClose={2500} />
