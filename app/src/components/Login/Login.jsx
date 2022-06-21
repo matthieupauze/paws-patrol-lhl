@@ -3,6 +3,11 @@ import { Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function Login({ logged, setLogged }) {
+
+  const setCookie = () => {
+    document.cookie = 'logged=true';
+  };
+
   return (
     <section className="login d-flex justify-content-center align-items-center flex-column">
       <div className="d-flex flex-column justify-content-center px-3 text-white">
@@ -31,6 +36,7 @@ function Login({ logged, setLogged }) {
               type="submit"
               className="btn-color rounded w-100 mb-2"
               onClick={() => {
+                setCookie();
                 setLogged(!logged);
               }}
             >

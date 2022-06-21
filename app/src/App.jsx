@@ -13,7 +13,7 @@ import Update from './components/Update';
 import Perimeter from './components/Perimeter';
 
 function App() {
-  const [logged, setLogged] = useState(false);
+  const [logged, setLogged] = useState(document.cookie.split('=')[1]);
 
   return (
     <>
