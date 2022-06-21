@@ -42,6 +42,7 @@ function Perimeter({ perimeters, setPerimeters }) {
                     checked={Number(radioImei) === radio.id}
                     variant={Number(radioImei) === radio.id ? 'secondary' : 'transparent'}
                     onChange={(e) => setRadioImei(e.currentTarget.value)}
+                    className="list-item"
                   >
                     <div className="d-flex justify-content-between px-3">
                       <div>{radio.id}</div>
