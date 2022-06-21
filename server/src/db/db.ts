@@ -144,10 +144,10 @@ const seedDB = () => {
       microchip: 'test',
     }).then(() => {
       User.create({
-        name: 'Paws Patrol',
-        phone: '0118 999 881 999 119 725 3',
-        email: 'pawspatrol2022@gmail.com',
-        password: 'clubmed7',
+        name: 'Admin',
+        phone: '1234567890',
+        email: 'admin@admin.admin',
+        password: 'admin',
       });
       Coordinate.create({
         latitude: 42.774749900216115,
