@@ -15,6 +15,7 @@ function Login({ logged, setLogged }) {
             type="email"
             id="email"
             placeholder="Email"
+            defaultValue="pawspatrol2022@gmail.com"
           />
         </Form.Group>
         <Form.Group className="form-group p-3">
@@ -23,6 +24,7 @@ function Login({ logged, setLogged }) {
             type="password"
             id="password"
             placeholder="Password"
+            defaultValue="clubmed7"
           />
         </Form.Group>
         <div className="px-3 m-3">
