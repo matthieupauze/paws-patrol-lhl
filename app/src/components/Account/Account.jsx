@@ -3,6 +3,8 @@ import { Button, Card } from 'react-bootstrap';
 import axios from 'axios';
 import Map from '../Map';
 
+const { VITE_PORT_EXPRESS } = import.meta.env;
+
 function Account() {
   const [users, setUsers] = useState([
     {
@@ -13,13 +15,20 @@ function Account() {
     },
   ]);
 
-  // useEffect(() => {
-  //   const loadUsers = async () => {
-  //     const { data } = await axios.get('http://localhost:8080/api/user');
-  //     setUsers(data);
-  //   };
-  //   loadUsers();
-  // }, []);
+  useEffect(() => {
+    const loadUsers = async () => {
+      const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/user`);
+      console.log(data);
+      setUsers({
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        password: data.password,
+      });
+    };
+    console.log(users);
+    loadUsers();
+  }, []);
   return (
     <section className=" d-flex justify-content-center align-items-center flex-column">
       <Map interactive={false} />
@@ -29,14 +38,14 @@ function Account() {
           <Card.Body>
             <Card.Text>Name</Card.Text>
             <Card.Title className="border-bottom border-dark pb-1 text-white">
-              {users[0].name}
+              {users.name}
             </Card.Title>
             <Card.Text>Phone</Card.Text>
-            <Card.Title className="border-bottom border-dark pb-1 ">{users[0].phone}</Card.Title>
+            <Card.Title className="border-bottom border-dark pb-1 ">{users.phone}</Card.Title>
             <Card.Text>Email</Card.Text>
-            <Card.Title className="border-bottom border-dark pb-1">{users[0].email}</Card.Title>
+            <Card.Title className="border-bottom border-dark pb-1">{users.email}</Card.Title>
             <Card.Text>Password</Card.Text>
-            <Card.Title className="border-bottom border-dark pb-1">{users[0].password}</Card.Title>
+            <Card.Title className="border-bottom border-dark pb-1">{users.password}</Card.Title>
           </Card.Body>
         </Card>
         <div className="d-grid mt-3">
