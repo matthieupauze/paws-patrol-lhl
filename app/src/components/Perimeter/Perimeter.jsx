@@ -4,24 +4,28 @@ import { Button, ButtonGroup, ToggleButton, Card } from 'react-bootstrap';
 import axios from 'axios';
 const { VITE_PORT_EXPRESS } = import.meta.env;
 
-function Perimeter({ perimeters, setPerimeters }) {
+function Perimeter() {
   const [active, setActive] = useState(false);
-  const [radioImei, setRadioImei] = useState('');
-  const radios = perimeters;
+  const [perimeters, setPerimeters] = useState([]);
+  const [selectedPerimeter, setSelectedPerimeter] = useState('');
 
-  const deleteItem = async (imei) => {
-    const { data } = await axios.delete(
-      `http://localhost:${VITE_PORT_EXPRESS}/api/perimeter/${imei}`
-    );
+  const deleteItem = async (id) => {
+    axios
+      .delete(`http://localhost:${VITE_PORT_EXPRESS}/api/perimeter/${id}`)
+      .then(() => {
+        setPerimeters(perimeters.filter((p) => p.id !== id));
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const updatePerimeters = async () => {
+    const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/perimeter`);
+    setPerimeters(data);
   };
 
   useEffect(() => {
-    const loadPerimeters = async () => {
-      const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/perimeter`);
-      setPerimeters(data);
-    };
-    loadPerimeters();
-  }, [deleteItem]);
+    updatePerimeters();
+  }, []);
 
   return (
     <>
@@ -32,21 +36,23 @@ function Perimeter({ perimeters, setPerimeters }) {
             <h2 className="centered">Perimeter</h2>
             <Card className="p-3 w-100 rounded ph-color">
               <ButtonGroup className="mb-3 d-flex flex-column gap-2 rounded">
-                {radios.map((radio, idx) => (
+                {perimeters.map((perimeter, idx) => (
                   <ToggleButton
                     key={idx}
-                    id={`radio-${idx}`}
+                    id={`perimeter-${idx}`}
                     type="radio"
-                    name="radio"
-                    value={radio.id}
-                    checked={Number(radioImei) === radio.id}
-                    variant={Number(radioImei) === radio.id ? 'secondary' : 'transparent'}
-                    onChange={(e) => setRadioImei(e.currentTarget.value)}
+                    name="perimeter"
+                    value={perimeter.id}
+                    checked={Number(selectedPerimeter) === perimeter.id}
+                    variant={
+                      Number(selectedPerimeter) === perimeter.id ? 'secondary' : 'transparent'
+                    }
+                    onChange={(e) => setSelectedPerimeter(e.currentTarget.value)}
                     className="list-item"
                   >
                     <div className="d-flex justify-content-between px-3">
-                      <div>{radio.id}</div>
-                      <Button className="delete-button" onClick={() => deleteItem(radio.id)}>
+                      <div>{perimeter.id}</div>
+                      <Button className="delete-button" onClick={() => deleteItem(perimeter.id)}>
                         <img src="" alt="" />
                       </Button>
                     </div>
@@ -56,7 +62,6 @@ function Perimeter({ perimeters, setPerimeters }) {
               </ButtonGroup>
               <div className="d-grid gap-3">
                 <Button
-                  type="submit"
                   className="btn-color rounded w-100"
                   onClick={() => {
                     setActive(true);
@@ -75,7 +80,7 @@ function Perimeter({ perimeters, setPerimeters }) {
             interactive={active}
             perimeter={true}
             setActive={setActive}
-            setPerimeters={setPerimeters}
+            updatePerimeters={updatePerimeters}
           />
         </section>
       )}
