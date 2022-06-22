@@ -42,7 +42,7 @@ function LocationMarker({ p1, p2, setP1, setP2 }) {
 function Map({ interactive, perimeter, setActive, track, updatePerimeters }) {
   const [p1, setP1] = useState(null);
   const [p2, setP2] = useState(null);
-  const [tracking, setTracking] = useState(false);
+  const [tracking, setTracking] = useState(true);
   const [satelliteView, setSatelliteView] = useState(false);
   const [darkView, setDarkView] = useState(false);
   const [tileLayerData, setTileLayerData] = useState(streetData);
