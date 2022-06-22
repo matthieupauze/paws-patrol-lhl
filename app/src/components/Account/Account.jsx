@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Account() {
   const [users, setUsers] = useState({});
-  console.log(import.meta);
+  console.log(import.meta.env.BASE_URL);
 
   const updateUser = async (e) => {
     e.preventDefault();
