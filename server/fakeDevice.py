@@ -10,9 +10,9 @@ f.close()
 indexStart = text.index("VITE_PORT_EXPRESS") + 18
 indexEnd = indexStart + 4
 port = text[indexStart:indexEnd]
-BASE_URL = "https://intense-savannah-78282.herokuapp.com/"
+BASE_URL = "https://intense-savannah-78282.herokuapp.com"
 
-imei = 2
+imei = 865235030717249
 coordList = [
     [43.57702250878536, -80.26393192432224],
     [43.576716844259394, -80.26433730441174],
