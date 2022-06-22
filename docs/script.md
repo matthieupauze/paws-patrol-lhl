@@ -4,7 +4,7 @@ Brent:
 Hi my name is Brent and before Lighthouse I was a cold pilger operator.
 
 Matt:
-Hi my name is Matt and before Lighthouse I was \*
+Hi my name is Matt and before Lighthouse I was working in customer service.
 
 Robbie:
 Hi my name is Robbie and before Lighthouse I was \*
@@ -12,13 +12,13 @@ Hi my name is Robbie and before Lighthouse I was \*
 # Inspirations
 
 <p>
-  Paw-Patrol is designed to protect your pets and you. Always know where your pets are without anyone else able to do the same. Open source software allows you to know your devices are only talking to each other and gives anyone the ability to run the server themselves.
+  Paw-Patrol is designed to protect your pets and you. Always know where your pets are without anyone else able to do the same. Open source software allows you to know your devices are only talking to each other and gives anyone the ability to run the server themselves. Targetted towards people with a healthy level of paranoia.
 </p>
 
 # Walk-through
 
 <p>
-  The client is built with React, *
+  The client is built using React, React-Router and leaflet for it's map API. We experimented with using vite as a build tool instead of the standard create-react-app.
 </p>
 <p>
   The server is built with Express, PostgreSQL, and Typescript and uses sendInBlue to send emails to users if their pet leaves their perimeter.
