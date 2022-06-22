@@ -5,7 +5,7 @@ import axios from 'axios';
 import path from 'node:path';
 import Map from '../Map';
 
-function Device({ PORT }) {
+function Device() {
   const [form, setForm] = useState(false);
   const [devices, setDevices] = useState([]);
   const [deviceImei, setdeviceImei] = useState('0');

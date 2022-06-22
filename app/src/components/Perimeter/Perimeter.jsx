@@ -1,9 +1,9 @@
-import Map from '../Map';
 import { useState, useEffect } from 'react';
 import { Button, ButtonGroup, ToggleButton, Card } from 'react-bootstrap';
 import axios from 'axios';
+import Map from '../Map';
 
-function Perimeter({ PORT }) {
+function Perimeter() {
   const [active, setActive] = useState(false);
   const [perimeters, setPerimeters] = useState([]);
   const [selectedPerimeter, setSelectedPerimeter] = useState('');

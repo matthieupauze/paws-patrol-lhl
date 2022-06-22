@@ -38,7 +38,7 @@ function LocationMarker({ p1, p2, setP1, setP2 }) {
   return p1 && p2 ? <Rectangle bounds={rectangle} /> : null;
 }
 
-function Map({ interactive, perimeter, setActive, track, updatePerimeters, PORT }) {
+function Map({ interactive, perimeter, setActive, track, updatePerimeters }) {
   const [p1, setP1] = useState(null);
   const [p2, setP2] = useState(null);
   const [tracking, setTracking] = useState(false);
@@ -115,7 +115,7 @@ function Map({ interactive, perimeter, setActive, track, updatePerimeters, PORT 
         doubleClickZoom={false}
       >
         <TileLayer ref={urlRef} url={tileLayerData.url} attribution={tileLayerData.attribution} />
-        <Tracker defaultPosition={defaultPosition} isPolling={tracking} PORT={PORT} />
+        <Tracker defaultPosition={defaultPosition} isPolling={tracking} />
         {perimeter && <LocationMarker p1={p1} p2={p2} setP1={setP1} setP2={setP2} />}
       </MapContainer>
       {/* Dark Mode button */}
