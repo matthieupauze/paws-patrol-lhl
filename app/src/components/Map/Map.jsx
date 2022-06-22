@@ -66,22 +66,12 @@ function Map({ interactive, perimeter, setActive, track, updatePerimeters }) {
 
   const startTracking = () => {
     const data = { start: Date.now() };
-    axios
-      .post(`/api/trip/1`, data)
-      .then(() => {
-        setTracking(true);
-      })
-      .catch((err) => console.log('err', err.message));
+    setTracking(true);
   };
 
   const stopTracking = () => {
     const data = { end: Date.now() };
-    axios
-      .patch(`/api/trip/1`, data)
-      .then(() => {
-        setTracking(false);
-      })
-      .catch((err) => console.log('err', err.message));
+    setTracking(false);
   };
 
   const setSatellite = (isSatellite) => {
