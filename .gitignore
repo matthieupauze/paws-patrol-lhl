@@ -62,6 +62,7 @@ typings/
 
 # Typescript dist folder
 dist
+server/public
 
 # Mac stuff
 .DS_Store

@@ -5,7 +5,7 @@ import axios from 'axios';
 import path from 'node:path';
 import Map from '../Map';
 
-function Device({ PORT }) {
+function Device() {
   const [form, setForm] = useState(false);
   const [devices, setDevices] = useState([]);
   const [deviceImei, setdeviceImei] = useState('0');
@@ -21,14 +21,14 @@ function Device({ PORT }) {
     setDevices(newDevices);
 
     axios
-      .post(`http://localhost:${PORT}/api/device/${newDevice.id}`, newDevice)
+      .post(`/api/device/${newDevice.id}`, newDevice)
       .then((res) => setForm(!form), console.log('device uploaded'))
       .catch((err) => console.log(err));
   };
 
   const deleteItem = async (id) => {
     axios
-      .delete(`http://localhost:${PORT}/api/device/${id}`)
+      .delete(`/api/device/${id}`)
       .then(() => {
         setDevices(devices.filter((d) => d.id !== id));
       })
@@ -37,7 +37,7 @@ function Device({ PORT }) {
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get(`http://localhost:${PORT}/api/device`);
+      const { data } = await axios.get(`/api/device`);
       setDevices(data);
     })();
   }, []);

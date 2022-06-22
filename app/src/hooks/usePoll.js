@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-const deviceId = 2;
+const DEVICE_ID = 865235030717249;
 
-const usePoll = (updatePosition, foundPosition, defaultPosition, isPolling, PORT) => {
+const usePoll = (updatePosition, foundPosition, defaultPosition, isPolling) => {
   const [poller, setPoller] = useState(undefined);
 
   const fetchPosition = () => {
-    return axios.get(`http://localhost:${PORT}/api/coordinate/${deviceId}`).then((res) => {
+    return axios.get(`/api/coordinate/${DEVICE_ID}`).then((res) => {
       const { id, latitude, longitude } = res.data;
       if (!id || !latitude || !longitude) {
         return defaultPosition;

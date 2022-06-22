@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Form, Button, Card, Toast } from 'react-bootstrap';
 import axios from 'axios';
-import Map from '../Map';
 import { ToastContainer, toast } from 'react-toastify';
+import Map from '../Map';
 import 'react-toastify/dist/ReactToastify.css';
 
-function Account({ PORT }) {
+function Account() {
   const [users, setUsers] = useState({});
 
   const updateUser = async (e) => {
@@ -16,7 +16,7 @@ function Account({ PORT }) {
       email: e.target[2].value,
       password: e.target[3].value,
     };
-    const data = await axios.patch(`http://localhost:${PORT}/api/user`, user);
+    const data = await axios.patch(`/api/user`, user);
     if (data.error) {
       return toast('An error occured while updating, please try again briefly.');
     }
@@ -25,7 +25,7 @@ function Account({ PORT }) {
 
   useEffect(() => {
     const loadUsers = async () => {
-      const { data } = await axios.get(`http://localhost:${PORT}/api/user`);
+      const { data } = await axios.get(`/api/user`);
       console.log(data);
       setUsers({
         id: data.id,
