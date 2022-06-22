@@ -54,7 +54,7 @@ function Perimeter() {
                     className="list-item"
                   >
                     <div className="d-flex justify-content-between px-3">
-                      <div>{perimeter.id}</div>
+                      <div>{`Perimeter#${perimeter.id}`}</div>
                       <Button className="delete-button" onClick={() => deleteItem(perimeter.id)}>
                         <img src="" alt="" />
                       </Button>
