@@ -8,8 +8,7 @@
   ],
   "scripts": {
     "install": "subpkg install",
-    "build": "subpkg run build",
-    "server": "(cd server/ && npm run dev)"
+    "build": "subpkg run build"
   },
   "repository": {
     "type": "git",
@@ -17,9 +16,6 @@
   },
   "keywords": [],
   "author": "Matthieu Pauze, Brent Hall, Robbie Prokop",
-  "engines": {
-    "node": "16.x"
-  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/MeatCow/paws-patrol-lhl/issues"
