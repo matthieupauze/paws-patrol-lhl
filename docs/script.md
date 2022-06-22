@@ -12,7 +12,9 @@ Hi my name is Robbie and before Lighthouse I was \*
 # Inspirations
 
 Robbie:
+<p>
 Tell story on how your dog disappeared for a day, and you had to spend 8+ hrs searching for him.
+</p>
 
 Brent:
 
@@ -33,8 +35,6 @@ Brent:
 <p>
   The server is built with Express, PostgreSQL, and Typescript and uses sendInBlue to send emails to users if their pet leaves their perimeter.
 </p>
-
----
 
 Matthieu:
 
