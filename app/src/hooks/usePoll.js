@@ -33,10 +33,12 @@ const usePoll = (updatePosition, foundPosition, defaultPosition, isPolling) => {
 
   useEffect(() => {
     if (isPolling) {
-      return setupTimer();
+      setupTimer();
+    } else {
+      clearInterval(poller);
+      setPoller(undefined);
     }
-    clearInterval(poller);
-    setPoller(undefined);
+    return clearInterval(poller);
   }, [isPolling]);
 };
 
