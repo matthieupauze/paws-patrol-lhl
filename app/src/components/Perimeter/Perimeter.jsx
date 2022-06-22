@@ -10,7 +10,7 @@ function Perimeter({ PORT }) {
 
   const deleteItem = async (id) => {
     axios
-      .delete(`http://localhost:${PORT}/api/perimeter/${id}`)
+      .delete(`/api/perimeter/${id}`)
       .then(() => {
         setPerimeters(perimeters.filter((p) => p.id !== id));
       })
@@ -18,7 +18,7 @@ function Perimeter({ PORT }) {
   };
 
   const updatePerimeters = async () => {
-    const { data } = await axios.get(`http://localhost:${PORT}/api/perimeter`);
+    const { data } = await axios.get(`/api/perimeter`);
     setPerimeters(data);
   };
 

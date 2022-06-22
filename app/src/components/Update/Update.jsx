@@ -1,7 +1,7 @@
 // import { io } from 'socket.io-client';
 import { useSearchParams } from 'react-router-dom';
 
-// const socket = io(`ws://localhost:${VITE_PORT_EXPRESS}`);
+// const socket = io(`ws://import.meta.env.BASE_URL`);
 
 export default function Update() {
   const [searchParams, setSearchParams] = useSearchParams();

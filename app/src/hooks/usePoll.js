@@ -7,7 +7,7 @@ const usePoll = (updatePosition, foundPosition, defaultPosition, isPolling, PORT
   const [poller, setPoller] = useState(undefined);
 
   const fetchPosition = () => {
-    return axios.get(`http://localhost:${PORT}/api/coordinate/${deviceId}`).then((res) => {
+    return axios.get(`/api/coordinate/${deviceId}`).then((res) => {
       const { id, latitude, longitude } = res.data;
       if (!id || !latitude || !longitude) {
         return defaultPosition;

@@ -56,7 +56,7 @@ function Map({ interactive, perimeter, setActive, track, updatePerimeters, PORT 
   const savePerimeter = () => {
     const data = { p1lat: p1.lat, p1long: p1.lng, p2lat: p2.lat, p2long: p2.lng };
     axios
-      .post(`http://localhost:${PORT}/api/perimeter/1`, data)
+      .post(`/api/perimeter/1`, data)
       .then(() => {
         setActive(false);
         updatePerimeters();
@@ -67,7 +67,7 @@ function Map({ interactive, perimeter, setActive, track, updatePerimeters, PORT 
   const startTracking = () => {
     const data = { start: Date.now() };
     axios
-      .post(`http://localhost:${PORT}/api/trip/1`, data)
+      .post(`/api/trip/1`, data)
       .then(() => {
         setTracking(true);
       })
@@ -77,7 +77,7 @@ function Map({ interactive, perimeter, setActive, track, updatePerimeters, PORT 
   const stopTracking = () => {
     const data = { end: Date.now() };
     axios
-      .patch(`http://localhost:${PORT}/api/trip/1`, data)
+      .patch(`/api/trip/1`, data)
       .then(() => {
         setTracking(false);
       })

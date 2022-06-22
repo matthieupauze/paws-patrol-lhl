@@ -14,6 +14,6 @@ export const registerGPS = (io: Server, socket: Socket, db: any) => {
 
 export const serverConfig = {
   cors: {
-    origin: `http://localhost:${VITE_PORT_REACT}`,
+    origin: `https://intense-savannah-78282.herokuapp.com`,
   },
 };

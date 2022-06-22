@@ -10,6 +10,7 @@ f.close()
 indexStart = text.index("VITE_PORT_EXPRESS") + 18
 indexEnd = indexStart + 4
 port = text[indexStart:indexEnd]
+BASE_URL = "https://intense-savannah-78282.herokuapp.com/"
 
 imei = 2
 coordList = [
@@ -25,7 +26,7 @@ coordList = [
     [43.57682172932061, -80.2635554999534]
     ]
 
-createDeviceUrl = f'http://localhost:{port}/api/device/{imei}'
+createDeviceUrl = f'{BASE_URL}/api/device/{imei}'
 deviceData = { 'name': f'{imei}'}
 requests.post(createDeviceUrl, data = deviceData)
 
@@ -45,7 +46,7 @@ StartTime=time.time()
 
 def action(currentLocation) :
 
-    url = f'http://localhost:{port}/api/coordinate/{imei}'
+    url = f'{BASE_URL}/api/coordinate/{imei}'
     data = {'lat': coordList[currentLocation % 10][0], 'long': coordList[currentLocation % 10][1], 'time': datetime.now()}
 
     x = requests.post(url, data = data)

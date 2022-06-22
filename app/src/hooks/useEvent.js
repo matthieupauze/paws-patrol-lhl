@@ -1,8 +1,7 @@
 // import { io } from 'socket.io-client';
-const { VITE_PORT_EXPRESS } = import.meta.env;
 
 const useEvent = (updatePosition, foundPosition, defaultPosition) => {
-  // const socket = io(`ws://localhost:${VITE_PORT_EXPRESS}`);
+  // const socket = io(`ws://import.meta.env.BASE_URL`);
   // socket.on('gps-update', (coords) => {
   //   console.log('received new coordinates', coords);
   //   updatePosition({ coords, foundPosition });

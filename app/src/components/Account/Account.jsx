@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Account() {
   const [users, setUsers] = useState({});
-  console.log(import.meta.env.BASE_URL);
 
   const updateUser = async (e) => {
     e.preventDefault();
@@ -17,7 +16,7 @@ function Account() {
       email: e.target[2].value,
       password: e.target[3].value,
     };
-    const data = await axios.patch(`http://localhost:${PORT}/api/user`, user);
+    const data = await axios.patch(`/api/user`, user);
     if (data.error) {
       return toast('An error occured while updating, please try again briefly.');
     }
@@ -26,7 +25,7 @@ function Account() {
 
   useEffect(() => {
     const loadUsers = async () => {
-      const { data } = await axios.get(`http://localhost:${PORT}/api/user`);
+      const { data } = await axios.get(`/api/user`);
       console.log(data);
       setUsers({
         id: data.id,
