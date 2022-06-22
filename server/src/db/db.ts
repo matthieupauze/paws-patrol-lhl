@@ -180,7 +180,7 @@ exports.addCoordinate = addCoordinate;
 
 const getCoordinate = (imei: number) => {
   return Coordinate.findOne({
-    order: [['time', 'DESC']],
+    order: [['id', 'DESC']],
     where: { deviceId: imei },
   });
 };
