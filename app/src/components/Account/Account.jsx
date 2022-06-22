@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Form, Button, Card, Toast } from 'react-bootstrap';
 import axios from 'axios';
-import Map from '../Map';
 import { ToastContainer, toast } from 'react-toastify';
+import Map from '../Map';
 import 'react-toastify/dist/ReactToastify.css';
 
-function Account({ PORT }) {
+function Account() {
   const [users, setUsers] = useState({});
+  console.log(import.meta);
 
   const updateUser = async (e) => {
     e.preventDefault();
