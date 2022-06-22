@@ -39,13 +39,13 @@ function Perimeter() {
             </p>
             <Card className="p-3 w-100 rounded ph-color">
               <ButtonGroup className="mb-3 d-flex flex-column gap-2 rounded">
-                {perimeters.map((perimeter, idx) => (
+                {perimeters.map((perimeter) => (
                   <ToggleButton
-                    key={idx}
-                    id={`perimeter-${idx}`}
+                    key={perimeter.id}
+                    id={`perimeter-${perimeter.id}`}
                     type="radio"
                     name="perimeter"
-                    value={perimeter.id}
+                    value={`Perimeter#${perimeter.id}`}
                     checked={Number(selectedPerimeter) === perimeter.id}
                     variant={
                       Number(selectedPerimeter) === perimeter.id ? 'secondary' : 'transparent'
