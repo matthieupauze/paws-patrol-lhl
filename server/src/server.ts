@@ -63,4 +63,8 @@ const userApiRouter = express.Router();
 userApiRoutes(userApiRouter, db);
 app.use('/api/user', userApiRouter);
 
+app.use((req: any, res: any, next: any) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+});
+
 module.exports = { app, db };
