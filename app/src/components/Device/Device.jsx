@@ -5,9 +5,7 @@ import axios from 'axios';
 import path from 'node:path';
 import Map from '../Map';
 
-const { VITE_PORT_EXPRESS } = import.meta.env;
-
-function Device() {
+function Device({ PORT }) {
   const [form, setForm] = useState(false);
   const [devices, setDevices] = useState([]);
   const [deviceImei, setdeviceImei] = useState('0');
@@ -23,14 +21,14 @@ function Device() {
     setDevices(newDevices);
 
     axios
-      .post(`http://localhost:${VITE_PORT_EXPRESS}/api/device/${newDevice.id}`, newDevice)
+      .post(`http://localhost:${PORT}/api/device/${newDevice.id}`, newDevice)
       .then((res) => setForm(!form), console.log('device uploaded'))
       .catch((err) => console.log(err));
   };
 
   const deleteItem = async (id) => {
     axios
-      .delete(`http://localhost:${VITE_PORT_EXPRESS}/api/device/${id}`)
+      .delete(`http://localhost:${PORT}/api/device/${id}`)
       .then(() => {
         setDevices(devices.filter((d) => d.id !== id));
       })
@@ -39,7 +37,7 @@ function Device() {
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/device`);
+      const { data } = await axios.get(`http://localhost:${PORT}/api/device`);
       setDevices(data);
     })();
   }, []);

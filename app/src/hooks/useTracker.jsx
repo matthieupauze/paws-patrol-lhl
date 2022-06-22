@@ -21,7 +21,7 @@ const useTracker = (defaultPosition) => {
   const map = useMap();
 
   const genLine = () => {
-    return <Polyline positions={positions} color="red" />;
+    return <Polyline positions={positions} color="blue" />;
   };
 
   const genMarker = () => {

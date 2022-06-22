@@ -5,9 +5,7 @@ import Map from '../Map';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const { VITE_PORT_EXPRESS } = import.meta.env;
-
-function Account() {
+function Account({ PORT }) {
   const [users, setUsers] = useState({});
 
   const updateUser = async (e) => {
@@ -18,7 +16,7 @@ function Account() {
       email: e.target[2].value,
       password: e.target[3].value,
     };
-    const data = await axios.patch(`http://localhost:${VITE_PORT_EXPRESS}/api/user`, user);
+    const data = await axios.patch(`http://localhost:${PORT}/api/user`, user);
     if (data.error) {
       return toast('An error occured while updating, please try again briefly.');
     }
@@ -27,7 +25,7 @@ function Account() {
 
   useEffect(() => {
     const loadUsers = async () => {
-      const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/user`);
+      const { data } = await axios.get(`http://localhost:${PORT}/api/user`);
       console.log(data);
       setUsers({
         id: data.id,

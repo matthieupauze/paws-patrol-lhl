@@ -2,16 +2,15 @@ import Map from '../Map';
 import { useState, useEffect } from 'react';
 import { Button, ButtonGroup, ToggleButton, Card } from 'react-bootstrap';
 import axios from 'axios';
-const { VITE_PORT_EXPRESS } = import.meta.env;
 
-function Perimeter() {
+function Perimeter({ PORT }) {
   const [active, setActive] = useState(false);
   const [perimeters, setPerimeters] = useState([]);
   const [selectedPerimeter, setSelectedPerimeter] = useState('');
 
   const deleteItem = async (id) => {
     axios
-      .delete(`http://localhost:${VITE_PORT_EXPRESS}/api/perimeter/${id}`)
+      .delete(`http://localhost:${PORT}/api/perimeter/${id}`)
       .then(() => {
         setPerimeters(perimeters.filter((p) => p.id !== id));
       })
@@ -19,7 +18,7 @@ function Perimeter() {
   };
 
   const updatePerimeters = async () => {
-    const { data } = await axios.get(`http://localhost:${VITE_PORT_EXPRESS}/api/perimeter`);
+    const { data } = await axios.get(`http://localhost:${PORT}/api/perimeter`);
     setPerimeters(data);
   };
 
