@@ -55,7 +55,7 @@ if (DB_RESET_ENABLED === 'TRUE') {
   const resetApiRouter = express.Router();
   resetApiRoutes(resetApiRouter, db);
   app.use('/api/reset', resetApiRouter);
-};
+}
 
 // trip endpoints
 const tripApiRouter = express.Router();
