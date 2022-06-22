@@ -19,7 +19,6 @@ Hi my name is Matt and before Lighthouse I was working in customer service.
 
 Robbie :
 The inspiration for this app came a few weeks ago when the wind opened the gate to my front yard and my dog decided to go on a solo adventure. It took me about 9 hours to find that somebody brought her to the local vet. It would have been really nice to have had a GPS device attached to her collar.
-We have to thank Botletics for their shield (top part of the device) and their documentation on how to build this open source device
 
 Now Brent will talk about how the app is desinged to function
 
@@ -110,9 +109,9 @@ Brent:
 <p>
   Some challenges were
 
-  - Use of different languages, such as typescript on the backend, python for device simulation, and c++ for programming the Arduino.
-  - Getting the physical device to work.
-  - Trying to find support for our specific Arduino setup(library + device).
+- Use of different languages, such as typescript on the backend, python for device simulation, and c++ for programming the Arduino.
+- Getting the physical device to work.
+- Trying to find support for our specific Arduino setup(library + device).
 
 Now Robbie Will share some final thoughts
 
