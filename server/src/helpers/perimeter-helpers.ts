@@ -1,3 +1,5 @@
+const sendEmail = require('../routes/helpers/sendMail');
+
 interface Coord {
   latitude: Number; // This is up-down
   longitude: Number; // This is left-right
@@ -30,6 +32,7 @@ const checkPerimeter = async (imei: Number, oldLocation: Coord, newLocation: Coo
 
   if (inBounds(bounds, oldLocation) && !inBounds(bounds, newLocation)) {
     console.log('Sending alert!');
+    sendEmail('pawspatrol2022@gmail.com', 'Paw Patrol', 'Pet gone... look for them or something');
     // TODO: Send alert
   }
 };
