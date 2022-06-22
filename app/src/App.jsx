@@ -14,18 +14,19 @@ import Perimeter from './components/Perimeter';
 
 function App() {
   const [logged, setLogged] = useState(document.cookie.split('=')[1]);
+  const PORT = process.env.PORT || import.meta.VIT_PORT_EXPRESS;
 
   return (
     <>
       <Header logged={logged} setLogged={setLogged} />
       <Routes>
         <Route path="/" element={<Map interactive perimeter={false} track />} />
-        <Route path="/device" element={<Device />} />
-        <Route path="/perimeter" element={<Perimeter />} />
-        <Route path="/account" element={<Account />} />
+        <Route path="/device" element={<Device PORT={PORT} />} />
+        <Route path="/perimeter" element={<Perimeter PORT={PORT} />} />
+        <Route path="/account" element={<Account PORT={PORT} />} />
         <Route path="/contact" element={<Contact />} />
         {/* <Route path="/confirm" element={<Confirm />} /> */}
-        <Route path="/update" element={<Update />} />
+        <Route path="/update" element={<Update PORT={PORT} />} />
         {/* <Route path="/signup" element={<SignUp />} /> */}
         <Route path="/login" element={<Login logged={logged} setLogged={setLogged} />} />
         <Route path="/register" element={<Register logged={logged} setLogged={setLogged} />} />

@@ -1,22 +1,19 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-const { VITE_PORT_EXPRESS } = import.meta.env;
 const deviceId = 2;
 
-const usePoll = (updatePosition, foundPosition, defaultPosition, isPolling) => {
+const usePoll = (updatePosition, foundPosition, defaultPosition, isPolling, PORT) => {
   const [poller, setPoller] = useState(undefined);
 
   const fetchPosition = () => {
-    return axios
-      .get(`http://localhost:${VITE_PORT_EXPRESS}/api/coordinate/${deviceId}`)
-      .then((res) => {
-        const { id, latitude, longitude } = res.data;
-        if (!id || !latitude || !longitude) {
-          return defaultPosition;
-        }
-        return { imei: id, lat: latitude, lng: longitude };
-      });
+    return axios.get(`http://localhost:${PORT}/api/coordinate/${deviceId}`).then((res) => {
+      const { id, latitude, longitude } = res.data;
+      if (!id || !latitude || !longitude) {
+        return defaultPosition;
+      }
+      return { imei: id, lat: latitude, lng: longitude };
+    });
   };
 
   const setupTimer = () => {

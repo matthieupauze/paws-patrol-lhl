@@ -4,8 +4,6 @@ import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import Tracker from '../Tracker';
 
-const { VITE_PORT_EXPRESS } = import.meta.env;
-
 const defaultZoom = 4;
 const defaultPosition = { imei: 0, lat: 45, lng: -73 };
 
@@ -40,7 +38,7 @@ function LocationMarker({ p1, p2, setP1, setP2 }) {
   return p1 && p2 ? <Rectangle bounds={rectangle} /> : null;
 }
 
-function Map({ interactive, perimeter, setActive, track, updatePerimeters }) {
+function Map({ interactive, perimeter, setActive, track, updatePerimeters, PORT }) {
   const [p1, setP1] = useState(null);
   const [p2, setP2] = useState(null);
   const [tracking, setTracking] = useState(false);
@@ -58,7 +56,7 @@ function Map({ interactive, perimeter, setActive, track, updatePerimeters }) {
   const savePerimeter = () => {
     const data = { p1lat: p1.lat, p1long: p1.lng, p2lat: p2.lat, p2long: p2.lng };
     axios
-      .post(`http://localhost:${VITE_PORT_EXPRESS}/api/perimeter/1`, data)
+      .post(`http://localhost:${PORT}/api/perimeter/1`, data)
       .then(() => {
         setActive(false);
         updatePerimeters();
@@ -69,7 +67,7 @@ function Map({ interactive, perimeter, setActive, track, updatePerimeters }) {
   const startTracking = () => {
     const data = { start: Date.now() };
     axios
-      .post(`http://localhost:${VITE_PORT_EXPRESS}/api/trip/1`, data)
+      .post(`http://localhost:${PORT}/api/trip/1`, data)
       .then(() => {
         setTracking(true);
       })
@@ -79,7 +77,7 @@ function Map({ interactive, perimeter, setActive, track, updatePerimeters }) {
   const stopTracking = () => {
     const data = { end: Date.now() };
     axios
-      .patch(`http://localhost:${VITE_PORT_EXPRESS}/api/trip/1`, data)
+      .patch(`http://localhost:${PORT}/api/trip/1`, data)
       .then(() => {
         setTracking(false);
       })
@@ -117,7 +115,7 @@ function Map({ interactive, perimeter, setActive, track, updatePerimeters }) {
         doubleClickZoom={false}
       >
         <TileLayer ref={urlRef} url={tileLayerData.url} attribution={tileLayerData.attribution} />
-        <Tracker defaultPosition={defaultPosition} isPolling={tracking} />
+        <Tracker defaultPosition={defaultPosition} isPolling={tracking} PORT={PORT} />
         {perimeter && <LocationMarker p1={p1} p2={p2} setP1={setP1} setP2={setP2} />}
       </MapContainer>
       {/* Dark Mode button */}
