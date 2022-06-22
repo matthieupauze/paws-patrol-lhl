@@ -18,9 +18,6 @@
   },
   "keywords": [],
   "author": "Matthieu Pauze, Brent Hall, Robbie Prokop",
-  "engines": {
-    "node": "16.x"
-  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/MeatCow/paws-patrol-lhl/issues"
