@@ -31,6 +31,8 @@ Brent:
 
 # Walk-through
 
+Matthieu:
+
 <p>
   The client side of the app is built using React, React-Router, and leaflet for it's map API. We experimented with using vite as a build tool.
 </p>
@@ -56,6 +58,8 @@ Matthieu:
 - Mention a default device has already been set
 - Change to Dark Mode
 
+Matthieu:
+
 ## Devices page
 
 - Mention that we can add a new device and remove others
@@ -69,6 +73,14 @@ Matthieu:
 ## Account page
 
 - User updates an element to show toast. Make a minor change to make it quick
+
+Robbie:
+
+## Perimeter page
+
+- User adds new perimeter and then deletes the default one
+
+Brent:
 
 ## Contact page
 
