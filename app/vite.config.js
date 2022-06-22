@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     server: {
-      port: process.env.VITE_PORT_REACT,
+      port: process.env.PORT || process.env.VITE_PORT_REACT,
       strictPort: true,
     },
   };
