@@ -14,7 +14,7 @@ import Perimeter from './components/Perimeter';
 
 function App() {
   const [logged, setLogged] = useState(document.cookie.split('=')[1]);
-  const PORT = process.env.PORT || import.meta.VIT_PORT_EXPRESS;
+  const PORT = import.meta.PORT || import.meta.VIT_PORT_EXPRESS;
   console.log(PORT)
 
   return (
