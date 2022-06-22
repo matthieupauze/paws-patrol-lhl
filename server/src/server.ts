@@ -1,5 +1,7 @@
 import { disableCors } from './helpers/express-helpers';
 
+const { DB_RESET_ENABLED } = process.env;
+
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -49,9 +51,11 @@ perimeterApiRoutes(perimeterApiRouter, db);
 app.use('/api/perimeter', perimeterApiRouter);
 
 // reset endpoints
-const resetApiRouter = express.Router();
-resetApiRoutes(resetApiRouter, db);
-app.use('/api/reset', resetApiRouter);
+if (DB_RESET_ENABLED === 'TRUE') {
+  const resetApiRouter = express.Router();
+  resetApiRoutes(resetApiRouter, db);
+  app.use('/api/reset', resetApiRouter);
+};
 
 // trip endpoints
 const tripApiRouter = express.Router();
