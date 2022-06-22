@@ -38,7 +38,9 @@ const usePoll = (updatePosition, foundPosition, defaultPosition, isPolling) => {
       clearInterval(poller);
       setPoller(undefined);
     }
-    return clearInterval(poller);
+    return () => {
+      clearInterval(poller);
+    };
   }, [isPolling]);
 };
 
