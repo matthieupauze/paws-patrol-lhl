@@ -6,6 +6,7 @@ import Tracker from '../Tracker';
 
 const defaultZoom = 4;
 const defaultPosition = { imei: 0, lat: 45, lng: -73 };
+const DEVICE_ID = 865235030717249;
 
 const streetData = {
   url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -56,7 +57,7 @@ function Map({ interactive, perimeter, setActive, track, updatePerimeters }) {
   const savePerimeter = () => {
     const data = { p1lat: p1.lat, p1long: p1.lng, p2lat: p2.lat, p2long: p2.lng };
     axios
-      .post(`/api/perimeter/1`, data)
+      .post(`/api/perimeter/${DEVICE_ID}`, data)
       .then(() => {
         setActive(false);
         updatePerimeters();
