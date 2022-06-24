@@ -22,15 +22,17 @@ The inspiration for this app came a few weeks ago when the wind opened the gate 
 
 Now Brent will talk about how the app is desinged to function
 
+### 1min 3sec
+
+## 1 min
+
+# 1m 1s
+
 Brent:
 
 <p>
   Paw-Patrol is designed to protect your pets and you by always knowing where they are. Open source software allows you to know your devices are only talking to you and gives anyone the ability to self-host the server themselves. This app is targetted towards people with a healthy level of paranoia.
 </p>
-
-# Walk-through
-
-Matthieu:
 
 <p>
   The client side of the app is built using React, React-Router, and leaflet for it's map API. We experimented with using vite as a build tool.
@@ -38,12 +40,17 @@ Matthieu:
 
 <p>
   The server is built with Express, Sequelize, and Typescript and uses sendInBlue to send emails to users. The hardware is programmed using C++.
-</p>
-
-<p>
   Now I will let Matthieu give a proper demo of the app. 
 </p>
 ---
+
+### 1min 45s
+
+# 1m 38s
+
+# 1m 38s
+
+# Walk-through
 
 Matthieu:
 
@@ -65,9 +72,17 @@ Matthieu:
 - Add one quickly (not full details, maybe just 1,2,3)
 - Quickly delete a device
 
+### 2 min 45s
+
+## 2m 7s
+
 ## Perimeter page
 
 - Add a Perimeter. Make it big so that it is visually clear for the presentation. It doesn't need to be on one specific house or yard.
+
+## 2m 25s
+
+## 2m 30s
 
 ## Account page
 
@@ -87,12 +102,19 @@ Brent:
 
 ---
 
-# Further Development ~ Challenges
+### 3 min 55s
+
+# 3m 10s
+
+# 3m 13s
+
+# Further Development ~ Stretch
 
 Matthieu:
 
 <p>
   In the future we would like to integrate Twilio so the user can also receive an SMS, replace bootstrap with custom scss, move to a smaller tracking device, and dockerize the software to allow easier deployment for self-hosting.
+  Robbie on to you
 </p>
 
 Robbie:
@@ -103,6 +125,12 @@ Robbie:
 Now Brent will talk about some of the challenges we faced along the way
 
 </p>
+
+### 4min 40s
+
+## 4m
+
+# 3m 57s
 
 Brent:
 
@@ -120,3 +148,7 @@ Now Robbie Will share some final thoughts
 Robbie:
 
 <p>So for any of you pet lovers (or helicopter parents), build this device, keep track of your pet (or kid) to have some peace of mind knowing they are safe. Thank you for watching our presentation and thank you Lighthouse for helping us to become full stack developpers! </p>
+
+# 5min 20s
+
+# 4min 36s
