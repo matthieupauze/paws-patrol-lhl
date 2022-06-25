@@ -4,6 +4,10 @@ Paws Patrol is designed to protect your pets and you. Always know where your pet
 Self-hosting allows you to choose your own middleware (ex. authelia, pomerium) for login while also providing security.  
 Open source software allows you to know your devices are only talking to each other.
 
+<img src="https://github.com/MeatCow/paws-patrol-lhl/blob/main/app/public/images/Screen%20Shot%202022-06-24%20at%204.44.57%20PM.png" >
+<img src="https://github.com/MeatCow/paws-patrol-lhl/blob/main/app/public/images/Screen%20Shot%202022-06-24%20at%204.45.14%20PM.png" >
+<img src="https://github.com/MeatCow/paws-patrol-lhl/blob/main/app/public/images/Screen%20Shot%202022-06-24%20at%204.46.13%20PM.png" >
+
 ## Setup
 
 ```js
