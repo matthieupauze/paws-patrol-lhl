@@ -6,6 +6,7 @@ import Tracker from '../Tracker';
 
 const defaultZoom = 4;
 const defaultPosition = { imei: 0, lat: 45, lng: -73 };
+const DEVICE_ID = 865235030717249;
 
 const streetData = {
   url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -41,7 +42,7 @@ function LocationMarker({ p1, p2, setP1, setP2 }) {
 function Map({ interactive, perimeter, setActive, track, updatePerimeters }) {
   const [p1, setP1] = useState(null);
   const [p2, setP2] = useState(null);
-  const [tracking, setTracking] = useState(false);
+  const [tracking, setTracking] = useState(true);
   const [satelliteView, setSatelliteView] = useState(false);
   const [darkView, setDarkView] = useState(false);
   const [tileLayerData, setTileLayerData] = useState(streetData);
@@ -56,7 +57,7 @@ function Map({ interactive, perimeter, setActive, track, updatePerimeters }) {
   const savePerimeter = () => {
     const data = { p1lat: p1.lat, p1long: p1.lng, p2lat: p2.lat, p2long: p2.lng };
     axios
-      .post(`/api/perimeter/1`, data)
+      .post(`/api/perimeter/${DEVICE_ID}`, data)
       .then(() => {
         setActive(false);
         updatePerimeters();
@@ -66,22 +67,12 @@ function Map({ interactive, perimeter, setActive, track, updatePerimeters }) {
 
   const startTracking = () => {
     const data = { start: Date.now() };
-    axios
-      .post(`/api/trip/1`, data)
-      .then(() => {
-        setTracking(true);
-      })
-      .catch((err) => console.log('err', err.message));
+    setTracking(true);
   };
 
   const stopTracking = () => {
     const data = { end: Date.now() };
-    axios
-      .patch(`/api/trip/1`, data)
-      .then(() => {
-        setTracking(false);
-      })
-      .catch((err) => console.log('err', err.message));
+    setTracking(false);
   };
 
   const setSatellite = (isSatellite) => {

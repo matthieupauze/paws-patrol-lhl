@@ -84,7 +84,7 @@ function Account() {
           </Form>
         </Card>
       </div>
-      <ToastContainer autoClose={2500} />
+      <ToastContainer autoClose={2500} position="bottom-center" />
     </section>
   );
 }

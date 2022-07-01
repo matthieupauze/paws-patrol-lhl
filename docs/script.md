@@ -64,7 +64,9 @@ Matthieu:
 - Mention a default device has already been set
 - Change to Dark Mode
 
-Matthieu:
+- Start with Start Tracking button.
+- Mention a default device has already been set
+- Change to Dark Mode
 
 ## Devices page
 
@@ -92,11 +94,9 @@ Robbie:
 
 ## Perimeter page
 
-- User adds new perimeter and then deletes the default one
+- Add a Perimeter. Make it big so that it is visually clear for the presentation. It doesn't need to be on one specific house or yard.
 
-Brent:
-
-## Contact page
+## Account page
 
 - Quickly fill out information and then sends an email, sent via the sendInBlue API. (again, maybe just 1,2,3)
 

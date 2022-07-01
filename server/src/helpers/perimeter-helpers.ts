@@ -24,7 +24,12 @@ const inBounds = (bounds: Point[], location: Coord): Boolean => {
 };
 
 const checkPerimeter = async (imei: Number, oldLocation: Coord, newLocation: Coord, db: any) => {
-  const { p1lat, p1long, p2lat, p2long } = await db.getPerimeterByIMEI(imei);
+  const perimeter = await db.getPerimeterByIMEI(imei);
+  if (!perimeter) {
+    return;
+  }
+
+  const { p1lat, p1long, p2lat, p2long } = perimeter;
   const bounds = [
     { lat: p1lat, long: p1long },
     { lat: p2lat, long: p2long },
